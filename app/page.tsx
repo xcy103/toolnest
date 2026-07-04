@@ -1,65 +1,66 @@
-import Image from "next/image";
+import { tools, siteConfig } from "@/lib/tools";
+import ToolCard from "@/components/ToolCard";
 
 export default function Home() {
+  const total = tools.length;
+  const live = tools.filter((t) => t.available).length;
+
+  // Group tools by category, preserving the order they appear in the registry.
+  const categories: string[] = [];
+  for (const t of tools) {
+    if (!categories.includes(t.category)) categories.push(t.category);
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      {/* Hero */}
+      <section className="py-14 text-center sm:py-20">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500 text-3xl shadow-lg shadow-emerald-500/20">
+          🪺
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Tool<span className="text-emerald-500">Nest</span>
+        </h1>
+        <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
+          {siteConfig.description}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
+          <span>✅ 免费使用</span>
+          <span>🔒 数据不出本地</span>
+          <span>⚡ 无需注册</span>
         </div>
-      </main>
+        <p className="mt-6 text-sm text-muted">
+          已规划 <span className="font-semibold text-foreground">{total}</span>{" "}
+          个工具,
+          {live > 0 ? (
+            <>
+              已上线{" "}
+              <span className="font-semibold text-emerald-500">{live}</span> 个,
+              持续更新中。
+            </>
+          ) : (
+            <>正在陆续上线,敬请期待。</>
+          )}
+        </p>
+      </section>
+
+      {/* Tool directory, grouped by category */}
+      <section className="pb-16">
+        {categories.map((category) => (
+          <div key={category} className="mb-10">
+            <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+              {category}
+            </h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {tools
+                .filter((t) => t.category === category)
+                .map((tool) => (
+                  <ToolCard key={tool.slug} tool={tool} />
+                ))}
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
