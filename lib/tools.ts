@@ -23,7 +23,7 @@ export const tools: Tool[] = [
     description: "文本与 Base64 之间互相编码、解码。",
     icon: "🔤",
     category: "编码",
-    available: false,
+    available: true,
   },
   {
     slug: "url",
