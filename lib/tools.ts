@@ -32,7 +32,7 @@ export const tools: Tool[] = [
     description: "对 URL 及查询参数进行编码与解码。",
     icon: "🔗",
     category: "编码",
-    available: false,
+    available: true,
   },
   {
     slug: "json",
