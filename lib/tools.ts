@@ -41,7 +41,7 @@ export const tools: Tool[] = [
     description: "JSON 格式化、压缩与语法校验。",
     icon: "{ }",
     category: "开发",
-    available: false,
+    available: true,
   },
   {
     slug: "hash",
