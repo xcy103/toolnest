@@ -59,7 +59,7 @@ export const tools: Tool[] = [
     description: "Unix 时间戳与日期互转,多时区实时对照。",
     icon: "🕐",
     category: "时间",
-    available: false,
+    available: true,
   },
   {
     slug: "calculator",
