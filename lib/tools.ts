@@ -68,7 +68,7 @@ export const tools: Tool[] = [
     description: "基本运算与常见科学函数计算。",
     icon: "🧮",
     category: "计算",
-    available: false,
+    available: true,
   },
   {
     slug: "qrcode",
