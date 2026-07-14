@@ -77,7 +77,7 @@ export const tools: Tool[] = [
     description: "把文本或链接生成为二维码并下载。",
     icon: "📱",
     category: "生成",
-    available: false,
+    available: true,
   },
 ];
 
