@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { Tool } from "@/lib/tools";
 
 /** A single tool card on the home page. Renders as a link when available,
