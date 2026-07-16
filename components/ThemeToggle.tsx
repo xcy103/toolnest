@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Theme = "light" | "dark";
 
@@ -10,6 +11,7 @@ type Theme = "light" | "dark";
  * a flash of the wrong theme before hydration.
  */
 export default function ThemeToggle() {
+  const t = useTranslations("nav");
   const [theme, setTheme] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
@@ -38,8 +40,8 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === "dark" ? "切换到浅色模式" : "切换到深色模式"}
-      title={theme === "dark" ? "切换到浅色模式" : "切换到深色模式"}
+      aria-label={theme === "dark" ? t("toLight") : t("toDark")}
+      title={theme === "dark" ? t("toLight") : t("toDark")}
       className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-lg text-foreground/80 transition hover:bg-foreground/5"
     >
       {/* Render a stable icon until mounted to avoid hydration mismatch. */}

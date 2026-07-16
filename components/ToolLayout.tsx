@@ -1,8 +1,9 @@
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 
 type Props = {
-  /** Tool title, e.g. "Base64 编解码". */
+  /** Tool title, already translated by the caller. */
   title: string;
   /** Short one-line description shown under the title. */
   description: string;
@@ -13,11 +14,13 @@ type Props = {
 
 /** Shared page scaffold for every tool: breadcrumb, header, and content area. */
 export default function ToolLayout({ title, description, icon, children }: Props) {
+  const t = useTranslations("toolLayout");
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
       <nav className="mb-6 text-sm text-muted">
         <Link href="/" className="transition hover:text-foreground">
-          首页
+          {t("home")}
         </Link>
         <span className="mx-2">/</span>
         <span className="text-foreground">{title}</span>

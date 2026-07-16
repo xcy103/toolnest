@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/lib/tools";
@@ -19,13 +19,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} · ${siteConfig.tagline}`,
-    template: `%s · ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-};
+/** Title and description follow the active locale. */
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "site" });
+
+  return {
+    title: {
+      default: `${siteConfig.name} · ${t("tagline")}`,
+      template: `%s · ${siteConfig.name}`,
+    },
+    description: t("description"),
+  };
+}
 
 /** Pre-render a copy of the site for every locale at build time. */
 export function generateStaticParams() {

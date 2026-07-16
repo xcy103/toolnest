@@ -1,1 +1,64 @@
-{}
+{
+  "site": {
+    "tagline": "Free Online Tools",
+    "description": "ToolNest is a collection of free, fast online tools that run entirely in your browser. No sign-up, and your data never leaves your device."
+  },
+  "nav": {
+    "allTools": "All Tools",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "home": {
+    "badgeFree": "✅ Free to use",
+    "badgeLocal": "🔒 Data stays local",
+    "badgeNoSignup": "⚡ No sign-up",
+    "statsLive": "<strong>{total}</strong> tools planned, <em>{live}</em> live and growing.",
+    "statsNone": "Tools are rolling out — stay tuned."
+  },
+  "toolCard": {
+    "comingSoon": "Coming soon"
+  },
+  "toolLayout": {
+    "home": "Home"
+  },
+  "footer": {
+    "note": "Fully client-side · Data stays local"
+  },
+  "categories": {
+    "encode": "Encoding",
+    "dev": "Developer",
+    "time": "Time",
+    "calc": "Calculators",
+    "generate": "Generators"
+  },
+  "tools": {
+    "base64": {
+      "name": "Base64 Encode / Decode",
+      "description": "Convert text to and from Base64."
+    },
+    "url": {
+      "name": "URL Encode / Decode",
+      "description": "Percent-encode and decode URLs and query parameters."
+    },
+    "json": {
+      "name": "JSON Tools",
+      "description": "Format, minify and validate JSON."
+    },
+    "hash": {
+      "name": "Hash Generator",
+      "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes."
+    },
+    "timezone": {
+      "name": "Timezone & Timestamp",
+      "description": "Convert Unix timestamps and dates, and compare live across timezones."
+    },
+    "calculator": {
+      "name": "Scientific Calculator",
+      "description": "Basic arithmetic plus common scientific functions."
+    },
+    "qrcode": {
+      "name": "QR Code Generator",
+      "description": "Turn text or a link into a QR code and download it."
+    }
+  }
+}

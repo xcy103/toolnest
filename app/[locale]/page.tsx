@@ -1,14 +1,20 @@
-import { tools, siteConfig } from "@/lib/tools";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { tools, type CategoryKey } from "@/lib/tools";
 import ToolCard from "@/components/ToolCard";
 
-export default function Home() {
+export default async function Home({ params }: PageProps<"/[locale]">) {
+  const { locale } = await params;
+  // Opt into static rendering.
+  setRequestLocale(locale);
+
+  const t = await getTranslations();
   const total = tools.length;
-  const live = tools.filter((t) => t.available).length;
+  const live = tools.filter((tool) => tool.available).length;
 
   // Group tools by category, preserving the order they appear in the registry.
-  const categories: string[] = [];
-  for (const t of tools) {
-    if (!categories.includes(t.category)) categories.push(t.category);
+  const categories: CategoryKey[] = [];
+  for (const tool of tools) {
+    if (!categories.includes(tool.categoryKey)) categories.push(tool.categoryKey);
   }
 
   return (
@@ -22,25 +28,26 @@ export default function Home() {
           Tool<span className="text-emerald-500">Nest</span>
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
-          {siteConfig.description}
+          {t("site.description")}
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted">
-          <span>✅ 免费使用</span>
-          <span>🔒 数据不出本地</span>
-          <span>⚡ 无需注册</span>
+          <span>{t("home.badgeFree")}</span>
+          <span>{t("home.badgeLocal")}</span>
+          <span>{t("home.badgeNoSignup")}</span>
         </div>
         <p className="mt-6 text-sm text-muted">
-          已规划 <span className="font-semibold text-foreground">{total}</span>{" "}
-          个工具,
-          {live > 0 ? (
-            <>
-              已上线{" "}
-              <span className="font-semibold text-emerald-500">{live}</span> 个,
-              持续更新中。
-            </>
-          ) : (
-            <>正在陆续上线,敬请期待。</>
-          )}
+          {live > 0
+            ? t.rich("home.statsLive", {
+                total,
+                live,
+                strong: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+                em: (chunks) => (
+                  <span className="font-semibold text-emerald-500">{chunks}</span>
+                ),
+              })
+            : t("home.statsNone")}
         </p>
       </section>
 
@@ -49,11 +56,11 @@ export default function Home() {
         {categories.map((category) => (
           <div key={category} className="mb-10">
             <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
-              {category}
+              {t(`categories.${category}`)}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {tools
-                .filter((t) => t.category === category)
+                .filter((tool) => tool.categoryKey === category)
                 .map((tool) => (
                   <ToolCard key={tool.slug} tool={tool} />
                 ))}
