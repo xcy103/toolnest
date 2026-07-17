@@ -1,42 +1,40 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 
 type Mode = "format" | "minify";
 type Indent = 2 | 4;
 
-type Result =
-  | { ok: true; output: string }
-  | { ok: false; error: string };
-
 /** Parse then re-serialize JSON, either pretty-printed or minified. */
-function process(input: string, mode: Mode, indent: Indent): Result {
+function process(input: string, mode: Mode, indent: Indent): string {
   const parsed = JSON.parse(input);
-  const output =
-    mode === "format"
-      ? JSON.stringify(parsed, null, indent)
-      : JSON.stringify(parsed);
-  return { ok: true, output };
+  return mode === "format"
+    ? JSON.stringify(parsed, null, indent)
+    : JSON.stringify(parsed);
 }
 
-/** Turn a JSON.parse SyntaxError into a friendlier, position-aware message. */
-function describeError(input: string, err: unknown): string {
+/** Pull the line/column out of a JSON.parse SyntaxError, if the engine offers one. */
+function errorPosition(
+  input: string,
+  err: unknown,
+): { line: number; column: number } | null {
   const message = err instanceof Error ? err.message : String(err);
   // V8 includes "at position N" — translate it into a line/column hint.
   const match = /position (\d+)/.exec(message);
-  if (match) {
-    const pos = Number(match[1]);
-    const before = input.slice(0, pos);
-    const line = before.split("\n").length;
-    const column = pos - before.lastIndexOf("\n");
-    return `JSON 语法错误(第 ${line} 行,第 ${column} 列附近),请检查后重试。`;
-  }
-  return "JSON 语法错误,请检查输入内容。";
+  if (!match) return null;
+  const pos = Number(match[1]);
+  const before = input.slice(0, pos);
+  return {
+    line: before.split("\n").length,
+    column: pos - before.lastIndexOf("\n"),
+  };
 }
 
 export default function JsonPage() {
+  const t = useTranslations();
   const [mode, setMode] = useState<Mode>("format");
   const [indent, setIndent] = useState<Indent>(2);
   const [input, setInput] = useState("");
@@ -44,19 +42,20 @@ export default function JsonPage() {
   const { output, error } = useMemo(() => {
     if (!input.trim()) return { output: "", error: "" };
     try {
-      const result = process(input, mode, indent);
-      return result.ok
-        ? { output: result.output, error: "" }
-        : { output: "", error: result.error };
+      return { output: process(input, mode, indent), error: "" };
     } catch (err) {
-      return { output: "", error: describeError(input, err) };
+      const pos = errorPosition(input, err);
+      return {
+        output: "",
+        error: pos ? t("jsonPage.errorAt", pos) : t("jsonPage.error"),
+      };
     }
-  }, [input, mode, indent]);
+  }, [input, mode, indent, t]);
 
   return (
     <ToolLayout
-      title="JSON 工具"
-      description="对 JSON 进行格式化、压缩与语法校验,一键美化或最小化。所有计算在浏览器本地完成。"
+      title={t("tools.json.name")}
+      description={t("jsonPage.description")}
       icon="{ }"
     >
       {/* Mode + indent controls */}
@@ -64,8 +63,8 @@ export default function JsonPage() {
         <div className="inline-flex rounded-lg border border-border p-1">
           {(
             [
-              ["format", "格式化"],
-              ["minify", "压缩"],
+              ["format", t("jsonPage.format")],
+              ["minify", t("jsonPage.minify")],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -97,7 +96,7 @@ export default function JsonPage() {
                     : "text-foreground/60 hover:bg-foreground/5"
                 }`}
               >
-                {value} 空格
+                {t("jsonPage.indent", { n: value })}
               </button>
             ))}
           </div>
@@ -106,7 +105,7 @@ export default function JsonPage() {
 
       {/* Input */}
       <ToolPanel
-        label="JSON 输入"
+        label={t("jsonPage.inputLabel")}
         action={
           input ? (
             <button
@@ -114,7 +113,7 @@ export default function JsonPage() {
               onClick={() => setInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
-              清空
+              {t("common.clear")}
             </button>
           ) : null
         }
@@ -123,14 +122,16 @@ export default function JsonPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={8}
-          placeholder='在此粘贴 JSON,例如 {"name":"ToolNest","tags":[1,2,3]}'
+          placeholder={t("jsonPage.placeholder", {
+            example: '{"name":"ToolNest","tags":[1,2,3]}',
+          })}
           spellCheck={false}
           className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
         />
       </ToolPanel>
 
       {/* Output */}
-      <ToolPanel label="结果" action={<CopyButton value={output} />}>
+      <ToolPanel label={t("common.result")} action={<CopyButton value={output} />}>
         {error ? (
           <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
             ⚠️ {error}
@@ -140,7 +141,7 @@ export default function JsonPage() {
             value={output}
             readOnly
             rows={8}
-            placeholder="结果会显示在这里…"
+            placeholder={t("common.resultPlaceholder")}
             className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground/90 outline-none"
           />
         )}

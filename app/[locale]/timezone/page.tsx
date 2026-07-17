@@ -1,24 +1,25 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 
 type Unit = "s" | "ms";
 
-/** Timezones shown in the comparison table. */
-const ZONES: { id: string; label: string }[] = [
-  { id: "UTC", label: "UTC" },
-  { id: "Asia/Shanghai", label: "北京 / 上海" },
-  { id: "Asia/Tokyo", label: "东京" },
-  { id: "Europe/London", label: "伦敦" },
-  { id: "America/New_York", label: "纽约" },
-  { id: "America/Los_Angeles", label: "洛杉矶" },
+/** Timezones shown in the comparison table; labels come from the messages. */
+const ZONES: { id: string; labelKey: string }[] = [
+  { id: "UTC", labelKey: "utc" },
+  { id: "Asia/Shanghai", labelKey: "shanghai" },
+  { id: "Asia/Tokyo", labelKey: "tokyo" },
+  { id: "Europe/London", labelKey: "london" },
+  { id: "America/New_York", labelKey: "newYork" },
+  { id: "America/Los_Angeles", labelKey: "losAngeles" },
 ];
 
-/** Format an epoch-ms value in a given IANA timezone. */
-function formatInZone(ms: number, timeZone: string): string {
-  return new Intl.DateTimeFormat("zh-CN", {
+/** Format an epoch-ms value in a given IANA timezone, in the UI locale. */
+function formatInZone(ms: number, timeZone: string, locale: string): string {
+  return new Intl.DateTimeFormat(locale, {
     timeZone,
     year: "numeric",
     month: "2-digit",
@@ -41,6 +42,9 @@ function toLocalInputValue(ms: number): string {
 }
 
 export default function TimezonePage() {
+  const t = useTranslations();
+  const locale = useLocale();
+
   // Source of truth: epoch milliseconds. null until mounted (avoids SSR mismatch).
   const [tsMs, setTsMs] = useState<number | null>(null);
   const [unit, setUnit] = useState<Unit>("s");
@@ -85,13 +89,13 @@ export default function TimezonePage() {
       return;
     }
     if (!/^-?\d+$/.test(trimmed)) {
-      setError("时间戳必须是整数。");
+      setError(t("timezonePage.errorInteger"));
       return;
     }
     const n = Number(trimmed);
     const ms = unit === "s" ? n * 1000 : n;
     if (!Number.isFinite(ms)) {
-      setError("时间戳超出可表示范围。");
+      setError(t("timezonePage.errorRange"));
       return;
     }
     setError("");
@@ -102,7 +106,7 @@ export default function TimezonePage() {
     if (!value) return;
     const ms = new Date(value).getTime();
     if (Number.isNaN(ms)) {
-      setError("日期无效。");
+      setError(t("timezonePage.errorDate"));
       return;
     }
     setError("");
@@ -114,20 +118,20 @@ export default function TimezonePage() {
 
   return (
     <ToolLayout
-      title="时区与时间戳"
-      description="Unix 时间戳与日期互相转换,并在多个时区实时对照。所有计算在浏览器本地完成。"
+      title={t("tools.timezone.name")}
+      description={t("timezonePage.description")}
       icon="🕐"
     >
       {/* Timestamp ↔ date */}
       <ToolPanel
-        label="时间戳"
+        label={t("timezonePage.tsLabel")}
         action={
           <button
             type="button"
             onClick={setNow}
             className="text-sm text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400"
           >
-            使用当前时间
+            {t("timezonePage.useNow")}
           </button>
         }
       >
@@ -136,15 +140,15 @@ export default function TimezonePage() {
             value={tsText}
             onChange={(e) => onTimestampChange(e.target.value)}
             inputMode="numeric"
-            placeholder="Unix 时间戳"
+            placeholder={t("timezonePage.tsPlaceholder")}
             spellCheck={false}
             className="min-w-0 flex-1 rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
           />
           <div className="inline-flex shrink-0 rounded-lg border border-border p-1">
             {(
               [
-                ["s", "秒"],
-                ["ms", "毫秒"],
+                ["s", t("timezonePage.unitSeconds")],
+                ["ms", t("timezonePage.unitMilliseconds")],
               ] as const
             ).map(([value, label]) => (
               <button
@@ -171,7 +175,7 @@ export default function TimezonePage() {
 
         <div className="mt-4">
           <label className="mb-1.5 block text-sm font-semibold text-foreground/80">
-            日期时间(本地 · {localTz || "…"})
+            {t("timezonePage.dateLabel", { tz: localTz || "…" })}
           </label>
           <input
             type="datetime-local"
@@ -196,9 +200,11 @@ export default function TimezonePage() {
       </ToolPanel>
 
       {/* Multi-timezone comparison */}
-      <ToolPanel label="多时区对照">
+      <ToolPanel label={t("timezonePage.compareLabel")}>
         {tsMs == null || error ? (
-          <p className="text-sm text-muted">对照结果会显示在这里…</p>
+          <p className="text-sm text-muted">
+            {t("timezonePage.comparePlaceholder")}
+          </p>
         ) : (
           <ul className="space-y-2">
             {ZONES.map((zone) => (
@@ -207,10 +213,10 @@ export default function TimezonePage() {
                 className="flex flex-col gap-1 border-b border-border/60 pb-2 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:gap-3"
               >
                 <span className="w-28 shrink-0 text-sm font-semibold text-foreground/80">
-                  {zone.label}
+                  {t(`timezonePage.zones.${zone.labelKey}`)}
                 </span>
                 <code className="font-mono text-sm text-foreground/90">
-                  {formatInZone(tsMs, zone.id)}
+                  {formatInZone(tsMs, zone.id, locale)}
                 </code>
               </li>
             ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 
@@ -23,6 +24,7 @@ function decode(text: string, scope: Scope): string {
 }
 
 export default function UrlPage() {
+  const t = useTranslations();
   const [mode, setMode] = useState<Mode>("encode");
   const [scope, setScope] = useState<Scope>("component");
   const [input, setInput] = useState("");
@@ -38,11 +40,11 @@ export default function UrlPage() {
         output: "",
         error:
           mode === "decode"
-            ? "输入包含无效的百分号转义(如 % 后不是两位十六进制),请检查后重试。"
-            : "编码失败,请检查输入内容。",
+            ? t("urlPage.errorDecode")
+            : t("urlPage.errorEncode"),
       };
     }
-  }, [input, mode, scope]);
+  }, [input, mode, scope, t]);
 
   function switchMode(next: Mode) {
     if (next === mode) return;
@@ -53,8 +55,8 @@ export default function UrlPage() {
 
   return (
     <ToolLayout
-      title="URL 编解码"
-      description="对 URL 及查询参数进行百分号编码与解码,支持中文等 UTF-8 字符。所有计算在浏览器本地完成。"
+      title={t("tools.url.name")}
+      description={t("urlPage.description")}
       icon="🔗"
     >
       {/* Mode tabs */}
@@ -62,8 +64,8 @@ export default function UrlPage() {
         <div className="inline-flex rounded-lg border border-border p-1">
           {(
             [
-              ["encode", "编码"],
-              ["decode", "解码"],
+              ["encode", t("urlPage.encode")],
+              ["decode", t("urlPage.decode")],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -85,8 +87,8 @@ export default function UrlPage() {
         <div className="inline-flex rounded-lg border border-border p-1">
           {(
             [
-              ["component", "组件 / 参数值"],
-              ["uri", "整段 URL"],
+              ["component", t("urlPage.scopeComponent")],
+              ["uri", t("urlPage.scopeUri")],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -107,13 +109,17 @@ export default function UrlPage() {
 
       <p className="text-sm text-muted">
         {scope === "component"
-          ? "「组件 / 参数值」会转义 / ? & = # 等分隔符,适合编码单个查询参数或路径片段。"
-          : "「整段 URL」会保留 URL 结构字符,适合编码包含中文或空格的完整网址。"}
+          ? t("urlPage.hintComponent")
+          : t("urlPage.hintUri")}
       </p>
 
       {/* Input */}
       <ToolPanel
-        label={mode === "encode" ? "原始文本" : "编码后的 URL"}
+        label={
+          mode === "encode"
+            ? t("urlPage.inputLabelEncode")
+            : t("urlPage.inputLabelDecode")
+        }
         action={
           input ? (
             <button
@@ -121,7 +127,7 @@ export default function UrlPage() {
               onClick={() => setInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
-              清空
+              {t("common.clear")}
             </button>
           ) : null
         }
@@ -132,8 +138,8 @@ export default function UrlPage() {
           rows={5}
           placeholder={
             mode === "encode"
-              ? "在此输入要编码的文本或网址…"
-              : "在此粘贴要解码的 URL…"
+              ? t("urlPage.placeholderEncode")
+              : t("urlPage.placeholderDecode")
           }
           spellCheck={false}
           className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
@@ -141,7 +147,7 @@ export default function UrlPage() {
       </ToolPanel>
 
       {/* Output */}
-      <ToolPanel label="结果" action={<CopyButton value={output} />}>
+      <ToolPanel label={t("common.result")} action={<CopyButton value={output} />}>
         {error ? (
           <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
             ⚠️ {error}
@@ -151,7 +157,7 @@ export default function UrlPage() {
             value={output}
             readOnly
             rows={5}
-            placeholder="结果会显示在这里…"
+            placeholder={t("common.resultPlaceholder")}
             className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground/90 outline-none"
           />
         )}

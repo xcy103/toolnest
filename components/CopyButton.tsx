@@ -1,17 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Props = {
   /** Text to copy to the clipboard. */
   value: string;
-  /** Optional label; defaults to "复制". */
+  /** Optional label override; defaults to the translated "Copy". */
   label?: string;
   className?: string;
 };
 
-/** A small button that copies `value` and shows a transient "已复制" state. */
-export default function CopyButton({ value, label = "复制", className = "" }: Props) {
+/** A small button that copies `value` and shows a transient "copied" state. */
+export default function CopyButton({ value, label, className = "" }: Props) {
+  const t = useTranslations("common");
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
@@ -32,7 +34,7 @@ export default function CopyButton({ value, label = "复制", className = "" }: 
       disabled={!value}
       className={`inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium transition enabled:hover:bg-foreground/5 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
     >
-      {copied ? "✅ 已复制" : `📋 ${label}`}
+      {copied ? `✅ ${t("copied")}` : `📋 ${label ?? t("copy")}`}
     </button>
   );
 }

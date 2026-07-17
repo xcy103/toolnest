@@ -24,6 +24,13 @@
   "footer": {
     "note": "Fully client-side · Data stays local"
   },
+  "common": {
+    "clear": "Clear",
+    "result": "Result",
+    "resultPlaceholder": "The result will appear here…",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
   "categories": {
     "encode": "Encoding",
     "dev": "Developer",
@@ -60,5 +67,108 @@
       "name": "QR Code Generator",
       "description": "Turn text or a link into a QR code and download it."
     }
+  },
+  "base64Page": {
+    "description": "Convert between text and Base64, with full UTF-8 support (Chinese, emoji and more). Everything runs locally in your browser.",
+    "encode": "Encode",
+    "decode": "Decode",
+    "inputLabelEncode": "Plain text",
+    "inputLabelDecode": "Base64",
+    "placeholderEncode": "Type the text to encode…",
+    "placeholderDecode": "Paste the Base64 to decode…",
+    "errorDecode": "That is not a valid Base64 string — please check and try again.",
+    "errorEncode": "Encoding failed — please check your input."
+  },
+  "urlPage": {
+    "description": "Percent-encode and decode URLs and query parameters, with full UTF-8 support. Everything runs locally in your browser.",
+    "encode": "Encode",
+    "decode": "Decode",
+    "scopeComponent": "Component / query value",
+    "scopeUri": "Whole URL",
+    "hintComponent": "\"Component / query value\" escapes delimiters like / ? & = #, for encoding a single query parameter or path segment.",
+    "hintUri": "\"Whole URL\" keeps the URL's structural characters intact, for encoding a full address that contains spaces or non-ASCII characters.",
+    "inputLabelEncode": "Plain text",
+    "inputLabelDecode": "Encoded URL",
+    "placeholderEncode": "Type the text or address to encode…",
+    "placeholderDecode": "Paste the URL to decode…",
+    "errorDecode": "The input contains an invalid percent escape (a % not followed by two hex digits) — please check and try again.",
+    "errorEncode": "Encoding failed — please check your input."
+  },
+  "jsonPage": {
+    "description": "Format, minify and validate JSON — pretty-print or compact it in one click. Everything runs locally in your browser.",
+    "format": "Format",
+    "minify": "Minify",
+    "indent": "{n} spaces",
+    "inputLabel": "JSON input",
+    "placeholder": "Paste JSON here, e.g. {example}",
+    "errorAt": "JSON syntax error near line {line}, column {column} — please check and try again.",
+    "error": "JSON syntax error — please check your input."
+  },
+  "hashPage": {
+    "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 digests for any text. Everything runs locally in your browser.",
+    "inputLabel": "Input text",
+    "placeholder": "Type the text to hash…",
+    "outputLabel": "Digests",
+    "outputPlaceholder": "The digests will appear here…",
+    "note": "Note: MD5 and SHA-1 are no longer suitable for security purposes (such as password storage) — use them only for checksums and fingerprints."
+  },
+  "timezonePage": {
+    "description": "Convert between Unix timestamps and dates, and compare the same moment across timezones. Everything runs locally in your browser.",
+    "tsLabel": "Timestamp",
+    "useNow": "Use current time",
+    "unitSeconds": "Seconds",
+    "unitMilliseconds": "Milliseconds",
+    "tsPlaceholder": "Unix timestamp",
+    "errorInteger": "The timestamp must be an integer.",
+    "errorRange": "The timestamp is out of range.",
+    "errorDate": "Invalid date.",
+    "dateLabel": "Date & time (local · {tz})",
+    "compareLabel": "Across timezones",
+    "comparePlaceholder": "The comparison will appear here…",
+    "zones": {
+      "utc": "UTC",
+      "shanghai": "Beijing / Shanghai",
+      "tokyo": "Tokyo",
+      "london": "London",
+      "newYork": "New York",
+      "losAngeles": "Los Angeles"
+    }
+  },
+  "calculatorPage": {
+    "description": "Basic arithmetic plus common scientific functions (trig, logarithms, powers, factorial and more). Everything runs locally in your browser.",
+    "angleLabel": "Trig angle unit",
+    "radians": "Radians RAD",
+    "degrees": "Degrees DEG",
+    "placeholder": "Type or use the buttons below, e.g. sin(30)+2^3",
+    "functionsNote": "Supported functions: sin cos tan asin acos atan sqrt cbrt ln log log2 exp abs floor ceil round, constants pi/e/tau, and implicit multiplication (e.g. 2π, 3(4+1)).",
+    "errors": {
+      "badNumber": "Malformed number: {value}",
+      "unknownName": "Unknown name: {value}",
+      "badChar": "Unrecognized character: {value}",
+      "parens": "Unbalanced parentheses.",
+      "factorial": "Factorial is only defined for non-negative integers.",
+      "incomplete": "The expression is incomplete.",
+      "invalid": "Invalid expression.",
+      "empty": "Enter an expression.",
+      "notFinite": "The result is invalid (possibly division by zero or out of domain).",
+      "generic": "Invalid expression."
+    }
+  },
+  "qrcodePage": {
+    "description": "Turn text or a link into a QR code — adjustable error correction and size, downloadable as PNG. Everything runs locally in your browser.",
+    "inputLabel": "Text or link",
+    "placeholder": "Type the text or address to encode as a QR code…",
+    "optionsLabel": "Options",
+    "levelLabel": "Error correction",
+    "levelL": "L · Low (7%)",
+    "levelM": "M · Medium (15%)",
+    "levelQ": "Q · Quartile (25%)",
+    "levelH": "H · High (30%)",
+    "sizeLabel": "Size",
+    "outputLabel": "QR code",
+    "outputPlaceholder": "The QR code will appear here…",
+    "error": "The content is too long to fit in a QR code — please shorten it and try again.",
+    "download": "⬇️ Download PNG",
+    "alt": "Generated QR code"
   }
 }

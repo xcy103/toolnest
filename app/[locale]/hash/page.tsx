@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 import { md5 } from "@/lib/md5";
@@ -17,6 +18,7 @@ function toHex(buffer: ArrayBuffer): string {
 type Digests = { label: string; value: string }[];
 
 export default function HashPage() {
+  const t = useTranslations();
   const [input, setInput] = useState("");
   const [digests, setDigests] = useState<Digests>([]);
 
@@ -45,13 +47,13 @@ export default function HashPage() {
 
   return (
     <ToolLayout
-      title="哈希生成"
-      description="为文本生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。所有计算在浏览器本地完成。"
+      title={t("tools.hash.name")}
+      description={t("hashPage.description")}
       icon="#"
     >
       {/* Input */}
       <ToolPanel
-        label="输入文本"
+        label={t("hashPage.inputLabel")}
         action={
           input ? (
             <button
@@ -59,7 +61,7 @@ export default function HashPage() {
               onClick={() => setInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
-              清空
+              {t("common.clear")}
             </button>
           ) : null
         }
@@ -68,16 +70,16 @@ export default function HashPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={5}
-          placeholder="在此输入要计算哈希的文本…"
+          placeholder={t("hashPage.placeholder")}
           spellCheck={false}
           className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
         />
       </ToolPanel>
 
       {/* Output — one row per algorithm */}
-      <ToolPanel label="哈希结果">
+      <ToolPanel label={t("hashPage.outputLabel")}>
         {digests.length === 0 ? (
-          <p className="text-sm text-muted">哈希值会显示在这里…</p>
+          <p className="text-sm text-muted">{t("hashPage.outputPlaceholder")}</p>
         ) : (
           <ul className="space-y-3">
             {digests.map(({ label, value }) => (
@@ -98,9 +100,7 @@ export default function HashPage() {
         )}
       </ToolPanel>
 
-      <p className="text-sm text-muted">
-        提示:MD5 与 SHA-1 已不适合用于安全场景(如密码存储),仅建议用于校验和、文件指纹等用途。
-      </p>
+      <p className="text-sm text-muted">{t("hashPage.note")}</p>
     </ToolLayout>
   );
 }

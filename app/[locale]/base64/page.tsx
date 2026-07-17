@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 
@@ -24,6 +25,7 @@ function decodeBase64(input: string): string {
 }
 
 export default function Base64Page() {
+  const t = useTranslations();
   const [mode, setMode] = useState<Mode>("encode");
   const [input, setInput] = useState("");
 
@@ -38,11 +40,11 @@ export default function Base64Page() {
         output: "",
         error:
           mode === "decode"
-            ? "输入不是有效的 Base64 字符串,请检查后重试。"
-            : "编码失败,请检查输入内容。",
+            ? t("base64Page.errorDecode")
+            : t("base64Page.errorEncode"),
       };
     }
-  }, [input, mode]);
+  }, [input, mode, t]);
 
   function switchMode(next: Mode) {
     if (next === mode) return;
@@ -53,16 +55,16 @@ export default function Base64Page() {
 
   return (
     <ToolLayout
-      title="Base64 编解码"
-      description="在文本与 Base64 之间互相转换,支持中文等 UTF-8 字符。所有计算在浏览器本地完成。"
+      title={t("tools.base64.name")}
+      description={t("base64Page.description")}
       icon="🔤"
     >
       {/* Mode tabs */}
       <div className="inline-flex rounded-lg border border-border p-1">
         {(
           [
-            ["encode", "编码"],
-            ["decode", "解码"],
+            ["encode", t("base64Page.encode")],
+            ["decode", t("base64Page.decode")],
           ] as const
         ).map(([value, label]) => (
           <button
@@ -82,7 +84,11 @@ export default function Base64Page() {
 
       {/* Input */}
       <ToolPanel
-        label={mode === "encode" ? "原始文本" : "Base64"}
+        label={
+          mode === "encode"
+            ? t("base64Page.inputLabelEncode")
+            : t("base64Page.inputLabelDecode")
+        }
         action={
           input ? (
             <button
@@ -90,7 +96,7 @@ export default function Base64Page() {
               onClick={() => setInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
-              清空
+              {t("common.clear")}
             </button>
           ) : null
         }
@@ -101,8 +107,8 @@ export default function Base64Page() {
           rows={5}
           placeholder={
             mode === "encode"
-              ? "在此输入要编码的文本…"
-              : "在此粘贴要解码的 Base64…"
+              ? t("base64Page.placeholderEncode")
+              : t("base64Page.placeholderDecode")
           }
           spellCheck={false}
           className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
@@ -110,10 +116,7 @@ export default function Base64Page() {
       </ToolPanel>
 
       {/* Output */}
-      <ToolPanel
-        label="结果"
-        action={<CopyButton value={output} />}
-      >
+      <ToolPanel label={t("common.result")} action={<CopyButton value={output} />}>
         {error ? (
           <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
             ⚠️ {error}
@@ -123,7 +126,7 @@ export default function Base64Page() {
             value={output}
             readOnly
             rows={5}
-            placeholder="结果会显示在这里…"
+            placeholder={t("common.resultPlaceholder")}
             className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm text-foreground/90 outline-none"
           />
         )}

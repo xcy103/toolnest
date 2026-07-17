@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import QRCode from "qrcode";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 
 type Level = "L" | "M" | "Q" | "H";
 
-const LEVELS: { value: Level; label: string }[] = [
-  { value: "L", label: "L · 低 (7%)" },
-  { value: "M", label: "M · 中 (15%)" },
-  { value: "Q", label: "Q · 较高 (25%)" },
-  { value: "H", label: "H · 高 (30%)" },
-];
+const LEVELS: Level[] = ["L", "M", "Q", "H"];
 
 const SIZES = [256, 320, 512] as const;
 
 export default function QrcodePage() {
+  const t = useTranslations();
   const [input, setInput] = useState("");
   const [level, setLevel] = useState<Level>("M");
   const [size, setSize] = useState<(typeof SIZES)[number]>(320);
@@ -46,7 +43,7 @@ export default function QrcodePage() {
       } catch {
         if (!cancelled) {
           setDataUrl("");
-          setError("内容过长,无法生成二维码,请缩短后重试。");
+          setError(t("qrcodePage.error"));
         }
       }
     }
@@ -55,17 +52,17 @@ export default function QrcodePage() {
     return () => {
       cancelled = true;
     };
-  }, [input, level, size]);
+  }, [input, level, size, t]);
 
   return (
     <ToolLayout
-      title="二维码生成"
-      description="把文本或链接生成为二维码,可调容错等级与尺寸并下载为 PNG。所有计算在浏览器本地完成。"
+      title={t("tools.qrcode.name")}
+      description={t("qrcodePage.description")}
       icon="📱"
     >
       {/* Input */}
       <ToolPanel
-        label="文本或链接"
+        label={t("qrcodePage.inputLabel")}
         action={
           input ? (
             <button
@@ -73,7 +70,7 @@ export default function QrcodePage() {
               onClick={() => setInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
-              清空
+              {t("common.clear")}
             </button>
           ) : null
         }
@@ -82,21 +79,21 @@ export default function QrcodePage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={4}
-          placeholder="在此输入要生成二维码的文本或网址…"
+          placeholder={t("qrcodePage.placeholder")}
           spellCheck={false}
           className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
         />
       </ToolPanel>
 
       {/* Options */}
-      <ToolPanel label="选项">
+      <ToolPanel label={t("qrcodePage.optionsLabel")}>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span className="mb-1.5 block text-sm font-medium text-foreground/70">
-              容错等级
+              {t("qrcodePage.levelLabel")}
             </span>
             <div className="inline-flex flex-wrap gap-1 rounded-lg border border-border p-1">
-              {LEVELS.map(({ value, label }) => (
+              {LEVELS.map((value) => (
                 <button
                   key={value}
                   type="button"
@@ -107,14 +104,14 @@ export default function QrcodePage() {
                       : "text-foreground/60 hover:bg-foreground/5"
                   }`}
                 >
-                  {label}
+                  {t(`qrcodePage.level${value}`)}
                 </button>
               ))}
             </div>
           </div>
           <div>
             <span className="mb-1.5 block text-sm font-medium text-foreground/70">
-              尺寸
+              {t("qrcodePage.sizeLabel")}
             </span>
             <div className="inline-flex gap-1 rounded-lg border border-border p-1">
               {SIZES.map((value) => (
@@ -137,7 +134,7 @@ export default function QrcodePage() {
       </ToolPanel>
 
       {/* Output */}
-      <ToolPanel label="二维码">
+      <ToolPanel label={t("qrcodePage.outputLabel")}>
         {error ? (
           <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
             ⚠️ {error}
@@ -147,7 +144,7 @@ export default function QrcodePage() {
             {/* eslint-disable-next-line @next/next/no-img-element -- data URL, not a remote asset */}
             <img
               src={dataUrl}
-              alt="生成的二维码"
+              alt={t("qrcodePage.alt")}
               width={size}
               height={size}
               className="h-auto max-w-full rounded-lg border border-border bg-white p-2"
@@ -157,11 +154,11 @@ export default function QrcodePage() {
               download="qrcode.png"
               className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-600"
             >
-              ⬇️ 下载 PNG
+              {t("qrcodePage.download")}
             </a>
           </div>
         ) : (
-          <p className="text-sm text-muted">二维码会显示在这里…</p>
+          <p className="text-sm text-muted">{t("qrcodePage.outputPlaceholder")}</p>
         )}
       </ToolPanel>
     </ToolLayout>

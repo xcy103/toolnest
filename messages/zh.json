@@ -24,6 +24,13 @@
   "footer": {
     "note": "纯前端 · 数据不出本地"
   },
+  "common": {
+    "clear": "清空",
+    "result": "结果",
+    "resultPlaceholder": "结果会显示在这里…",
+    "copy": "复制",
+    "copied": "已复制"
+  },
   "categories": {
     "encode": "编码",
     "dev": "开发",
@@ -60,5 +67,108 @@
       "name": "二维码生成",
       "description": "把文本或链接生成为二维码并下载。"
     }
+  },
+  "base64Page": {
+    "description": "在文本与 Base64 之间互相转换,支持中文等 UTF-8 字符。所有计算在浏览器本地完成。",
+    "encode": "编码",
+    "decode": "解码",
+    "inputLabelEncode": "原始文本",
+    "inputLabelDecode": "Base64",
+    "placeholderEncode": "在此输入要编码的文本…",
+    "placeholderDecode": "在此粘贴要解码的 Base64…",
+    "errorDecode": "输入不是有效的 Base64 字符串,请检查后重试。",
+    "errorEncode": "编码失败,请检查输入内容。"
+  },
+  "urlPage": {
+    "description": "对 URL 及查询参数进行百分号编码与解码,支持中文等 UTF-8 字符。所有计算在浏览器本地完成。",
+    "encode": "编码",
+    "decode": "解码",
+    "scopeComponent": "组件 / 参数值",
+    "scopeUri": "整段 URL",
+    "hintComponent": "「组件 / 参数值」会转义 / ? & = # 等分隔符,适合编码单个查询参数或路径片段。",
+    "hintUri": "「整段 URL」会保留 URL 结构字符,适合编码包含中文或空格的完整网址。",
+    "inputLabelEncode": "原始文本",
+    "inputLabelDecode": "编码后的 URL",
+    "placeholderEncode": "在此输入要编码的文本或网址…",
+    "placeholderDecode": "在此粘贴要解码的 URL…",
+    "errorDecode": "输入包含无效的百分号转义(如 % 后不是两位十六进制),请检查后重试。",
+    "errorEncode": "编码失败,请检查输入内容。"
+  },
+  "jsonPage": {
+    "description": "对 JSON 进行格式化、压缩与语法校验,一键美化或最小化。所有计算在浏览器本地完成。",
+    "format": "格式化",
+    "minify": "压缩",
+    "indent": "{n} 空格",
+    "inputLabel": "JSON 输入",
+    "placeholder": "在此粘贴 JSON,例如 {example}",
+    "errorAt": "JSON 语法错误(第 {line} 行,第 {column} 列附近),请检查后重试。",
+    "error": "JSON 语法错误,请检查输入内容。"
+  },
+  "hashPage": {
+    "description": "为文本生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。所有计算在浏览器本地完成。",
+    "inputLabel": "输入文本",
+    "placeholder": "在此输入要计算哈希的文本…",
+    "outputLabel": "哈希结果",
+    "outputPlaceholder": "哈希值会显示在这里…",
+    "note": "提示:MD5 与 SHA-1 已不适合用于安全场景(如密码存储),仅建议用于校验和、文件指纹等用途。"
+  },
+  "timezonePage": {
+    "description": "Unix 时间戳与日期互相转换,并在多个时区实时对照。所有计算在浏览器本地完成。",
+    "tsLabel": "时间戳",
+    "useNow": "使用当前时间",
+    "unitSeconds": "秒",
+    "unitMilliseconds": "毫秒",
+    "tsPlaceholder": "Unix 时间戳",
+    "errorInteger": "时间戳必须是整数。",
+    "errorRange": "时间戳超出可表示范围。",
+    "errorDate": "日期无效。",
+    "dateLabel": "日期时间(本地 · {tz})",
+    "compareLabel": "多时区对照",
+    "comparePlaceholder": "对照结果会显示在这里…",
+    "zones": {
+      "utc": "UTC",
+      "shanghai": "北京 / 上海",
+      "tokyo": "东京",
+      "london": "伦敦",
+      "newYork": "纽约",
+      "losAngeles": "洛杉矶"
+    }
+  },
+  "calculatorPage": {
+    "description": "支持基本运算与常见科学函数(三角、对数、幂、阶乘等)。所有计算在浏览器本地完成。",
+    "angleLabel": "三角函数角度单位",
+    "radians": "弧度 RAD",
+    "degrees": "角度 DEG",
+    "placeholder": "输入或点击下方按钮,例如 sin(30)+2^3",
+    "functionsNote": "支持函数:sin cos tan asin acos atan sqrt cbrt ln log log2 exp abs floor ceil round,常量 pi/e/tau,以及隐式乘法(如 2π、3(4+1))。",
+    "errors": {
+      "badNumber": "数字格式错误:{value}",
+      "unknownName": "未知的名称:{value}",
+      "badChar": "无法识别的字符:{value}",
+      "parens": "括号不匹配。",
+      "factorial": "阶乘仅支持非负整数。",
+      "incomplete": "表达式不完整。",
+      "invalid": "表达式无效。",
+      "empty": "请输入表达式。",
+      "notFinite": "计算结果无效(可能除以零或超出定义域)。",
+      "generic": "表达式无效。"
+    }
+  },
+  "qrcodePage": {
+    "description": "把文本或链接生成为二维码,可调容错等级与尺寸并下载为 PNG。所有计算在浏览器本地完成。",
+    "inputLabel": "文本或链接",
+    "placeholder": "在此输入要生成二维码的文本或网址…",
+    "optionsLabel": "选项",
+    "levelLabel": "容错等级",
+    "levelL": "L · 低 (7%)",
+    "levelM": "M · 中 (15%)",
+    "levelQ": "Q · 较高 (25%)",
+    "levelH": "H · 高 (30%)",
+    "sizeLabel": "尺寸",
+    "outputLabel": "二维码",
+    "outputPlaceholder": "二维码会显示在这里…",
+    "error": "内容过长,无法生成二维码,请缩短后重试。",
+    "download": "⬇️ 下载 PNG",
+    "alt": "生成的二维码"
   }
 }

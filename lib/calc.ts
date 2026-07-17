@@ -9,6 +9,30 @@
 type TokType = "num" | "const" | "func" | "op" | "lparen" | "rparen";
 type Token = { type: TokType; value: string };
 
+/**
+ * Evaluation failure carrying a message *key* (plus optional values) instead of
+ * prose, so the UI can render it in the active locale. Keys map to the
+ * `calculatorPage.errors` namespace in the message catalogues.
+ */
+export class CalcError extends Error {
+  constructor(
+    public readonly key:
+      | "badNumber"
+      | "unknownName"
+      | "badChar"
+      | "parens"
+      | "factorial"
+      | "incomplete"
+      | "invalid"
+      | "empty"
+      | "notFinite",
+    public readonly values?: Record<string, string>,
+  ) {
+    super(key);
+    this.name = "CalcError";
+  }
+}
+
 const FUNCS = new Set([
   "sin", "cos", "tan", "asin", "acos", "atan",
   "sinh", "cosh", "tanh",
@@ -53,7 +77,7 @@ function tokenize(input: string): Token[] {
       let num = "";
       while (i < src.length && /[0-9.]/.test(src[i])) num += src[i++];
       if ((num.match(/\./g) || []).length > 1) {
-        throw new Error(`数字格式错误:${num}`);
+        throw new CalcError("badNumber", { value: num });
       }
       tokens.push({ type: "num", value: num });
       continue;
@@ -65,7 +89,7 @@ function tokenize(input: string): Token[] {
       const lower = name.toLowerCase();
       if (FUNCS.has(lower)) tokens.push({ type: "func", value: lower });
       else if (lower in CONSTS) tokens.push({ type: "const", value: lower });
-      else throw new Error(`未知的名称:${name}`);
+      else throw new CalcError("unknownName", { value: name });
       continue;
     }
     if (c === "(") {
@@ -100,7 +124,7 @@ function tokenize(input: string): Token[] {
       i++;
       continue;
     }
-    throw new Error(`无法识别的字符:${c}`);
+    throw new CalcError("badChar", { value: c });
   }
 
   return injectImplicitMultiply(tokens);
@@ -184,7 +208,7 @@ function toRPN(tokens: Token[]): Token[] {
           }
           output.push(top);
         }
-        if (!found) throw new Error("括号不匹配。");
+        if (!found) throw new CalcError("parens");
         if (stack.length && stack[stack.length - 1].type === "func") {
           output.push(stack.pop()!);
         }
@@ -195,14 +219,14 @@ function toRPN(tokens: Token[]): Token[] {
 
   while (stack.length) {
     const top = stack.pop()!;
-    if (top.type === "lparen") throw new Error("括号不匹配。");
+    if (top.type === "lparen") throw new CalcError("parens");
     output.push(top);
   }
   return output;
 }
 
 function factorial(n: number): number {
-  if (n < 0 || !Number.isInteger(n)) throw new Error("阶乘仅支持非负整数。");
+  if (n < 0 || !Number.isInteger(n)) throw new CalcError("factorial");
   let result = 1;
   for (let k = 2; k <= n; k++) result *= k;
   return result;
@@ -232,7 +256,7 @@ function applyFunc(name: string, x: number, degrees: boolean): number {
     case "floor": return Math.floor(x);
     case "ceil": return Math.ceil(x);
     case "round": return Math.round(x);
-    default: throw new Error(`未知函数:${name}`);
+    default: throw new CalcError("unknownName", { value: name });
   }
 }
 
@@ -244,17 +268,17 @@ function evalRPN(rpn: Token[], degrees: boolean): number {
     } else if (tok.type === "const") {
       stack.push(CONSTS[tok.value]);
     } else if (tok.type === "func") {
-      if (!stack.length) throw new Error("表达式不完整。");
+      if (!stack.length) throw new CalcError("incomplete");
       stack.push(applyFunc(tok.value, stack.pop()!, degrees));
     } else if (tok.type === "op") {
       if (tok.value === "u-") {
-        if (!stack.length) throw new Error("表达式不完整。");
+        if (!stack.length) throw new CalcError("incomplete");
         stack.push(-stack.pop()!);
       } else if (tok.value === "!") {
-        if (!stack.length) throw new Error("表达式不完整。");
+        if (!stack.length) throw new CalcError("incomplete");
         stack.push(factorial(stack.pop()!));
       } else {
-        if (stack.length < 2) throw new Error("表达式不完整。");
+        if (stack.length < 2) throw new CalcError("incomplete");
         const b = stack.pop()!;
         const a = stack.pop()!;
         switch (tok.value) {
@@ -268,16 +292,16 @@ function evalRPN(rpn: Token[], degrees: boolean): number {
       }
     }
   }
-  if (stack.length !== 1) throw new Error("表达式无效。");
+  if (stack.length !== 1) throw new CalcError("invalid");
   return stack[0];
 }
 
 /** Evaluate a scientific expression. Throws Error with a Chinese message on failure. */
 export function evaluate(input: string, degrees = false): number {
-  if (!input.trim()) throw new Error("请输入表达式。");
+  if (!input.trim()) throw new CalcError("empty");
   const result = evalRPN(toRPN(tokenize(input)), degrees);
   if (!Number.isFinite(result)) {
-    throw new Error("计算结果无效(可能除以零或超出定义域)。");
+    throw new CalcError("notFinite");
   }
   return result;
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
-import { evaluate } from "@/lib/calc";
+import { CalcError, evaluate } from "@/lib/calc";
 
 type Btn = {
   label: string;
@@ -81,6 +82,7 @@ function buttonClass(kind: Btn["kind"]): string {
 }
 
 export default function CalculatorPage() {
+  const t = useTranslations();
   const [expr, setExpr] = useState("");
   const [degrees, setDegrees] = useState(false);
 
@@ -89,9 +91,15 @@ export default function CalculatorPage() {
     try {
       return { result: formatResult(evaluate(expr, degrees)), error: "" };
     } catch (e) {
-      return { result: "", error: e instanceof Error ? e.message : "表达式无效。" };
+      return {
+        result: "",
+        error:
+          e instanceof CalcError
+            ? t(`calculatorPage.errors.${e.key}`, e.values)
+            : t("calculatorPage.errors.generic"),
+      };
     }
-  }, [expr, degrees]);
+  }, [expr, degrees, t]);
 
   function press(btn: Btn) {
     if (btn.label === "AC") {
@@ -107,18 +115,18 @@ export default function CalculatorPage() {
 
   return (
     <ToolLayout
-      title="科学计算器"
-      description="支持基本运算与常见科学函数(三角、对数、幂、阶乘等)。所有计算在浏览器本地完成。"
+      title={t("tools.calculator.name")}
+      description={t("calculatorPage.description")}
       icon="🧮"
     >
       {/* Angle mode */}
       <div className="flex items-center justify-between gap-3">
-        <span className="text-sm text-muted">三角函数角度单位</span>
+        <span className="text-sm text-muted">{t("calculatorPage.angleLabel")}</span>
         <div className="inline-flex rounded-lg border border-border p-1">
           {(
             [
-              [false, "弧度 RAD"],
-              [true, "角度 DEG"],
+              [false, t("calculatorPage.radians")],
+              [true, t("calculatorPage.degrees")],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -142,7 +150,7 @@ export default function CalculatorPage() {
         <input
           value={expr}
           onChange={(e) => setExpr(e.target.value)}
-          placeholder="输入或点击下方按钮,例如 sin(30)+2^3"
+          placeholder={t("calculatorPage.placeholder")}
           spellCheck={false}
           className="w-full rounded-lg border border-border bg-background p-3 text-right font-mono text-lg outline-none focus:border-emerald-500"
         />
@@ -174,10 +182,7 @@ export default function CalculatorPage() {
         ))}
       </div>
 
-      <p className="text-sm text-muted">
-        支持函数:sin cos tan asin acos atan sqrt cbrt ln log log2 exp abs floor
-        ceil round,常量 pi/e/tau,以及隐式乘法(如 2π、3(4+1))。
-      </p>
+      <p className="text-sm text-muted">{t("calculatorPage.functionsNote")}</p>
     </ToolLayout>
   );
 }
