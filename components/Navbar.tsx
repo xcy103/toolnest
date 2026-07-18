@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/lib/tools";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -33,6 +34,7 @@ export default function Navbar() {
           >
             GitHub
           </a>
+          <LanguageToggle />
           <ThemeToggle />
         </nav>
       </div>

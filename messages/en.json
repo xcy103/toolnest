@@ -6,7 +6,10 @@
   "nav": {
     "allTools": "All Tools",
     "toLight": "Switch to light mode",
-    "toDark": "Switch to dark mode"
+    "toDark": "Switch to dark mode",
+    "switchLanguage": "Switch language",
+    "langEn": "English",
+    "langZh": "中文"
   },
   "home": {
     "badgeFree": "✅ Free to use",

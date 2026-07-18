@@ -6,7 +6,10 @@
   "nav": {
     "allTools": "全部工具",
     "toLight": "切换到浅色模式",
-    "toDark": "切换到深色模式"
+    "toDark": "切换到深色模式",
+    "switchLanguage": "切换语言",
+    "langEn": "English",
+    "langZh": "中文"
   },
   "home": {
     "badgeFree": "✅ 免费使用",

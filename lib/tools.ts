@@ -78,4 +78,9 @@ export function getTool(slug: string): Tool | undefined {
 export const siteConfig = {
   name: "ToolNest",
   githubUrl: "https://github.com/xcy103/toolnest",
+  /**
+   * Absolute site origin, used for the sitemap and robots. Override with
+   * NEXT_PUBLIC_SITE_URL once the custom domain is live.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolnest.vercel.app",
 };
