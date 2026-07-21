@@ -69,6 +69,10 @@
     "qrcode": {
       "name": "二维码生成",
       "description": "把文本或链接生成为二维码并下载。"
+    },
+    "password": {
+      "name": "密码生成器",
+      "description": "在浏览器本地生成高强度随机密码。"
     }
   },
   "base64Page": {
@@ -173,5 +177,22 @@
     "error": "内容过长,无法生成二维码,请缩短后重试。",
     "download": "⬇️ 下载 PNG",
     "alt": "生成的二维码"
+  },
+  "passwordPage": {
+    "description": "利用浏览器的加密级随机数生成高强度随机密码,全程本地,不上传任何内容。",
+    "lengthLabel": "长度:{n}",
+    "optLower": "小写字母 (a-z)",
+    "optUpper": "大写字母 (A-Z)",
+    "optNumbers": "数字 (0-9)",
+    "optSymbols": "符号 (!@#$…)",
+    "excludeAmbiguous": "排除易混淆字符 (I l 1 O 0)",
+    "outputLabel": "密码",
+    "regenerate": "重新生成",
+    "errorNoCharset": "请至少选择一种字符类型。",
+    "strengthLabel": "强度",
+    "strengthWeak": "弱",
+    "strengthFair": "一般",
+    "strengthGood": "较强",
+    "strengthStrong": "强"
   }
 }

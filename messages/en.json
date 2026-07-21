@@ -69,6 +69,10 @@
     "qrcode": {
       "name": "QR Code Generator",
       "description": "Turn text or a link into a QR code and download it."
+    },
+    "password": {
+      "name": "Password Generator",
+      "description": "Generate strong random passwords right in your browser."
     }
   },
   "base64Page": {
@@ -173,5 +177,22 @@
     "error": "The content is too long to fit in a QR code — please shorten it and try again.",
     "download": "⬇️ Download PNG",
     "alt": "Generated QR code"
+  },
+  "passwordPage": {
+    "description": "Generate strong random passwords using your browser's cryptographic randomness. Nothing is sent anywhere.",
+    "lengthLabel": "Length: {n}",
+    "optLower": "Lowercase (a-z)",
+    "optUpper": "Uppercase (A-Z)",
+    "optNumbers": "Numbers (0-9)",
+    "optSymbols": "Symbols (!@#$…)",
+    "excludeAmbiguous": "Avoid ambiguous characters (I l 1 O 0)",
+    "outputLabel": "Password",
+    "regenerate": "Regenerate",
+    "errorNoCharset": "Select at least one character type.",
+    "strengthLabel": "Strength",
+    "strengthWeak": "Weak",
+    "strengthFair": "Fair",
+    "strengthGood": "Good",
+    "strengthStrong": "Strong"
   }
 }

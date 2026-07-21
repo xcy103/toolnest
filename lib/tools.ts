@@ -68,6 +68,13 @@ export const tools: Tool[] = [
     categoryKey: "generate",
     available: true,
   },
+  {
+    slug: "password",
+    href: "/password",
+    icon: "🔑",
+    categoryKey: "generate",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
