@@ -75,6 +75,13 @@ export const tools: Tool[] = [
     categoryKey: "generate",
     available: true,
   },
+  {
+    slug: "uuid",
+    href: "/uuid",
+    icon: "🆔",
+    categoryKey: "generate",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

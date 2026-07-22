@@ -73,6 +73,10 @@
     "password": {
       "name": "密码生成器",
       "description": "在浏览器本地生成高强度随机密码。"
+    },
+    "uuid": {
+      "name": "UUID 生成器",
+      "description": "批量生成第 4 版(随机)UUID。"
     }
   },
   "base64Page": {
@@ -194,5 +198,13 @@
     "strengthFair": "一般",
     "strengthGood": "较强",
     "strengthStrong": "强"
+  },
+  "uuidPage": {
+    "description": "在浏览器本地生成第 4 版(随机)UUID,全程本地,不上传任何内容。",
+    "countLabel": "数量:{n}",
+    "optUppercase": "大写",
+    "optNoHyphens": "去掉连字符",
+    "outputLabel": "UUID",
+    "regenerate": "重新生成"
   }
 }

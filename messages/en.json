@@ -73,6 +73,10 @@
     "password": {
       "name": "Password Generator",
       "description": "Generate strong random passwords right in your browser."
+    },
+    "uuid": {
+      "name": "UUID Generator",
+      "description": "Generate version 4 (random) UUIDs, one or many at a time."
     }
   },
   "base64Page": {
@@ -194,5 +198,13 @@
     "strengthFair": "Fair",
     "strengthGood": "Good",
     "strengthStrong": "Strong"
+  },
+  "uuidPage": {
+    "description": "Generate version 4 (random) UUIDs locally in your browser — nothing is sent anywhere.",
+    "countLabel": "Count: {n}",
+    "optUppercase": "Uppercase",
+    "optNoHyphens": "Remove hyphens",
+    "outputLabel": "UUIDs",
+    "regenerate": "Regenerate"
   }
 }
