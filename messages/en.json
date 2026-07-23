@@ -39,7 +39,8 @@
     "dev": "Developer",
     "time": "Time",
     "calc": "Calculators",
-    "generate": "Generators"
+    "generate": "Generators",
+    "text": "Text"
   },
   "tools": {
     "base64": {
@@ -77,6 +78,10 @@
     "uuid": {
       "name": "UUID Generator",
       "description": "Generate version 4 (random) UUIDs, one or many at a time."
+    },
+    "word-counter": {
+      "name": "Word & Character Counter",
+      "description": "Count characters, words, lines and estimated reading time."
     }
   },
   "base64Page": {
@@ -206,5 +211,17 @@
     "optNoHyphens": "Remove hyphens",
     "outputLabel": "UUIDs",
     "regenerate": "Regenerate"
+  },
+  "wordCounterPage": {
+    "description": "Count characters, words, lines, paragraphs and estimated reading time. Everything is computed locally in your browser.",
+    "inputLabel": "Text",
+    "placeholder": "Type or paste your text…",
+    "characters": "Characters",
+    "charactersNoSpaces": "Characters (no spaces)",
+    "words": "Words",
+    "lines": "Lines",
+    "paragraphs": "Paragraphs",
+    "readingTime": "Reading time",
+    "readingMinutes": "{n} min"
   }
 }

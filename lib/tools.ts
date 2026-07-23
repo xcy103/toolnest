@@ -1,5 +1,11 @@
 /** Category keys — resolved to display names via the `categories` messages. */
-export type CategoryKey = "encode" | "dev" | "time" | "calc" | "generate";
+export type CategoryKey =
+  | "encode"
+  | "dev"
+  | "time"
+  | "calc"
+  | "generate"
+  | "text";
 
 export type Tool = {
   /** Route slug. Also the key into the `tools` messages namespace. */
@@ -80,6 +86,13 @@ export const tools: Tool[] = [
     href: "/uuid",
     icon: "🆔",
     categoryKey: "generate",
+    available: true,
+  },
+  {
+    slug: "word-counter",
+    href: "/word-counter",
+    icon: "📝",
+    categoryKey: "text",
     available: true,
   },
 ];

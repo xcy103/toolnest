@@ -39,7 +39,8 @@
     "dev": "开发",
     "time": "时间",
     "calc": "计算",
-    "generate": "生成"
+    "generate": "生成",
+    "text": "文本"
   },
   "tools": {
     "base64": {
@@ -77,6 +78,10 @@
     "uuid": {
       "name": "UUID 生成器",
       "description": "批量生成第 4 版(随机)UUID。"
+    },
+    "word-counter": {
+      "name": "字数统计",
+      "description": "统计字符数、单词数、行数与预计阅读时间。"
     }
   },
   "base64Page": {
@@ -206,5 +211,17 @@
     "optNoHyphens": "去掉连字符",
     "outputLabel": "UUID",
     "regenerate": "重新生成"
+  },
+  "wordCounterPage": {
+    "description": "统计文本的字符数、单词数、行数、段落数与预计阅读时间。全部在浏览器本地计算。",
+    "inputLabel": "文本",
+    "placeholder": "在此输入或粘贴文本…",
+    "characters": "字符数",
+    "charactersNoSpaces": "字符数(不含空格)",
+    "words": "词数",
+    "lines": "行数",
+    "paragraphs": "段落数",
+    "readingTime": "预计阅读时间",
+    "readingMinutes": "{n} 分钟"
   }
 }
