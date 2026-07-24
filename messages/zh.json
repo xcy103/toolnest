@@ -82,6 +82,10 @@
     "word-counter": {
       "name": "字数统计",
       "description": "统计字符数、单词数、行数与预计阅读时间。"
+    },
+    "case-converter": {
+      "name": "大小写转换",
+      "description": "在全大写、小驼峰、下划线等命名格式之间互转。"
     }
   },
   "base64Page": {
@@ -223,5 +227,19 @@
     "paragraphs": "段落数",
     "readingTime": "预计阅读时间",
     "readingMinutes": "{n} 分钟"
+  },
+  "caseConverterPage": {
+    "description": "在常见的大小写形式与编程命名风格之间转换文本。全部在浏览器本地完成。",
+    "inputLabel": "文本",
+    "placeholder": "在此输入或粘贴文本…",
+    "upper": "全大写 UPPERCASE",
+    "lower": "全小写 lowercase",
+    "title": "标题式大写 Title Case",
+    "sentence": "句首大写 Sentence case",
+    "camel": "小驼峰 camelCase",
+    "pascal": "大驼峰 PascalCase",
+    "snake": "下划线 snake_case",
+    "kebab": "短横线 kebab-case",
+    "constant": "常量 CONSTANT_CASE"
   }
 }

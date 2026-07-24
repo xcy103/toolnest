@@ -82,6 +82,10 @@
     "word-counter": {
       "name": "Word & Character Counter",
       "description": "Count characters, words, lines and estimated reading time."
+    },
+    "case-converter": {
+      "name": "Case Converter",
+      "description": "Convert text between UPPERCASE, camelCase, snake_case and more."
     }
   },
   "base64Page": {
@@ -223,5 +227,19 @@
     "paragraphs": "Paragraphs",
     "readingTime": "Reading time",
     "readingMinutes": "{n} min"
+  },
+  "caseConverterPage": {
+    "description": "Convert text between common letter cases and programming naming styles. Everything is converted locally in your browser.",
+    "inputLabel": "Text",
+    "placeholder": "Type or paste your text…",
+    "upper": "UPPERCASE",
+    "lower": "lowercase",
+    "title": "Title Case",
+    "sentence": "Sentence case",
+    "camel": "camelCase",
+    "pascal": "PascalCase",
+    "snake": "snake_case",
+    "kebab": "kebab-case",
+    "constant": "CONSTANT_CASE"
   }
 }

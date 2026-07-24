@@ -95,6 +95,13 @@ export const tools: Tool[] = [
     categoryKey: "text",
     available: true,
   },
+  {
+    slug: "case-converter",
+    href: "/case-converter",
+    icon: "🔠",
+    categoryKey: "text",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
