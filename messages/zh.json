@@ -86,6 +86,10 @@
     "case-converter": {
       "name": "大小写转换",
       "description": "在全大写、小驼峰、下划线等命名格式之间互转。"
+    },
+    "base-converter": {
+      "name": "进制转换",
+      "description": "在二进制、八进制、十进制、十六进制之间互转。"
     }
   },
   "base64Page": {
@@ -241,5 +245,15 @@
     "snake": "下划线 snake_case",
     "kebab": "短横线 kebab-case",
     "constant": "常量 CONSTANT_CASE"
+  },
+  "baseConverterPage": {
+    "description": "在二进制、八进制、十进制、十六进制之间转换整数。编辑任一栏,其余栏自动更新。全部在本地计算。",
+    "binary": "二进制 (2)",
+    "octal": "八进制 (8)",
+    "decimal": "十进制 (10)",
+    "hex": "十六进制 (16)",
+    "customLabel": "自定义进制 ({base})",
+    "placeholder": "输入一个数值…",
+    "error": "不是有效的 {base} 进制数字。"
   }
 }

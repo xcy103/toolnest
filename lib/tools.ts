@@ -102,6 +102,13 @@ export const tools: Tool[] = [
     categoryKey: "text",
     available: true,
   },
+  {
+    slug: "base-converter",
+    href: "/base-converter",
+    icon: "🔢",
+    categoryKey: "dev",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

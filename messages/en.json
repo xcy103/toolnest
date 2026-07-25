@@ -86,6 +86,10 @@
     "case-converter": {
       "name": "Case Converter",
       "description": "Convert text between UPPERCASE, camelCase, snake_case and more."
+    },
+    "base-converter": {
+      "name": "Number Base Converter",
+      "description": "Convert numbers between binary, octal, decimal and hex."
     }
   },
   "base64Page": {
@@ -241,5 +245,15 @@
     "snake": "snake_case",
     "kebab": "kebab-case",
     "constant": "CONSTANT_CASE"
+  },
+  "baseConverterPage": {
+    "description": "Convert an integer between binary, octal, decimal and hexadecimal. Edit any field and the others update. Everything is computed locally.",
+    "binary": "Binary (2)",
+    "octal": "Octal (8)",
+    "decimal": "Decimal (10)",
+    "hex": "Hexadecimal (16)",
+    "customLabel": "Custom base ({base})",
+    "placeholder": "Enter a value…",
+    "error": "Invalid digits for base {base}."
   }
 }
