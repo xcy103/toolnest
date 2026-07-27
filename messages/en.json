@@ -9,7 +9,11 @@
     "toDark": "Switch to dark mode",
     "switchLanguage": "Switch language",
     "langEn": "English",
-    "langZh": "中文"
+    "langZh": "中文",
+    "categories": "Categories"
+  },
+  "categoryPage": {
+    "count": "{n, plural, one {# tool} other {# tools}}"
   },
   "home": {
     "badgeFree": "✅ Free to use",

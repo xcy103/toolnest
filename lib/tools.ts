@@ -115,6 +115,22 @@ export function getTool(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
 }
 
+/** Distinct category keys, in the order they first appear in the registry. */
+export const categories: CategoryKey[] = tools.reduce<CategoryKey[]>(
+  (acc, tool) => (acc.includes(tool.categoryKey) ? acc : [...acc, tool.categoryKey]),
+  [],
+);
+
+/** Tools belonging to a category, in registry order. */
+export function toolsInCategory(category: CategoryKey): Tool[] {
+  return tools.filter((tool) => tool.categoryKey === category);
+}
+
+/** Type guard: is this string one of the known category keys? */
+export function isCategory(value: string): value is CategoryKey {
+  return (categories as string[]).includes(value);
+}
+
 /** Locale-independent site facts. Tagline/description live in the messages. */
 export const siteConfig = {
   name: "ToolNest",

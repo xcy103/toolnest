@@ -1,12 +1,10 @@
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/lib/tools";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
+import CategoryMenu from "./CategoryMenu";
 
 export default function Navbar() {
-  const t = useTranslations("nav");
-
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
@@ -20,12 +18,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="flex items-center gap-2 sm:gap-4">
-          <Link
-            href="/"
-            className="rounded-lg px-3 py-1.5 text-sm text-foreground/70 transition hover:bg-foreground/5 hover:text-foreground"
-          >
-            {t("allTools")}
-          </Link>
+          <CategoryMenu />
           <a
             href={siteConfig.githubUrl}
             target="_blank"

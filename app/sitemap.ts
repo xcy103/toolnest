@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { siteConfig, tools } from "@/lib/tools";
+import { categories, siteConfig, tools } from "@/lib/tools";
 
 /**
  * Bilingual sitemap. Every page appears once (keyed by the default locale) with
@@ -9,8 +9,12 @@ import { siteConfig, tools } from "@/lib/tools";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  // Home plus every tool, as locale-less paths ("" is the home page).
-  const paths = ["", ...tools.map((tool) => tool.href)];
+  // Home, every category page, and every tool — as locale-less paths.
+  const paths = [
+    "",
+    ...categories.map((category) => `/c/${category}`),
+    ...tools.map((tool) => tool.href),
+  ];
 
   const url = (locale: string, path: string) => `${base}/${locale}${path}`;
 
