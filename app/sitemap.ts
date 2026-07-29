@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Home, every category page, and every tool — as locale-less paths.
   const paths = [
     "",
+    "/tools",
     ...categories.map((category) => `/c/${category}`),
     ...tools.map((tool) => tool.href),
   ];

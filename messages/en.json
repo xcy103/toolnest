@@ -20,7 +20,11 @@
     "badgeLocal": "🔒 Data stays local",
     "badgeNoSignup": "⚡ No sign-up",
     "statsLive": "<strong>{total}</strong> tools planned, <em>{live}</em> live and growing.",
-    "statsNone": "Tools are rolling out — stay tuned."
+    "statsNone": "Tools are rolling out — stay tuned.",
+    "searchPlaceholder": "Search tools…",
+    "browseByCategory": "Browse by category",
+    "viewAll": "View all →",
+    "noResults": "No tools match “{query}”."
   },
   "toolCard": {
     "comingSoon": "Coming soon"

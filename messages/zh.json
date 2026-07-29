@@ -20,7 +20,11 @@
     "badgeLocal": "🔒 数据不出本地",
     "badgeNoSignup": "⚡ 无需注册",
     "statsLive": "已规划 <strong>{total}</strong> 个工具,已上线 <em>{live}</em> 个,持续更新中。",
-    "statsNone": "正在陆续上线,敬请期待。"
+    "statsNone": "正在陆续上线,敬请期待。",
+    "searchPlaceholder": "搜索工具…",
+    "browseByCategory": "按分类浏览",
+    "viewAll": "查看全部 →",
+    "noResults": "没有匹配「{query}」的工具。"
   },
   "toolCard": {
     "comingSoon": "即将上线"

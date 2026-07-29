@@ -56,7 +56,7 @@ export default function CategoryMenu() {
           className="absolute right-0 z-50 mt-2 w-48 rounded-xl border border-border bg-background p-1 shadow-lg"
         >
           <Link
-            href="/"
+            href="/tools"
             role="menuitem"
             onClick={() => setOpen(false)}
             className={`${itemClass} font-medium`}

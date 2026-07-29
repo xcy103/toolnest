@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { tools, type CategoryKey } from "@/lib/tools";
-import ToolCard from "@/components/ToolCard";
+import { tools } from "@/lib/tools";
+import ToolDirectory from "@/components/ToolDirectory";
 
 export default async function Home({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -10,12 +10,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const t = await getTranslations();
   const total = tools.length;
   const live = tools.filter((tool) => tool.available).length;
-
-  // Group tools by category, preserving the order they appear in the registry.
-  const categories: CategoryKey[] = [];
-  for (const tool of tools) {
-    if (!categories.includes(tool.categoryKey)) categories.push(tool.categoryKey);
-  }
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -51,22 +45,9 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         </p>
       </section>
 
-      {/* Tool directory, grouped by category */}
+      {/* Search + category overview */}
       <section className="pb-16">
-        {categories.map((category) => (
-          <div key={category} className="mb-10">
-            <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
-              {t(`categories.${category}`)}
-            </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {tools
-                .filter((tool) => tool.categoryKey === category)
-                .map((tool) => (
-                  <ToolCard key={tool.slug} tool={tool} />
-                ))}
-            </div>
-          </div>
-        ))}
+        <ToolDirectory />
       </section>
     </div>
   );
