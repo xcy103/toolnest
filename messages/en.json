@@ -98,6 +98,10 @@
     "base-converter": {
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
+    },
+    "world-clock": {
+      "name": "World Clock",
+      "description": "See the current time in cities around the world at a glance."
     }
   },
   "base64Page": {
@@ -263,5 +267,22 @@
     "customLabel": "Custom base ({base})",
     "placeholder": "Enter a value…",
     "error": "Invalid digits for base {base}."
+  },
+  "worldClockPage": {
+    "description": "The current time in cities around the world, updating live. Times are computed locally in your browser.",
+    "localLabel": "Local time",
+    "cities": {
+      "utc": "UTC",
+      "losAngeles": "Los Angeles",
+      "newYork": "New York",
+      "saoPaulo": "São Paulo",
+      "london": "London",
+      "paris": "Paris",
+      "dubai": "Dubai",
+      "newDelhi": "New Delhi",
+      "beijing": "Beijing",
+      "tokyo": "Tokyo",
+      "sydney": "Sydney"
+    }
   }
 }

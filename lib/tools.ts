@@ -109,6 +109,13 @@ export const tools: Tool[] = [
     categoryKey: "dev",
     available: true,
   },
+  {
+    slug: "world-clock",
+    href: "/world-clock",
+    icon: "🌍",
+    categoryKey: "time",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

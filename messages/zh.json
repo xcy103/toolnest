@@ -98,6 +98,10 @@
     "base-converter": {
       "name": "进制转换",
       "description": "在二进制、八进制、十进制、十六进制之间互转。"
+    },
+    "world-clock": {
+      "name": "世界时钟",
+      "description": "一眼查看全球主要城市的当前时间。"
     }
   },
   "base64Page": {
@@ -263,5 +267,22 @@
     "customLabel": "自定义进制 ({base})",
     "placeholder": "输入一个数值…",
     "error": "不是有效的 {base} 进制数字。"
+  },
+  "worldClockPage": {
+    "description": "全球主要城市的当前时间,实时更新。所有时间在浏览器本地计算。",
+    "localLabel": "本地时间",
+    "cities": {
+      "utc": "UTC",
+      "losAngeles": "洛杉矶",
+      "newYork": "纽约",
+      "saoPaulo": "圣保罗",
+      "london": "伦敦",
+      "paris": "巴黎",
+      "dubai": "迪拜",
+      "newDelhi": "新德里",
+      "beijing": "北京",
+      "tokyo": "东京",
+      "sydney": "悉尼"
+    }
   }
 }
