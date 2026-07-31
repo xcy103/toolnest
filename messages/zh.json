@@ -102,6 +102,10 @@
     "world-clock": {
       "name": "世界时钟",
       "description": "一眼查看全球主要城市的当前时间。"
+    },
+    "meeting-planner": {
+      "name": "时区会议规划",
+      "description": "跨时区寻找工作时间的重叠,方便安排会议。"
     }
   },
   "base64Page": {
@@ -283,6 +287,33 @@
       "beijing": "北京",
       "tokyo": "东京",
       "sydney": "悉尼"
+    }
+  },
+  "meetingPlannerPage": {
+    "description": "跨时区寻找工作时间的重叠——选择城市,一眼看出大家都有空的时段。全部在浏览器本地计算。",
+    "workingHours": "工作时间",
+    "addZone": "添加城市…",
+    "hint": "绿色行表示对所有已选城市都处于工作时间内。",
+    "noOverlap": "没有对所有城市都在工作时间内的时段——可放宽范围或减少城市。",
+    "empty": "添加一个城市开始。",
+    "remove": "移除{city}",
+    "cities": {
+      "utc": "UTC",
+      "honolulu": "檀香山",
+      "losAngeles": "洛杉矶",
+      "chicago": "芝加哥",
+      "newYork": "纽约",
+      "saoPaulo": "圣保罗",
+      "london": "伦敦",
+      "berlin": "柏林",
+      "paris": "巴黎",
+      "dubai": "迪拜",
+      "newDelhi": "新德里",
+      "singapore": "新加坡",
+      "beijing": "北京",
+      "tokyo": "东京",
+      "sydney": "悉尼",
+      "auckland": "奥克兰"
     }
   }
 }

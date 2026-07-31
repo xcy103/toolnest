@@ -102,6 +102,10 @@
     "world-clock": {
       "name": "World Clock",
       "description": "See the current time in cities around the world at a glance."
+    },
+    "meeting-planner": {
+      "name": "Timezone Meeting Planner",
+      "description": "Find working-hour overlaps across time zones for a meeting."
     }
   },
   "base64Page": {
@@ -283,6 +287,33 @@
       "beijing": "Beijing",
       "tokyo": "Tokyo",
       "sydney": "Sydney"
+    }
+  },
+  "meetingPlannerPage": {
+    "description": "Find working-hour overlaps across time zones — pick your cities and see when everyone is available. Computed locally in your browser.",
+    "workingHours": "Working hours",
+    "addZone": "Add a city…",
+    "hint": "Green rows are within working hours for every selected city.",
+    "noOverlap": "No hour is within working hours for every city — try widening the range or removing a city.",
+    "empty": "Add a city to get started.",
+    "remove": "Remove {city}",
+    "cities": {
+      "utc": "UTC",
+      "honolulu": "Honolulu",
+      "losAngeles": "Los Angeles",
+      "chicago": "Chicago",
+      "newYork": "New York",
+      "saoPaulo": "São Paulo",
+      "london": "London",
+      "berlin": "Berlin",
+      "paris": "Paris",
+      "dubai": "Dubai",
+      "newDelhi": "New Delhi",
+      "singapore": "Singapore",
+      "beijing": "Beijing",
+      "tokyo": "Tokyo",
+      "sydney": "Sydney",
+      "auckland": "Auckland"
     }
   }
 }

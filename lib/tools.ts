@@ -116,6 +116,13 @@ export const tools: Tool[] = [
     categoryKey: "time",
     available: true,
   },
+  {
+    slug: "meeting-planner",
+    href: "/meeting-planner",
+    icon: "📅",
+    categoryKey: "time",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
