@@ -106,6 +106,10 @@
     "meeting-planner": {
       "name": "Timezone Meeting Planner",
       "description": "Find working-hour overlaps across time zones for a meeting."
+    },
+    "countdown": {
+      "name": "Countdown & Date Diff",
+      "description": "Count down to a date, or measure the time between two dates."
     }
   },
   "base64Page": {
@@ -288,6 +292,26 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "countdownPage": {
+    "description": "Count down to a future date and time, or measure the duration between two dates. Live and computed locally in your browser.",
+    "modeCountdown": "Countdown",
+    "modeDiff": "Date difference",
+    "targetLabel": "Target date & time",
+    "pickTarget": "Pick a target date and time to start the countdown.",
+    "statusRemaining": "Remaining",
+    "statusElapsed": "Elapsed (target is in the past)",
+    "unitDays": "Days",
+    "unitHours": "Hours",
+    "unitMinutes": "Minutes",
+    "unitSeconds": "Seconds",
+    "unitYears": "Years",
+    "unitMonths": "Months",
+    "fromLabel": "From",
+    "toLabel": "To",
+    "pickDates": "Pick both dates to see the duration.",
+    "durationLabel": "Duration",
+    "totals": "{days, plural, one {# day} other {# days}} · {weeks, plural, one {# week} other {# weeks}} in total"
   },
   "meetingPlannerPage": {
     "description": "Find working-hour overlaps across time zones — pick your cities and see when everyone is available. Computed locally in your browser.",

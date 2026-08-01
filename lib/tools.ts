@@ -123,6 +123,13 @@ export const tools: Tool[] = [
     categoryKey: "time",
     available: true,
   },
+  {
+    slug: "countdown",
+    href: "/countdown",
+    icon: "⏳",
+    categoryKey: "time",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

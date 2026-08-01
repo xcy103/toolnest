@@ -106,6 +106,10 @@
     "meeting-planner": {
       "name": "时区会议规划",
       "description": "跨时区寻找工作时间的重叠,方便安排会议。"
+    },
+    "countdown": {
+      "name": "倒计时与日期差",
+      "description": "倒数到某个日期,或计算两个日期之间的时长。"
     }
   },
   "base64Page": {
@@ -288,6 +292,26 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "countdownPage": {
+    "description": "倒数到未来的某个日期时间,或计算两个日期之间的时长。实时,在浏览器本地计算。",
+    "modeCountdown": "倒计时",
+    "modeDiff": "日期间隔",
+    "targetLabel": "目标日期时间",
+    "pickTarget": "请选择一个目标日期时间以开始倒计时。",
+    "statusRemaining": "剩余",
+    "statusElapsed": "已过去(目标在过去)",
+    "unitDays": "天",
+    "unitHours": "小时",
+    "unitMinutes": "分",
+    "unitSeconds": "秒",
+    "unitYears": "年",
+    "unitMonths": "月",
+    "fromLabel": "起",
+    "toLabel": "止",
+    "pickDates": "请选择两个日期以查看时长。",
+    "durationLabel": "时长",
+    "totals": "共 {days} 天 · {weeks} 周"
   },
   "meetingPlannerPage": {
     "description": "跨时区寻找工作时间的重叠——选择城市,一眼看出大家都有空的时段。全部在浏览器本地计算。",
