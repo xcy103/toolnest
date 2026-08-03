@@ -110,6 +110,10 @@
     "countdown": {
       "name": "倒计时与日期差",
       "description": "倒数到某个日期,或计算两个日期之间的时长。"
+    },
+    "jwt": {
+      "name": "JWT 解码",
+      "description": "解码 JSON Web Token 的头部与载荷。"
     }
   },
   "base64Page": {
@@ -292,6 +296,19 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "jwtPage": {
+    "description": "解码 JSON Web Token 的头部与载荷。全程在浏览器本地,不上传任何内容,且不校验签名。",
+    "inputLabel": "令牌",
+    "placeholder": "粘贴一个 JSON Web Token(header.payload.signature)…",
+    "headerLabel": "头部 Header",
+    "payloadLabel": "载荷 Payload",
+    "notVerified": "仅解码——不校验签名。",
+    "error": "这看起来不是有效的 JWT。请检查后重试。",
+    "claimsLabel": "时间声明",
+    "iat": "签发时间",
+    "exp": "过期时间",
+    "nbf": "生效时间"
   },
   "countdownPage": {
     "description": "倒数到未来的某个日期时间,或计算两个日期之间的时长。实时,在浏览器本地计算。",

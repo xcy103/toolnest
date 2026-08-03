@@ -110,6 +110,10 @@
     "countdown": {
       "name": "Countdown & Date Diff",
       "description": "Count down to a date, or measure the time between two dates."
+    },
+    "jwt": {
+      "name": "JWT Decoder",
+      "description": "Decode a JSON Web Token's header and payload."
     }
   },
   "base64Page": {
@@ -292,6 +296,19 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "jwtPage": {
+    "description": "Decode a JSON Web Token's header and payload. Decoded locally in your browser — nothing is sent anywhere, and the signature is not verified.",
+    "inputLabel": "Token",
+    "placeholder": "Paste a JSON Web Token (header.payload.signature)…",
+    "headerLabel": "Header",
+    "payloadLabel": "Payload",
+    "notVerified": "Decode only — the signature is not verified.",
+    "error": "That doesn't look like a valid JWT. Check the token and try again.",
+    "claimsLabel": "Timestamps",
+    "iat": "Issued at",
+    "exp": "Expires at",
+    "nbf": "Not valid before"
   },
   "countdownPage": {
     "description": "Count down to a future date and time, or measure the duration between two dates. Live and computed locally in your browser.",

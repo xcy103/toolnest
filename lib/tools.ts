@@ -130,6 +130,13 @@ export const tools: Tool[] = [
     categoryKey: "time",
     available: true,
   },
+  {
+    slug: "jwt",
+    href: "/jwt",
+    icon: "🎫",
+    categoryKey: "dev",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
