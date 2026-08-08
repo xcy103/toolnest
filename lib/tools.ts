@@ -144,6 +144,13 @@ export const tools: Tool[] = [
     categoryKey: "dev",
     available: true,
   },
+  {
+    slug: "cron",
+    href: "/cron",
+    icon: "⏰",
+    categoryKey: "dev",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

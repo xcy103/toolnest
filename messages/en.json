@@ -118,6 +118,10 @@
     "regex": {
       "name": "Regex Tester",
       "description": "Test a regular expression against text with live match highlighting."
+    },
+    "cron": {
+      "name": "Cron Explainer",
+      "description": "Turn a cron expression into a readable, field-by-field description."
     }
   },
   "base64Page": {
@@ -300,6 +304,21 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "cronPage": {
+    "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",
+    "placeholder": "e.g. */15 9-17 * * 1-5",
+    "error": "A cron expression needs exactly 5 fields: minute hour day-of-month month day-of-week.",
+    "invalid": "invalid",
+    "any": "every",
+    "step": "every {n}",
+    "fieldMinute": "Minute",
+    "fieldHour": "Hour",
+    "fieldDayOfMonth": "Day of month",
+    "fieldMonth": "Month",
+    "fieldDayOfWeek": "Day of week",
+    "months": "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",
+    "weekdays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
   },
   "regexPage": {
     "description": "Test a regular expression against your text and see matches highlighted live. Everything runs locally in your browser.",

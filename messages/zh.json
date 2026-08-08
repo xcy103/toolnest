@@ -118,6 +118,10 @@
     "regex": {
       "name": "正则测试器",
       "description": "用正则表达式匹配文本,实时高亮匹配结果。"
+    },
+    "cron": {
+      "name": "Cron 解释器",
+      "description": "把 cron 表达式解析为逐字段的可读说明。"
     }
   },
   "base64Page": {
@@ -300,6 +304,21 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "cronPage": {
+    "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",
+    "placeholder": "例如 */15 9-17 * * 1-5",
+    "error": "cron 表达式需要正好 5 个字段:分 时 日 月 周。",
+    "invalid": "无效",
+    "any": "每",
+    "step": "每 {n}",
+    "fieldMinute": "分钟",
+    "fieldHour": "小时",
+    "fieldDayOfMonth": "日",
+    "fieldMonth": "月",
+    "fieldDayOfWeek": "星期",
+    "months": "1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月",
+    "weekdays": "周日,周一,周二,周三,周四,周五,周六"
   },
   "regexPage": {
     "description": "用正则表达式匹配你的文本,实时高亮显示匹配结果。全部在浏览器本地运行。",
