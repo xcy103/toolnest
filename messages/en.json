@@ -122,6 +122,10 @@
     "cron": {
       "name": "Cron Explainer",
       "description": "Turn a cron expression into a readable, field-by-field description."
+    },
+    "diff": {
+      "name": "Text Diff",
+      "description": "Compare two texts and highlight the differences line by line."
     }
   },
   "base64Page": {
@@ -304,6 +308,17 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "diffPage": {
+    "description": "Compare two blocks of text and see what was added and removed, line by line. Everything runs locally in your browser.",
+    "originalLabel": "Original",
+    "changedLabel": "Changed",
+    "originalPlaceholder": "Paste the original text…",
+    "changedPlaceholder": "Paste the changed text…",
+    "resultLabel": "Differences",
+    "added": "{n, plural, one {# addition} other {# additions}}",
+    "removed": "{n, plural, one {# deletion} other {# deletions}}",
+    "identical": "The two texts are identical."
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",

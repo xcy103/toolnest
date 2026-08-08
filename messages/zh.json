@@ -122,6 +122,10 @@
     "cron": {
       "name": "Cron 解释器",
       "description": "把 cron 表达式解析为逐字段的可读说明。"
+    },
+    "diff": {
+      "name": "文本对比",
+      "description": "逐行比较两段文本并高亮差异。"
     }
   },
   "base64Page": {
@@ -304,6 +308,17 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "diffPage": {
+    "description": "逐行比较两段文本,查看新增与删除的内容。全部在浏览器本地运行。",
+    "originalLabel": "原文",
+    "changedLabel": "修改后",
+    "originalPlaceholder": "粘贴原始文本…",
+    "changedPlaceholder": "粘贴修改后的文本…",
+    "resultLabel": "差异",
+    "added": "新增 {n} 行",
+    "removed": "删除 {n} 行",
+    "identical": "两段文本完全相同。"
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",

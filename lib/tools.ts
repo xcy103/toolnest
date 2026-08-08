@@ -151,6 +151,13 @@ export const tools: Tool[] = [
     categoryKey: "dev",
     available: true,
   },
+  {
+    slug: "diff",
+    href: "/diff",
+    icon: "🔀",
+    categoryKey: "text",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
