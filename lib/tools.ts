@@ -137,6 +137,13 @@ export const tools: Tool[] = [
     categoryKey: "dev",
     available: true,
   },
+  {
+    slug: "regex",
+    href: "/regex",
+    icon: "✳️",
+    categoryKey: "dev",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

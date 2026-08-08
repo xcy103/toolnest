@@ -114,6 +114,10 @@
     "jwt": {
       "name": "JWT 解码",
       "description": "解码 JSON Web Token 的头部与载荷。"
+    },
+    "regex": {
+      "name": "正则测试器",
+      "description": "用正则表达式匹配文本,实时高亮匹配结果。"
     }
   },
   "base64Page": {
@@ -296,6 +300,24 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "regexPage": {
+    "description": "用正则表达式匹配你的文本,实时高亮显示匹配结果。全部在浏览器本地运行。",
+    "patternLabel": "表达式",
+    "patternPlaceholder": "输入一个正则表达式…",
+    "flagsLabel": "标志",
+    "testLabel": "测试文本",
+    "testPlaceholder": "在此输入要匹配的文本…",
+    "matchesLabel": "匹配结果",
+    "matchCount": "{n} 处匹配",
+    "noMatches": "无匹配。",
+    "error": "无效的正则表达式:{message}",
+    "group": "分组 {n}",
+    "flagG": "g · 全局",
+    "flagI": "i · 忽略大小写",
+    "flagM": "m · 多行",
+    "flagS": "s · 点匹配换行",
+    "flagU": "u · Unicode"
   },
   "jwtPage": {
     "description": "解码 JSON Web Token 的头部与载荷。全程在浏览器本地,不上传任何内容,且不校验签名。",

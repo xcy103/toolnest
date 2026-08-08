@@ -114,6 +114,10 @@
     "jwt": {
       "name": "JWT Decoder",
       "description": "Decode a JSON Web Token's header and payload."
+    },
+    "regex": {
+      "name": "Regex Tester",
+      "description": "Test a regular expression against text with live match highlighting."
     }
   },
   "base64Page": {
@@ -296,6 +300,24 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "regexPage": {
+    "description": "Test a regular expression against your text and see matches highlighted live. Everything runs locally in your browser.",
+    "patternLabel": "Pattern",
+    "patternPlaceholder": "Enter a regular expression…",
+    "flagsLabel": "Flags",
+    "testLabel": "Test string",
+    "testPlaceholder": "Text to match against…",
+    "matchesLabel": "Matches",
+    "matchCount": "{n, plural, one {# match} other {# matches}}",
+    "noMatches": "No matches.",
+    "error": "Invalid regular expression: {message}",
+    "group": "Group {n}",
+    "flagG": "g · global",
+    "flagI": "i · ignore case",
+    "flagM": "m · multiline",
+    "flagS": "s · dotall",
+    "flagU": "u · unicode"
   },
   "jwtPage": {
     "description": "Decode a JSON Web Token's header and payload. Decoded locally in your browser — nothing is sent anywhere, and the signature is not verified.",
