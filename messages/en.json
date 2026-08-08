@@ -48,7 +48,8 @@
     "time": "Time",
     "calc": "Calculators",
     "generate": "Generators",
-    "text": "Text"
+    "text": "Text",
+    "color": "Color"
   },
   "tools": {
     "base64": {
@@ -126,6 +127,10 @@
     "diff": {
       "name": "Text Diff",
       "description": "Compare two texts and highlight the differences line by line."
+    },
+    "color-converter": {
+      "name": "Color Converter",
+      "description": "Convert colors between HEX, RGB and HSL with a live preview."
     }
   },
   "base64Page": {
@@ -308,6 +313,13 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "colorConverterPage": {
+    "description": "Convert a color between HEX, RGB and HSL. Edit any format or use the picker, and the rest update with a live preview. Computed locally.",
+    "pick": "Pick",
+    "hex": "HEX",
+    "rgb": "RGB",
+    "hsl": "HSL"
   },
   "diffPage": {
     "description": "Compare two blocks of text and see what was added and removed, line by line. Everything runs locally in your browser.",

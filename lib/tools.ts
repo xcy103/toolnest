@@ -5,7 +5,8 @@ export type CategoryKey =
   | "time"
   | "calc"
   | "generate"
-  | "text";
+  | "text"
+  | "color";
 
 export type Tool = {
   /** Route slug. Also the key into the `tools` messages namespace. */
@@ -156,6 +157,13 @@ export const tools: Tool[] = [
     href: "/diff",
     icon: "🔀",
     categoryKey: "text",
+    available: true,
+  },
+  {
+    slug: "color-converter",
+    href: "/color-converter",
+    icon: "🎨",
+    categoryKey: "color",
     available: true,
   },
 ];
