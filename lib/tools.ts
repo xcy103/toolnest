@@ -166,6 +166,13 @@ export const tools: Tool[] = [
     categoryKey: "color",
     available: true,
   },
+  {
+    slug: "contrast",
+    href: "/contrast",
+    icon: "👁️",
+    categoryKey: "color",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

@@ -131,6 +131,10 @@
     "color-converter": {
       "name": "Color Converter",
       "description": "Convert colors between HEX, RGB and HSL with a live preview."
+    },
+    "contrast": {
+      "name": "Contrast Checker",
+      "description": "Check the WCAG contrast between text and background colors."
     }
   },
   "base64Page": {
@@ -313,6 +317,21 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "contrastPage": {
+    "description": "Check the WCAG contrast ratio between a text color and its background, with pass/fail for AA and AAA. Computed locally in your browser.",
+    "textColor": "Text color",
+    "bgColor": "Background color",
+    "ratio": "Contrast ratio",
+    "pass": "Pass",
+    "fail": "Fail",
+    "aaNormal": "AA · normal text",
+    "aaLarge": "AA · large text",
+    "aaaNormal": "AAA · normal text",
+    "aaaLarge": "AAA · large text",
+    "previewText": "The quick brown fox jumps over the lazy dog.",
+    "previewNormal": "Normal text (16px)",
+    "previewLarge": "Large text (24px bold)"
   },
   "colorConverterPage": {
     "description": "Convert a color between HEX, RGB and HSL. Edit any format or use the picker, and the rest update with a live preview. Computed locally.",

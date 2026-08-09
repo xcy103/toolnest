@@ -131,6 +131,10 @@
     "color-converter": {
       "name": "颜色转换",
       "description": "在 HEX、RGB、HSL 之间转换颜色,并实时预览。"
+    },
+    "contrast": {
+      "name": "对比度检查",
+      "description": "检查文字与背景色的 WCAG 对比度。"
     }
   },
   "base64Page": {
@@ -313,6 +317,21 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "contrastPage": {
+    "description": "检查文字颜色与背景色之间的 WCAG 对比度,并给出 AA、AAA 是否达标。在浏览器本地计算。",
+    "textColor": "文字颜色",
+    "bgColor": "背景颜色",
+    "ratio": "对比度",
+    "pass": "通过",
+    "fail": "不通过",
+    "aaNormal": "AA · 正常文字",
+    "aaLarge": "AA · 大号文字",
+    "aaaNormal": "AAA · 正常文字",
+    "aaaLarge": "AAA · 大号文字",
+    "previewText": "敏捷的棕色狐狸跳过懒惰的狗。",
+    "previewNormal": "正常文字(16px)",
+    "previewLarge": "大号文字(24px 粗体)"
   },
   "colorConverterPage": {
     "description": "在 HEX、RGB、HSL 之间转换颜色。编辑任一格式或使用取色器,其余会实时更新并预览。本地计算。",
