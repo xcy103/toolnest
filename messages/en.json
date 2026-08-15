@@ -132,6 +132,10 @@
       "name": "Text Diff",
       "description": "Compare two texts and highlight the differences line by line."
     },
+    "lorem": {
+      "name": "Lorem Ipsum Generator",
+      "description": "Generate placeholder text by paragraphs, sentences or words."
+    },
     "color-converter": {
       "name": "Color Converter",
       "description": "Convert colors between HEX, RGB and HSL with a live preview."
@@ -340,6 +344,16 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "loremPage": {
+    "description": "Generate lorem ipsum placeholder text by paragraphs, sentences or words. Everything runs locally in your browser.",
+    "amountLabel": "Amount",
+    "unitParagraphs": "Paragraphs",
+    "unitSentences": "Sentences",
+    "unitWords": "Words",
+    "startWith": "Start with \"Lorem ipsum…\"",
+    "regenerate": "Regenerate",
+    "outputLabel": "Output"
   },
   "gradientPage": {
     "description": "Build a linear or radial CSS gradient visually and copy the code. Everything runs locally in your browser.",

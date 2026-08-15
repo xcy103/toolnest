@@ -187,6 +187,13 @@ export const tools: Tool[] = [
     categoryKey: "color",
     available: true,
   },
+  {
+    slug: "lorem",
+    href: "/lorem",
+    icon: "📄",
+    categoryKey: "text",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {

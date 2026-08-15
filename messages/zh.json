@@ -132,6 +132,10 @@
       "name": "文本对比",
       "description": "逐行比较两段文本并高亮差异。"
     },
+    "lorem": {
+      "name": "Lorem Ipsum 生成",
+      "description": "按段落、句子或单词生成占位文本。"
+    },
     "color-converter": {
       "name": "颜色转换",
       "description": "在 HEX、RGB、HSL 之间转换颜色,并实时预览。"
@@ -340,6 +344,16 @@
       "speed": "速度",
       "data": "数据"
     }
+  },
+  "loremPage": {
+    "description": "按段落、句子或单词生成 lorem ipsum 占位文本。全部在浏览器本地运行。",
+    "amountLabel": "数量",
+    "unitParagraphs": "段落",
+    "unitSentences": "句子",
+    "unitWords": "单词",
+    "startWith": "以「Lorem ipsum…」开头",
+    "regenerate": "重新生成",
+    "outputLabel": "输出"
   },
   "gradientPage": {
     "description": "可视化生成线性或径向 CSS 渐变并复制代码。全部在浏览器本地运行。",
