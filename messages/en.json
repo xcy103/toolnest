@@ -49,7 +49,8 @@
     "calc": "Calculators",
     "generate": "Generators",
     "text": "Text",
-    "color": "Color"
+    "color": "Color",
+    "image": "Image"
   },
   "tools": {
     "base64": {
@@ -139,6 +140,10 @@
     "markdown": {
       "name": "Markdown Preview",
       "description": "Write markdown and see it rendered live, side by side."
+    },
+    "image-compressor": {
+      "name": "Image Compressor",
+      "description": "Resize and compress images in your browser, then download."
     },
     "color-converter": {
       "name": "Color Converter",
@@ -348,6 +353,17 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "imageCompressorPage": {
+    "description": "Resize and re-compress images entirely in your browser — nothing is uploaded. Choose a max width, quality and format, then download.",
+    "choose": "Choose an image",
+    "maxWidth": "Max width",
+    "quality": "Quality",
+    "format": "Format",
+    "original": "Original",
+    "compressed": "Compressed",
+    "download": "⬇️ Download",
+    "smaller": "{percent}% smaller"
   },
   "markdownPage": {
     "description": "Write markdown on the left and see it rendered live on the right. Everything is rendered locally in your browser.",

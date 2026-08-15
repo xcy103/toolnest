@@ -6,7 +6,8 @@ export type CategoryKey =
   | "calc"
   | "generate"
   | "text"
-  | "color";
+  | "color"
+  | "image";
 
 export type Tool = {
   /** Route slug. Also the key into the `tools` messages namespace. */
@@ -185,6 +186,13 @@ export const tools: Tool[] = [
     href: "/gradient",
     icon: "🌈",
     categoryKey: "color",
+    available: true,
+  },
+  {
+    slug: "image-compressor",
+    href: "/image-compressor",
+    icon: "🖼️",
+    categoryKey: "image",
     available: true,
   },
   {
