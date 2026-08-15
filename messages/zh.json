@@ -136,6 +136,10 @@
       "name": "Lorem Ipsum 生成",
       "description": "按段落、句子或单词生成占位文本。"
     },
+    "markdown": {
+      "name": "Markdown 预览",
+      "description": "编写 Markdown 并实时渲染,左右对照。"
+    },
     "color-converter": {
       "name": "颜色转换",
       "description": "在 HEX、RGB、HSL 之间转换颜色,并实时预览。"
@@ -344,6 +348,12 @@
       "speed": "速度",
       "data": "数据"
     }
+  },
+  "markdownPage": {
+    "description": "在左侧编写 Markdown,右侧实时渲染。全部在浏览器本地渲染。",
+    "inputLabel": "Markdown",
+    "previewLabel": "预览",
+    "placeholder": "# 你好\n\n在这里输入 **Markdown**…"
   },
   "loremPage": {
     "description": "按段落、句子或单词生成 lorem ipsum 占位文本。全部在浏览器本地运行。",

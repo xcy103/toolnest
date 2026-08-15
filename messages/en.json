@@ -136,6 +136,10 @@
       "name": "Lorem Ipsum Generator",
       "description": "Generate placeholder text by paragraphs, sentences or words."
     },
+    "markdown": {
+      "name": "Markdown Preview",
+      "description": "Write markdown and see it rendered live, side by side."
+    },
     "color-converter": {
       "name": "Color Converter",
       "description": "Convert colors between HEX, RGB and HSL with a live preview."
@@ -344,6 +348,12 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "markdownPage": {
+    "description": "Write markdown on the left and see it rendered live on the right. Everything is rendered locally in your browser.",
+    "inputLabel": "Markdown",
+    "previewLabel": "Preview",
+    "placeholder": "# Hello\n\nType **markdown** here…"
   },
   "loremPage": {
     "description": "Generate lorem ipsum placeholder text by paragraphs, sentences or words. Everything runs locally in your browser.",

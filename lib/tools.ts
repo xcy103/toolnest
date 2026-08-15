@@ -194,6 +194,13 @@ export const tools: Tool[] = [
     categoryKey: "text",
     available: true,
   },
+  {
+    slug: "markdown",
+    href: "/markdown",
+    icon: "📖",
+    categoryKey: "text",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
