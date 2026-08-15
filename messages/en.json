@@ -76,6 +76,10 @@
       "name": "Scientific Calculator",
       "description": "Basic arithmetic plus common scientific functions."
     },
+    "unit-converter": {
+      "name": "Unit Converter",
+      "description": "Convert between length, mass, temperature and more."
+    },
     "qrcode": {
       "name": "QR Code Generator",
       "description": "Turn text or a link into a QR code and download it."
@@ -320,6 +324,21 @@
       "beijing": "Beijing",
       "tokyo": "Tokyo",
       "sydney": "Sydney"
+    }
+  },
+  "unitConverterPage": {
+    "description": "Convert between units of length, mass, temperature, area, volume, speed and data. Everything runs locally in your browser.",
+    "from": "From",
+    "to": "To",
+    "swap": "Swap",
+    "categories": {
+      "length": "Length",
+      "mass": "Mass",
+      "temperature": "Temperature",
+      "area": "Area",
+      "volume": "Volume",
+      "speed": "Speed",
+      "data": "Data"
     }
   },
   "gradientPage": {

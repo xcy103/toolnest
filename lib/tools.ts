@@ -69,6 +69,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "unit-converter",
+    href: "/unit-converter",
+    icon: "📏",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
     slug: "qrcode",
     href: "/qrcode",
     icon: "📱",

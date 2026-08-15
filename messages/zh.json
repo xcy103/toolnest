@@ -76,6 +76,10 @@
       "name": "科学计算器",
       "description": "基本运算与常见科学函数计算。"
     },
+    "unit-converter": {
+      "name": "单位换算",
+      "description": "在长度、质量、温度等单位之间换算。"
+    },
     "qrcode": {
       "name": "二维码生成",
       "description": "把文本或链接生成为二维码并下载。"
@@ -320,6 +324,21 @@
       "beijing": "北京",
       "tokyo": "东京",
       "sydney": "悉尼"
+    }
+  },
+  "unitConverterPage": {
+    "description": "在长度、质量、温度、面积、体积、速度、数据等单位之间换算。全部在浏览器本地运行。",
+    "from": "从",
+    "to": "到",
+    "swap": "交换",
+    "categories": {
+      "length": "长度",
+      "mass": "质量",
+      "temperature": "温度",
+      "area": "面积",
+      "volume": "体积",
+      "speed": "速度",
+      "data": "数据"
     }
   },
   "gradientPage": {
