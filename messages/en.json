@@ -135,6 +135,10 @@
     "contrast": {
       "name": "Contrast Checker",
       "description": "Check the WCAG contrast between text and background colors."
+    },
+    "gradient": {
+      "name": "Gradient Generator",
+      "description": "Build a CSS gradient visually and copy the code."
     }
   },
   "base64Page": {
@@ -317,6 +321,16 @@
       "tokyo": "Tokyo",
       "sydney": "Sydney"
     }
+  },
+  "gradientPage": {
+    "description": "Build a linear or radial CSS gradient visually and copy the code. Everything runs locally in your browser.",
+    "typeLinear": "Linear",
+    "typeRadial": "Radial",
+    "angleLabel": "Angle",
+    "stopsLabel": "Color stops",
+    "addStop": "Add stop",
+    "removeStop": "Remove stop",
+    "cssLabel": "CSS"
   },
   "contrastPage": {
     "description": "Check the WCAG contrast ratio between a text color and its background, with pass/fail for AA and AAA. Computed locally in your browser.",

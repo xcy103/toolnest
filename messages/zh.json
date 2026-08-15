@@ -135,6 +135,10 @@
     "contrast": {
       "name": "对比度检查",
       "description": "检查文字与背景色的 WCAG 对比度。"
+    },
+    "gradient": {
+      "name": "渐变生成",
+      "description": "可视化生成 CSS 渐变并复制代码。"
     }
   },
   "base64Page": {
@@ -317,6 +321,16 @@
       "tokyo": "东京",
       "sydney": "悉尼"
     }
+  },
+  "gradientPage": {
+    "description": "可视化生成线性或径向 CSS 渐变并复制代码。全部在浏览器本地运行。",
+    "typeLinear": "线性",
+    "typeRadial": "径向",
+    "angleLabel": "角度",
+    "stopsLabel": "色标",
+    "addStop": "添加色标",
+    "removeStop": "删除色标",
+    "cssLabel": "CSS"
   },
   "contrastPage": {
     "description": "检查文字颜色与背景色之间的 WCAG 对比度,并给出 AA、AAA 是否达标。在浏览器本地计算。",

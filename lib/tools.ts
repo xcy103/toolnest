@@ -173,6 +173,13 @@ export const tools: Tool[] = [
     categoryKey: "color",
     available: true,
   },
+  {
+    slug: "gradient",
+    href: "/gradient",
+    icon: "🌈",
+    categoryKey: "color",
+    available: true,
+  },
 ];
 
 export function getTool(slug: string): Tool | undefined {
