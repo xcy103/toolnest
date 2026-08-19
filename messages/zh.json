@@ -66,6 +66,10 @@
       "name": "JSON 工具",
       "description": "JSON 格式化、压缩与语法校验。"
     },
+    "json-csv": {
+      "name": "JSON ↔ CSV 转换",
+      "description": "JSON 与 CSV 表格互相转换。"
+    },
     "hash": {
       "name": "哈希生成",
       "description": "生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。"
@@ -194,6 +198,33 @@
     "placeholder": "在此粘贴 JSON,例如 {example}",
     "errorAt": "JSON 语法错误(第 {line} 行,第 {column} 列附近),请检查后重试。",
     "error": "JSON 语法错误,请检查输入内容。"
+  },
+  "jsonCsvPage": {
+    "description": "把 JSON 对象数组转换成 CSV 表格,或把 CSV 表格转换回 JSON,支持引号转义、分隔符选择与类型识别。所有计算在浏览器本地完成。",
+    "jsonToCsv": "JSON → CSV",
+    "csvToJson": "CSV → JSON",
+    "delimiter": "分隔符",
+    "delimiterComma": "逗号 (,)",
+    "delimiterSemicolon": "分号 (;)",
+    "delimiterTab": "制表符",
+    "firstRowHeader": "首行为表头",
+    "inferTypes": "识别数字、布尔值与 null",
+    "inputJson": "JSON 输入",
+    "inputCsv": "CSV 输入",
+    "outputCsv": "CSV 输出",
+    "outputJson": "JSON 输出",
+    "loadExample": "示例",
+    "placeholderJson": "在这里粘贴 JSON 对象数组…",
+    "placeholderCsv": "在这里粘贴 CSV…",
+    "rowCount": "{n} 行数据",
+    "errors": {
+      "jsonSyntax": "JSON 语法错误,请检查输入内容。",
+      "jsonNotTabular": "CSV 需要表格结构:输入必须是对象数组(或单个对象)。",
+      "jsonEmpty": "数组为空,没有可转换的内容。",
+      "csvUnclosedQuote": "第 {line} 行的引号没有闭合——每个 \" 都需要成对出现。",
+      "csvRagged": "第 {line} 行有 {got} 个字段,而表头有 {expected} 个,请检查分隔符或引号内的逗号。",
+      "unknown": "无法转换该输入,请检查格式。"
+    }
   },
   "hashPage": {
     "description": "为文本生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。所有计算在浏览器本地完成。",

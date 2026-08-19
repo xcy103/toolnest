@@ -49,6 +49,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "json-csv",
+    href: "/json-csv",
+    icon: "🧾",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "hash",
     href: "/hash",
     icon: "#",

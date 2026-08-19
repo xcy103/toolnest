@@ -66,6 +66,10 @@
       "name": "JSON Tools",
       "description": "Format, minify and validate JSON."
     },
+    "json-csv": {
+      "name": "JSON ↔ CSV Converter",
+      "description": "Convert JSON to CSV and back."
+    },
     "hash": {
       "name": "Hash Generator",
       "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes."
@@ -194,6 +198,33 @@
     "placeholder": "Paste JSON here, e.g. {example}",
     "errorAt": "JSON syntax error near line {line}, column {column} — please check and try again.",
     "error": "JSON syntax error — please check your input."
+  },
+  "jsonCsvPage": {
+    "description": "Convert a JSON array of objects into a CSV table, or a CSV table back into JSON — with proper quoting, a choice of delimiter and optional type detection. Everything runs locally in your browser.",
+    "jsonToCsv": "JSON → CSV",
+    "csvToJson": "CSV → JSON",
+    "delimiter": "Delimiter",
+    "delimiterComma": "Comma (,)",
+    "delimiterSemicolon": "Semicolon (;)",
+    "delimiterTab": "Tab",
+    "firstRowHeader": "First row is a header",
+    "inferTypes": "Detect numbers, booleans and null",
+    "inputJson": "JSON input",
+    "inputCsv": "CSV input",
+    "outputCsv": "CSV output",
+    "outputJson": "JSON output",
+    "loadExample": "Example",
+    "placeholderJson": "Paste a JSON array of objects here…",
+    "placeholderCsv": "Paste CSV here…",
+    "rowCount": "{n, plural, one {# row} other {# rows}}",
+    "errors": {
+      "jsonSyntax": "JSON syntax error — please check your input.",
+      "jsonNotTabular": "CSV needs a table: the input has to be an array of objects (or a single object).",
+      "jsonEmpty": "The array is empty, so there is nothing to convert.",
+      "csvUnclosedQuote": "Unclosed quote starting on line {line} — every opening \" needs a closing one.",
+      "csvRagged": "Line {line} has {got} fields but the header has {expected} — please check the delimiter and any quoted commas.",
+      "unknown": "Could not convert this input — please check the format."
+    }
   },
   "hashPage": {
     "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 digests for any text. Everything runs locally in your browser.",
