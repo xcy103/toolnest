@@ -13,7 +13,8 @@
     "categories": "分类"
   },
   "categoryPage": {
-    "count": "{n} 个工具"
+    "count": "{n} 个工具",
+    "metaDescription": "{n} 个免费的{category}在线工具,全部在浏览器本地运行,无需注册,数据不出本地。"
   },
   "home": {
     "badgeFree": "✅ 免费使用",

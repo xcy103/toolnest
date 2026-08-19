@@ -27,11 +27,25 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "site" });
 
   return {
+    // Relative URLs elsewhere (canonicals, Open Graph) resolve against this.
+    metadataBase: new URL(siteConfig.url),
     title: {
       default: `${siteConfig.name} · ${t("tagline")}`,
       template: `%s · ${siteConfig.name}`,
     },
     description: t("description"),
+    applicationName: siteConfig.name,
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.name,
+      title: `${siteConfig.name} · ${t("tagline")}`,
+      description: t("description"),
+    },
+    twitter: {
+      card: "summary",
+      title: `${siteConfig.name} · ${t("tagline")}`,
+      description: t("description"),
+    },
   };
 }
 

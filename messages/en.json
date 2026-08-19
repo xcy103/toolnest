@@ -13,7 +13,8 @@
     "categories": "Categories"
   },
   "categoryPage": {
-    "count": "{n, plural, one {# tool} other {# tools}}"
+    "count": "{n, plural, one {# tool} other {# tools}}",
+    "metaDescription": "{n, plural, one {# free, browser-based {category} tool} other {# free, browser-based {category} tools}} — no sign-up, and your data never leaves your device."
   },
   "home": {
     "badgeFree": "✅ Free to use",

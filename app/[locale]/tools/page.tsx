@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { categories, toolsInCategory } from "@/lib/tools";
+import { localeAlternates, openGraphFor } from "@/lib/metadata";
 import ToolCard from "@/components/ToolCard";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/tools">): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("allTools") };
+  const t = await getTranslations({ locale });
+  return {
+    title: t("nav.allTools"),
+    description: t("site.description"),
+    alternates: localeAlternates("/tools", locale),
+    openGraph: openGraphFor("/tools", locale),
+  };
 }
 
 export default async function ToolsPage({

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { categories, isCategory, toolsInCategory } from "@/lib/tools";
+import { localeAlternates, openGraphFor } from "@/lib/metadata";
 import ToolCard from "@/components/ToolCard";
 
 /** Pre-render every category, for every locale (locale comes from the parent). */
@@ -15,8 +16,17 @@ export async function generateMetadata({
 }: PageProps<"/[locale]/c/[category]">): Promise<Metadata> {
   const { locale, category } = await params;
   if (!isCategory(category)) return {};
-  const t = await getTranslations({ locale, namespace: "categories" });
-  return { title: t(category) };
+  const t = await getTranslations({ locale });
+  const name = t(`categories.${category}`);
+  return {
+    title: name,
+    description: t("categoryPage.metaDescription", {
+      category: name,
+      n: toolsInCategory(category).length,
+    }),
+    alternates: localeAlternates(`/c/${category}`, locale),
+    openGraph: openGraphFor(`/c/${category}`, locale),
+  };
 }
 
 export default async function CategoryPage({
