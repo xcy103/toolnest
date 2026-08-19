@@ -81,7 +81,7 @@ export default function GradientPage() {
                 max={360}
                 value={angle}
                 onChange={(e) => setAngle(Number(e.target.value))}
-                className="flex-1 accent-emerald-500"
+                className="min-w-0 flex-1 accent-emerald-500"
               />
             </div>
           )}
@@ -116,7 +116,7 @@ export default function GradientPage() {
                 value={stop.color}
                 onChange={(e) => updateStop(i, { color: e.target.value })}
                 spellCheck={false}
-                className="w-28 rounded-lg border border-border bg-background p-2 font-mono text-sm outline-none focus:border-emerald-500"
+                className="w-24 rounded-lg border border-border bg-background p-2 font-mono text-sm outline-none focus:border-emerald-500 sm:w-28"
               />
               <input
                 type="range"
@@ -124,7 +124,7 @@ export default function GradientPage() {
                 max={100}
                 value={stop.pos}
                 onChange={(e) => updateStop(i, { pos: Number(e.target.value) })}
-                className="flex-1 accent-emerald-500"
+                className="min-w-0 flex-1 accent-emerald-500"
               />
               <span className="w-10 shrink-0 text-right font-mono text-sm text-muted">
                 {stop.pos}%
