@@ -14,22 +14,29 @@ type Token = { type: TokType; value: string };
  * prose, so the UI can render it in the active locale. Keys map to the
  * `calculatorPage.errors` namespace in the message catalogues.
  */
+export type CalcErrorKey =
+  | "badNumber"
+  | "unknownName"
+  | "badChar"
+  | "parens"
+  | "factorial"
+  | "incomplete"
+  | "invalid"
+  | "empty"
+  | "notFinite";
+
 export class CalcError extends Error {
-  constructor(
-    public readonly key:
-      | "badNumber"
-      | "unknownName"
-      | "badChar"
-      | "parens"
-      | "factorial"
-      | "incomplete"
-      | "invalid"
-      | "empty"
-      | "notFinite",
-    public readonly values?: Record<string, string>,
-  ) {
+  readonly key: CalcErrorKey;
+  readonly values?: Record<string, string>;
+
+  // Fields are declared and assigned explicitly rather than via constructor
+  // parameter properties, which Node's strip-only TypeScript can't run — that
+  // would keep this module out of the test suite.
+  constructor(key: CalcErrorKey, values?: Record<string, string>) {
     super(key);
     this.name = "CalcError";
+    this.key = key;
+    this.values = values;
   }
 }
 
