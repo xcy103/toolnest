@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { siteConfig } from "@/lib/tools";
 
 export default function Footer() {
@@ -13,7 +14,13 @@ export default function Footer() {
           <span className="font-medium text-foreground">{siteConfig.name}</span>{" "}
           · {t("site.tagline")}
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+          <Link href="/about" className="transition hover:text-foreground">
+            {t("footer.about")}
+          </Link>
+          <Link href="/privacy" className="transition hover:text-foreground">
+            {t("footer.privacy")}
+          </Link>
           <a
             href={siteConfig.githubUrl}
             target="_blank"

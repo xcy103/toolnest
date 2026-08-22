@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "",
     "/tools",
+    "/about",
+    "/privacy",
     ...categories.map((category) => `/c/${category}`),
     ...tools.map((tool) => tool.href),
   ];

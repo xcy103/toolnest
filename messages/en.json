@@ -16,6 +16,63 @@
     "count": "{n, plural, one {# tool} other {# tools}}",
     "metaDescription": "{n, plural, one {# free, browser-based {category} tool} other {# free, browser-based {category} tools}} — no sign-up, and your data never leaves your device."
   },
+  "aboutPage": {
+    "title": "About ToolNest",
+    "metaTitle": "About",
+    "description": "What ToolNest is, how it works, and who builds it.",
+    "whatTitle": "What ToolNest is",
+    "whatBody": "ToolNest is a collection of {tools} free online tools across {categories} categories — encoding, developer utilities, text, time, colour, images and everyday calculations. It is also the official site of ToolNest, a one-person software company. Every tool is designed to do one small job well, load instantly, and get out of the way.",
+    "principlesTitle": "Principles",
+    "principles": {
+      "local": {
+        "title": "Everything runs in your browser",
+        "body": "There is no backend. Text you paste, files you drop and results you copy are processed on your own device and never sent anywhere."
+      },
+      "free": {
+        "title": "Free, with no account",
+        "body": "No sign-up, no paywall, no trial. Open a page and use it."
+      },
+      "fast": {
+        "title": "Small and fast",
+        "body": "Pages are static and dependency-light, so they load quickly and keep working on a slow connection."
+      },
+      "bilingual": {
+        "title": "Bilingual",
+        "body": "Every page exists in English and Chinese, each with its own address, so either language can be linked and shared directly."
+      }
+    },
+    "howTitle": "How it's built",
+    "howBody": "Next.js and TypeScript with Tailwind CSS, deployed as a static site on Vercel. The conversion logic — CSV parsing, colour maths, the expression evaluator and so on — is written from scratch and unit-tested, rather than pulled in as libraries, which keeps the pages small and the behaviour predictable.",
+    "sourceBody": "The whole site is open source; the code, including the history of how each tool was built, lives at"
+  },
+  "privacyPage": {
+    "title": "Privacy",
+    "description": "What ToolNest does and does not collect — in plain language.",
+    "summary": "Short version: ToolNest has no backend, no accounts and no analytics. Whatever you paste into a tool stays on your device.",
+    "sections": {
+      "data": {
+        "title": "The content you work with",
+        "body": "Every tool runs entirely in your browser using JavaScript on your own device. Text, JSON, images and any other input are never uploaded, never logged, and never leave your computer — the site has no server-side code that could receive them. Closing the tab discards everything."
+      },
+      "storage": {
+        "title": "What is stored in your browser",
+        "body": "Two small things, both purely functional. Your light/dark preference is saved in your browser's local storage under the key \"theme\", so the site doesn't flash the wrong colours on the next visit. And a cookie named NEXT_LOCALE remembers whether you were reading the English or Chinese version. Neither is used for tracking, neither is sent to a third party, and clearing your browser data removes both."
+      },
+      "hosting": {
+        "title": "Hosting",
+        "body": "The site is hosted on Vercel. Like any web host, Vercel processes the technical information every request carries — IP address, browser user agent, the page requested — in order to deliver the page and to protect the service. That data is handled by Vercel under its own privacy policy; ToolNest does not add to it, and does not receive a copy."
+      },
+      "analytics": {
+        "title": "No analytics, ads or third-party scripts",
+        "body": "There is no analytics service, no advertising, no social widgets and no tracking pixels. Fonts are bundled with the site rather than fetched from a font service, so simply opening a page contacts no one but the host."
+      },
+      "changes": {
+        "title": "Changes",
+        "body": "If this ever changes — for example if a tool one day needs a server to do its job — this page will say so before the change ships, and the tool will make it obvious what leaves your device."
+      }
+    },
+    "updated": "Last updated: August 21, 2026"
+  },
   "home": {
     "badgeFree": "✅ Free to use",
     "badgeLocal": "🔒 Data stays local",
@@ -34,7 +91,9 @@
     "home": "Home"
   },
   "footer": {
-    "note": "Fully client-side · Data stays local"
+    "note": "Fully client-side · Data stays local",
+    "about": "About",
+    "privacy": "Privacy"
   },
   "common": {
     "clear": "Clear",
