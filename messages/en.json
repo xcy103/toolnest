@@ -134,6 +134,10 @@
       "name": "Cron Explainer",
       "description": "Turn a cron expression into a readable, field-by-field description."
     },
+    "find-replace": {
+      "name": "Find & Replace",
+      "description": "Search and replace text, with regex support."
+    },
     "diff": {
       "name": "Text Diff",
       "description": "Compare two texts and highlight the differences line by line."
@@ -455,6 +459,25 @@
     "added": "{n, plural, one {# addition} other {# additions}}",
     "removed": "{n, plural, one {# deletion} other {# deletions}}",
     "identical": "The two texts are identical."
+  },
+  "findReplacePage": {
+    "description": "Find and replace text in bulk — literal or regular expression, case sensitive or not, whole words only — with a live preview of every match. Everything runs locally in your browser.",
+    "findLabel": "Find",
+    "replaceLabel": "Replace with",
+    "findPlaceholder": "Text to search for",
+    "replacePlaceholder": "Replacement (may be empty)",
+    "caseSensitive": "Case sensitive",
+    "wholeWord": "Whole word only",
+    "regexMode": "Regular expression",
+    "regexHint": "Regex mode: $1, $2 insert capture groups and $& inserts the whole match.",
+    "inputLabel": "Text",
+    "inputPlaceholder": "Paste the text to work on here…",
+    "preview": "Preview — highlighted parts will be replaced",
+    "replacedCount": "{n, plural, =0 {No matches} one {# replacement} other {# replacements}}",
+    "errors": {
+      "invalidPattern": "Invalid regular expression: {message}",
+      "unknown": "Could not run this replacement — please check the search text."
+    }
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",

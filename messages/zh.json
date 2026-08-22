@@ -134,6 +134,10 @@
       "name": "Cron 解释器",
       "description": "把 cron 表达式解析为逐字段的可读说明。"
     },
+    "find-replace": {
+      "name": "查找替换",
+      "description": "批量查找并替换文本,支持正则表达式。"
+    },
     "diff": {
       "name": "文本对比",
       "description": "逐行比较两段文本并高亮差异。"
@@ -455,6 +459,25 @@
     "added": "新增 {n} 行",
     "removed": "删除 {n} 行",
     "identical": "两段文本完全相同。"
+  },
+  "findReplacePage": {
+    "description": "批量查找并替换文本,支持普通文本或正则表达式、区分大小写、全词匹配,并实时高亮预览所有匹配。所有计算在浏览器本地完成。",
+    "findLabel": "查找",
+    "replaceLabel": "替换为",
+    "findPlaceholder": "要查找的内容",
+    "replacePlaceholder": "替换成的内容(可留空)",
+    "caseSensitive": "区分大小写",
+    "wholeWord": "全词匹配",
+    "regexMode": "正则表达式",
+    "regexHint": "正则模式下,$1、$2 表示捕获组,$& 表示整个匹配。",
+    "inputLabel": "文本",
+    "inputPlaceholder": "在这里粘贴要处理的文本…",
+    "preview": "预览 —— 高亮部分将被替换",
+    "replacedCount": "{n, plural, =0 {没有匹配} other {替换了 # 处}}",
+    "errors": {
+      "invalidPattern": "正则表达式无效:{message}",
+      "unknown": "无法完成替换,请检查查找内容。"
+    }
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",

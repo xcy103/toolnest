@@ -168,6 +168,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "find-replace",
+    href: "/find-replace",
+    icon: "🔎",
+    categoryKey: "text",
+    available: true,
+  },
+  {
     slug: "diff",
     href: "/diff",
     icon: "🔀",
