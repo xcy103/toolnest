@@ -121,6 +121,10 @@
       "name": "URL 编解码",
       "description": "对 URL 及查询参数进行编码与解码。"
     },
+    "html-entities": {
+      "name": "HTML 实体编解码",
+      "description": "转义 HTML 字符,并把实体还原为文本。"
+    },
     "json": {
       "name": "JSON 工具",
       "description": "JSON 格式化、压缩与语法校验。"
@@ -164,6 +168,14 @@
     "case-converter": {
       "name": "大小写转换",
       "description": "在全大写、小驼峰、下划线等命名格式之间互转。"
+    },
+    "remove-duplicates": {
+      "name": "删除重复行",
+      "description": "删除重复文本行,保留第一次出现。"
+    },
+    "text-sorter": {
+      "name": "文本排序",
+      "description": "按字母或数字顺序排序每一行。"
     },
     "base-converter": {
       "name": "进制转换",
@@ -251,6 +263,17 @@
     "placeholderDecode": "在此粘贴要解码的 URL…",
     "errorDecode": "输入包含无效的百分号转义(如 % 后不是两位十六进制),请检查后重试。",
     "errorEncode": "编码失败,请检查输入内容。"
+  },
+  "htmlEntitiesPage": {
+    "description": "转义 <、>、&、引号等 HTML 敏感字符,或把命名实体、数字实体还原为文本。所有转换在浏览器本地完成。",
+    "encode": "编码",
+    "decode": "解码",
+    "example": "示例",
+    "hint": "这里只做文本转换;解码后的内容会作为文本显示,不会当作 HTML 渲染。",
+    "inputEncode": "原始文本",
+    "inputDecode": "HTML 实体",
+    "placeholderEncode": "粘贴需要安全显示在 HTML 中的文本…",
+    "placeholderDecode": "粘贴 &amp;lt; 或 &#169; 这样的实体…"
   },
   "jsonPage": {
     "description": "对 JSON 进行格式化、压缩与语法校验,一键美化或最小化。所有计算在浏览器本地完成。",
@@ -537,6 +560,29 @@
       "invalidPattern": "正则表达式无效:{message}",
       "unknown": "无法完成替换,请检查查找内容。"
     }
+  },
+  "removeDuplicatesPage": {
+    "description": "删除列表中的重复行,保留第一次出现。可选择是否区分大小写、比较前是否去掉首尾空白、是否保留空行。所有处理在浏览器本地完成。",
+    "caseSensitive": "区分大小写",
+    "trimWhitespace": "比较前去掉首尾空白",
+    "keepEmpty": "保留空行",
+    "example": "示例",
+    "inputLabel": "文本行",
+    "placeholder": "每行粘贴一个项目…",
+    "summary": "保留 {kept} 行 · 删除 {removed} 行"
+  },
+  "textSorterPage": {
+    "description": "按字母或数字顺序对文本行排序,支持升序、降序,也可同时删除重复行。所有处理在浏览器本地完成。",
+    "ascending": "A → Z",
+    "descending": "Z → A",
+    "caseSensitive": "区分大小写",
+    "numeric": "按数字排序",
+    "trimWhitespace": "排序前去掉首尾空白",
+    "removeDuplicates": "删除重复行",
+    "example": "示例",
+    "inputLabel": "文本行",
+    "placeholder": "每行粘贴一个项目…",
+    "summary": "共 {count} 行"
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",

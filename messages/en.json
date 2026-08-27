@@ -121,6 +121,10 @@
       "name": "URL Encode / Decode",
       "description": "Percent-encode and decode URLs and query parameters."
     },
+    "html-entities": {
+      "name": "HTML Entity Encode / Decode",
+      "description": "Escape HTML characters and decode entities back to text."
+    },
     "json": {
       "name": "JSON Tools",
       "description": "Format, minify and validate JSON."
@@ -164,6 +168,14 @@
     "case-converter": {
       "name": "Case Converter",
       "description": "Convert text between UPPERCASE, camelCase, snake_case and more."
+    },
+    "remove-duplicates": {
+      "name": "Remove Duplicate Lines",
+      "description": "Remove repeated lines while keeping the first occurrence."
+    },
+    "text-sorter": {
+      "name": "Text Sorter",
+      "description": "Sort lines alphabetically or numerically."
     },
     "base-converter": {
       "name": "Number Base Converter",
@@ -251,6 +263,17 @@
     "placeholderDecode": "Paste the URL to decode…",
     "errorDecode": "The input contains an invalid percent escape (a % not followed by two hex digits) — please check and try again.",
     "errorEncode": "Encoding failed — please check your input."
+  },
+  "htmlEntitiesPage": {
+    "description": "Encode HTML-sensitive characters like <, >, & and quotes, or decode named and numeric entities back to text. Everything runs locally in your browser.",
+    "encode": "Encode",
+    "decode": "Decode",
+    "example": "Example",
+    "hint": "This converts text representations only; decoded output is shown as text, not rendered as HTML.",
+    "inputEncode": "Plain text",
+    "inputDecode": "HTML entities",
+    "placeholderEncode": "Paste text that should be safe to show inside HTML…",
+    "placeholderDecode": "Paste entities like &amp;lt; or &#169;…"
   },
   "jsonPage": {
     "description": "Format, minify and validate JSON — pretty-print or compact it in one click. Everything runs locally in your browser.",
@@ -537,6 +560,29 @@
       "invalidPattern": "Invalid regular expression: {message}",
       "unknown": "Could not run this replacement — please check the search text."
     }
+  },
+  "removeDuplicatesPage": {
+    "description": "Remove duplicate lines from a list while keeping the first copy. Compare case, trim whitespace, and decide whether blank lines stay. Everything runs locally in your browser.",
+    "caseSensitive": "Case sensitive",
+    "trimWhitespace": "Trim before comparing",
+    "keepEmpty": "Keep blank lines",
+    "example": "Example",
+    "inputLabel": "Lines",
+    "placeholder": "Paste one item per line…",
+    "summary": "{kept, plural, one {# line kept} other {# lines kept}} · {removed, plural, one {# removed} other {# removed}}"
+  },
+  "textSorterPage": {
+    "description": "Sort lines alphabetically or numerically, ascending or descending, with optional duplicate removal. Everything runs locally in your browser.",
+    "ascending": "A → Z",
+    "descending": "Z → A",
+    "caseSensitive": "Case sensitive",
+    "numeric": "Numeric sort",
+    "trimWhitespace": "Trim before sorting",
+    "removeDuplicates": "Remove duplicates",
+    "example": "Example",
+    "inputLabel": "Lines",
+    "placeholder": "Paste one item per line…",
+    "summary": "{count, plural, one {# line} other {# lines}}"
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",
