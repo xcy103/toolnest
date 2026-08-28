@@ -141,6 +141,10 @@
       "name": "Timezone & Timestamp",
       "description": "Convert Unix timestamps and dates, and compare live across timezones."
     },
+    "unix-timestamp": {
+      "name": "Unix Timestamp Converter",
+      "description": "Convert Unix seconds or milliseconds to dates and back."
+    },
     "calculator": {
       "name": "Scientific Calculator",
       "description": "Basic arithmetic plus common scientific functions."
@@ -341,6 +345,25 @@
       "newYork": "New York",
       "losAngeles": "Los Angeles"
     }
+  },
+  "unixTimestampPage": {
+    "description": "Convert Unix timestamps in seconds or milliseconds to readable dates, ISO 8601 and back again. Everything runs locally in your browser.",
+    "modeTimestamp": "Timestamp → date",
+    "modeDate": "Date → timestamp",
+    "useNow": "Use now",
+    "timestampLabel": "Unix timestamp",
+    "timestampPlaceholder": "e.g. 1787857200",
+    "seconds": "Seconds",
+    "milliseconds": "Milliseconds",
+    "dateLabel": "Local date & time ({tz})",
+    "unixSeconds": "Unix seconds",
+    "unixMilliseconds": "Unix milliseconds",
+    "localTime": "Local time",
+    "utcTime": "UTC time",
+    "loading": "Loading the current time…",
+    "empty": "Enter a timestamp or choose a date to see the conversion.",
+    "errorInteger": "The timestamp must be an integer.",
+    "errorRange": "That timestamp is outside JavaScript's valid Date range."
   },
   "calculatorPage": {
     "description": "Basic arithmetic plus common scientific functions (trig, logarithms, powers, factorial and more). Everything runs locally in your browser.",

@@ -77,6 +77,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "unix-timestamp",
+    href: "/unix-timestamp",
+    icon: "⏱",
+    categoryKey: "time",
+    available: true,
+  },
+  {
     slug: "calculator",
     href: "/calculator",
     icon: "🧮",

@@ -141,6 +141,10 @@
       "name": "时区与时间戳",
       "description": "Unix 时间戳与日期互转,多时区实时对照。"
     },
+    "unix-timestamp": {
+      "name": "Unix 时间戳转换",
+      "description": "Unix 秒、毫秒与日期时间互相转换。"
+    },
     "calculator": {
       "name": "科学计算器",
       "description": "基本运算与常见科学函数计算。"
@@ -341,6 +345,25 @@
       "newYork": "纽约",
       "losAngeles": "洛杉矶"
     }
+  },
+  "unixTimestampPage": {
+    "description": "在 Unix 秒、毫秒、可读日期和 ISO 8601 之间互相转换。所有计算在浏览器本地完成。",
+    "modeTimestamp": "时间戳 → 日期",
+    "modeDate": "日期 → 时间戳",
+    "useNow": "使用当前时间",
+    "timestampLabel": "Unix 时间戳",
+    "timestampPlaceholder": "例如 1787857200",
+    "seconds": "秒",
+    "milliseconds": "毫秒",
+    "dateLabel": "本地日期时间({tz})",
+    "unixSeconds": "Unix 秒",
+    "unixMilliseconds": "Unix 毫秒",
+    "localTime": "本地时间",
+    "utcTime": "UTC 时间",
+    "loading": "正在读取当前时间…",
+    "empty": "输入时间戳或选择日期后查看转换结果。",
+    "errorInteger": "时间戳必须是整数。",
+    "errorRange": "该时间戳超出 JavaScript Date 可表示范围。"
   },
   "calculatorPage": {
     "description": "支持基本运算与常见科学函数(三角、对数、幂、阶乘等)。所有计算在浏览器本地完成。",
