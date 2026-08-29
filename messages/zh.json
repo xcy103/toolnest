@@ -133,6 +133,10 @@
       "name": "JSON ↔ CSV 转换",
       "description": "JSON 与 CSV 表格互相转换。"
     },
+    "json-yaml": {
+      "name": "JSON ↔ YAML 转换",
+      "description": "JSON 与 YAML 互相转换。"
+    },
     "hash": {
       "name": "哈希生成",
       "description": "生成 MD5、SHA-1、SHA-256、SHA-512 哈希值。"
@@ -314,6 +318,26 @@
       "csvUnclosedQuote": "第 {line} 行的引号没有闭合——每个 \" 都需要成对出现。",
       "csvRagged": "第 {line} 行有 {got} 个字段,而表头有 {expected} 个,请检查分隔符或引号内的逗号。",
       "unknown": "无法转换该输入,请检查格式。"
+    }
+  },
+  "jsonYamlPage": {
+    "description": "把 JSON 转成易读的 YAML,或把 YAML 解析回格式化 JSON。使用成熟 YAML 解析库,并完全在浏览器本地运行。",
+    "jsonToYaml": "JSON → YAML",
+    "yamlToJson": "YAML → JSON",
+    "indent": "{n} 空格",
+    "scopeNote": "一次只转换一个 YAML 文档。复杂 YAML 特性会先由解析库处理,再转换成普通 JSON 值。",
+    "inputJson": "JSON 输入",
+    "inputYaml": "YAML 输入",
+    "outputJson": "JSON 输出",
+    "outputYaml": "YAML 输出",
+    "placeholderJson": "粘贴要转换成 YAML 的 JSON…",
+    "placeholderYaml": "粘贴要转换成 JSON 的 YAML…",
+    "loadExample": "载入示例",
+    "errors": {
+      "invalidJson": "JSON 无效:{message}",
+      "invalidYaml": "YAML 无效:{message}",
+      "multipleDocs": "该工具一次只转换一个 YAML 文档。",
+      "unsupported": "转换失败:{message}"
     }
   },
   "hashPage": {

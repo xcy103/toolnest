@@ -133,6 +133,10 @@
       "name": "JSON ↔ CSV Converter",
       "description": "Convert JSON to CSV and back."
     },
+    "json-yaml": {
+      "name": "JSON ↔ YAML Converter",
+      "description": "Convert JSON to YAML and YAML back to JSON."
+    },
     "hash": {
       "name": "Hash Generator",
       "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes."
@@ -314,6 +318,26 @@
       "csvUnclosedQuote": "Unclosed quote starting on line {line} — every opening \" needs a closing one.",
       "csvRagged": "Line {line} has {got} fields but the header has {expected} — please check the delimiter and any quoted commas.",
       "unknown": "Could not convert this input — please check the format."
+    }
+  },
+  "jsonYamlPage": {
+    "description": "Convert JSON to readable YAML and parse YAML back to formatted JSON. Powered by a YAML parser and running entirely in your browser.",
+    "jsonToYaml": "JSON → YAML",
+    "yamlToJson": "YAML → JSON",
+    "indent": "{n} spaces",
+    "scopeNote": "Supports one YAML document at a time. Advanced YAML features are parsed by the YAML library, then converted into ordinary JSON values.",
+    "inputJson": "JSON input",
+    "inputYaml": "YAML input",
+    "outputJson": "JSON output",
+    "outputYaml": "YAML output",
+    "placeholderJson": "Paste JSON to convert to YAML…",
+    "placeholderYaml": "Paste YAML to convert to JSON…",
+    "loadExample": "Load example",
+    "errors": {
+      "invalidJson": "Invalid JSON: {message}",
+      "invalidYaml": "Invalid YAML: {message}",
+      "multipleDocs": "This tool converts one YAML document at a time.",
+      "unsupported": "Conversion failed: {message}"
     }
   },
   "hashPage": {

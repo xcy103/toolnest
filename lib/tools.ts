@@ -63,6 +63,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "json-yaml",
+    href: "/json-yaml",
+    icon: "⇄",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "hash",
     href: "/hash",
     icon: "#",
