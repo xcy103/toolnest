@@ -157,6 +157,14 @@
       "name": "单位换算",
       "description": "在长度、质量、温度等单位之间换算。"
     },
+    "percentage-calculator": {
+      "name": "百分比计算器",
+      "description": "计算百分数、占比与百分比变化。"
+    },
+    "bmi-calculator": {
+      "name": "BMI 计算器",
+      "description": "使用公制或英制计算成人 BMI。"
+    },
     "qrcode": {
       "name": "二维码生成",
       "description": "把文本或链接生成为二维码并下载。"
@@ -518,6 +526,39 @@
       "speed": "速度",
       "data": "数据"
     }
+  },
+  "percentageCalculatorPage": {
+    "description": "解决常见百分比问题:求一个数的百分之几、计算占比或百分比变化。全部在浏览器本地完成。",
+    "modes": {
+      "of": "求一个数的百分之几",
+      "ratio": "一个数占另一个数的百分比",
+      "change": "百分比变化"
+    },
+    "labels": {
+      "of": { "first": "百分比", "second": "数值" },
+      "ratio": { "first": "部分", "second": "总数" },
+      "change": { "first": "初始值", "second": "最终值" }
+    },
+    "invalid": "请输入两个有效数字。总数或初始值不能为零。"
+  },
+  "bmiCalculatorPage": {
+    "description": "使用公制或英制数据计算成人身体质量指数(BMI)。所有计算都留在浏览器本地。",
+    "units": { "metric": "公制", "imperial": "英制" },
+    "unitLabels": {
+      "metric": { "weight": "千克", "height": "厘米" },
+      "imperial": { "weight": "磅", "height": "英寸" }
+    },
+    "weight": "体重({unit})",
+    "height": "身高({unit})",
+    "resultLabel": "你的 BMI",
+    "invalid": "请输入大于零的身高和体重。",
+    "categories": {
+      "underweight": "体重偏低",
+      "healthy": "健康体重范围",
+      "overweight": "超重范围",
+      "obesity": "肥胖范围"
+    },
+    "note": "BMI 只是针对成人的一般筛查指标,并非医学诊断。它没有考虑年龄、怀孕、肌肉量或个人健康史等因素。"
   },
   "imageCompressorPage": {
     "description": "完全在浏览器中缩放并重新压缩图片——不上传任何数据。选择最大宽度、质量与格式,然后下载。",

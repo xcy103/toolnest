@@ -105,6 +105,20 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "percentage-calculator",
+    href: "/percentage-calculator",
+    icon: "%",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
+    slug: "bmi-calculator",
+    href: "/bmi-calculator",
+    icon: "BMI",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
     slug: "qrcode",
     href: "/qrcode",
     icon: "📱",

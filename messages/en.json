@@ -157,6 +157,14 @@
       "name": "Unit Converter",
       "description": "Convert between length, mass, temperature and more."
     },
+    "percentage-calculator": {
+      "name": "Percentage Calculator",
+      "description": "Calculate percentages, ratios and percentage change."
+    },
+    "bmi-calculator": {
+      "name": "BMI Calculator",
+      "description": "Calculate adult BMI using metric or imperial units."
+    },
     "qrcode": {
       "name": "QR Code Generator",
       "description": "Turn text or a link into a QR code and download it."
@@ -518,6 +526,39 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "percentageCalculatorPage": {
+    "description": "Solve common percentage questions: find a percentage of a number, compare two values, or calculate percentage change. Everything runs locally.",
+    "modes": {
+      "of": "Percentage of a number",
+      "ratio": "One number as a percentage",
+      "change": "Percentage change"
+    },
+    "labels": {
+      "of": { "first": "Percentage", "second": "Number" },
+      "ratio": { "first": "Part", "second": "Whole" },
+      "change": { "first": "Starting value", "second": "Final value" }
+    },
+    "invalid": "Enter two valid numbers. The whole or starting value cannot be zero."
+  },
+  "bmiCalculatorPage": {
+    "description": "Calculate body mass index for adults using metric or imperial measurements. All calculations stay in your browser.",
+    "units": { "metric": "Metric", "imperial": "US / Imperial" },
+    "unitLabels": {
+      "metric": { "weight": "kg", "height": "cm" },
+      "imperial": { "weight": "lb", "height": "in" }
+    },
+    "weight": "Weight ({unit})",
+    "height": "Height ({unit})",
+    "resultLabel": "Your BMI",
+    "invalid": "Enter a height and weight greater than zero.",
+    "categories": {
+      "underweight": "Underweight",
+      "healthy": "Healthy weight",
+      "overweight": "Overweight",
+      "obesity": "Obesity range"
+    },
+    "note": "BMI is a general screening measure for adults, not a diagnosis. It does not account for factors such as age, pregnancy, muscle mass or individual health history."
   },
   "imageCompressorPage": {
     "description": "Resize and re-compress images entirely in your browser — nothing is uploaded. Choose a max width, quality and format, then download.",
