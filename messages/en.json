@@ -165,6 +165,10 @@
       "name": "BMI Calculator",
       "description": "Calculate adult BMI using metric or imperial units."
     },
+    "tip-calculator": {
+      "name": "Tip Calculator",
+      "description": "Calculate a tip and split the bill to the nearest cent."
+    },
     "qrcode": {
       "name": "QR Code Generator",
       "description": "Turn text or a link into a QR code and download it."
@@ -540,6 +544,24 @@
       "change": { "first": "Starting value", "second": "Final value" }
     },
     "invalid": "Enter two valid numbers. The whole or starting value cannot be zero."
+  },
+  "tipCalculatorPage": {
+    "description": "Tips and shared bills.",
+    "bill": "Bill before tip",
+    "currency": "Currency",
+    "rate": "Tip (%)",
+    "people": "People",
+    "presets": "Tip percentage",
+    "tip": "Tip amount",
+    "total": "Total with tip",
+    "split": "Split including tip",
+    "share": "{count, plural, one {# person pays {amount}} other {# people pay {amount} each}}",
+    "empty": "No result",
+    "errors": {
+      "bill": "Bill must be between 0 and 999,999,999.99, with at most 2 decimal places. Use a decimal point and no commas.",
+      "rate": "Tip must be between 0% and 100%, with at most 2 decimal places.",
+      "people": "People must be a whole number between 1 and 100."
+    }
   },
   "bmiCalculatorPage": {
     "description": "Calculate body mass index for adults using metric or imperial measurements. All calculations stay in your browser.",

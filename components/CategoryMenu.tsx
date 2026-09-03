@@ -53,7 +53,7 @@ export default function CategoryMenu() {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-2 w-48 rounded-xl border border-border bg-background p-1 shadow-lg"
+          className="absolute left-0 z-50 mt-2 w-48 rounded-xl border border-border bg-background p-1 shadow-lg sm:left-auto sm:right-0"
         >
           <Link
             href="/tools"

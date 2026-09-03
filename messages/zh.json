@@ -165,6 +165,10 @@
       "name": "BMI 计算器",
       "description": "使用公制或英制计算成人 BMI。"
     },
+    "tip-calculator": {
+      "name": "小费计算器",
+      "description": "计算小费并分摊账单,金额精确到分。"
+    },
     "qrcode": {
       "name": "二维码生成",
       "description": "把文本或链接生成为二维码并下载。"
@@ -540,6 +544,24 @@
       "change": { "first": "初始值", "second": "最终值" }
     },
     "invalid": "请输入两个有效数字。总数或初始值不能为零。"
+  },
+  "tipCalculatorPage": {
+    "description": "小费与多人账单。",
+    "bill": "账单金额(不含小费)",
+    "currency": "币种",
+    "rate": "小费比例(%)",
+    "people": "人数",
+    "presets": "小费比例",
+    "tip": "小费金额",
+    "total": "含小费总额",
+    "split": "分账金额(含小费)",
+    "share": "{count} 人,每人支付 {amount}",
+    "empty": "暂无结果",
+    "errors": {
+      "bill": "账单金额须为 0 至 999,999,999.99,最多保留两位小数。请使用小数点,不含逗号。",
+      "rate": "小费比例须为 0% 至 100%,最多保留两位小数。",
+      "people": "人数须为 1 至 100 之间的整数。"
+    }
   },
   "bmiCalculatorPage": {
     "description": "使用公制或英制数据计算成人身体质量指数(BMI)。所有计算都留在浏览器本地。",

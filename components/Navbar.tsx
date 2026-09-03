@@ -7,7 +7,7 @@ import CategoryMenu from "./CategoryMenu";
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:h-16 sm:flex-nowrap sm:px-6 sm:py-0">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500 text-white shadow-sm">
             🪺
@@ -17,7 +17,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-2 sm:gap-4">
+        <nav className="flex w-full items-center justify-between gap-2 sm:w-auto sm:gap-4">
           <CategoryMenu />
           <a
             href={siteConfig.githubUrl}

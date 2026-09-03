@@ -119,6 +119,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "tip-calculator",
+    href: "/tip-calculator",
+    icon: "%",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
     slug: "qrcode",
     href: "/qrcode",
     icon: "📱",
