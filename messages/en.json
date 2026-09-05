@@ -241,6 +241,14 @@
       "name": "Markdown Preview",
       "description": "Write markdown and see it rendered live, side by side."
     },
+    "image-resizer": {
+      "name": "Image Resizer",
+      "description": "Resize images to exact pixel dimensions with an optional aspect lock."
+    },
+    "image-converter": {
+      "name": "Image Format Converter",
+      "description": "Convert images between PNG, JPEG and WebP."
+    },
     "image-compressor": {
       "name": "Image Compressor",
       "description": "Resize and compress images in your browser, then download."
@@ -581,6 +589,37 @@
       "obesity": "Obesity range"
     },
     "note": "BMI is a general screening measure for adults, not a diagnosis. It does not account for factors such as age, pregnancy, muscle mass or individual health history."
+  },
+  "imageResizerPage": {
+    "description": "Image dimensions and aspect ratio."
+  },
+  "imageConverterPage": {
+    "description": "PNG, JPEG and WebP images."
+  },
+  "imageTool": {
+    "choose": "Source image",
+    "scope": "PNG, JPEG or WebP · Up to 20 MB and 16 megapixels · Still-image output; animation and metadata are not preserved.",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "lock": "Lock original aspect ratio",
+    "format": "Output format",
+    "quality": "Quality",
+    "background": "JPEG background",
+    "loading": "Loading image…",
+    "processing": "Processing…",
+    "resize": "Resize image",
+    "convert": "Convert image",
+    "original": "Original",
+    "output": "Result",
+    "noOutput": "No result",
+    "download": "Download image",
+    "errors": {
+      "type": "Select a PNG, JPEG or WebP file.",
+      "size": "The image exceeds the 20 MB file limit.",
+      "decode": "This file could not be decoded as an image.",
+      "dimensions": "Dimensions must be positive whole numbers, at most 8192 pixels per side and 16,777,216 pixels in total.",
+      "export": "The browser could not export this image in the selected format."
+    }
   },
   "imageCompressorPage": {
     "description": "Resize and re-compress images entirely in your browser — nothing is uploaded. Choose a max width, quality and format, then download.",

@@ -266,6 +266,20 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "image-resizer",
+    href: "/image-resizer",
+    icon: "↔",
+    categoryKey: "image",
+    available: true,
+  },
+  {
+    slug: "image-converter",
+    href: "/image-converter",
+    icon: "⇄",
+    categoryKey: "image",
+    available: true,
+  },
+  {
     slug: "lorem",
     href: "/lorem",
     icon: "📄",

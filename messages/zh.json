@@ -241,6 +241,14 @@
       "name": "Markdown 预览",
       "description": "编写 Markdown 并实时渲染,左右对照。"
     },
+    "image-resizer": {
+      "name": "图片尺寸调整",
+      "description": "按像素调整图片尺寸,可锁定原始宽高比。"
+    },
+    "image-converter": {
+      "name": "图片格式转换",
+      "description": "在 PNG、JPEG 和 WebP 格式之间转换图片。"
+    },
     "image-compressor": {
       "name": "图片压缩",
       "description": "在浏览器中缩放并压缩图片,然后下载。"
@@ -581,6 +589,37 @@
       "obesity": "肥胖范围"
     },
     "note": "BMI 只是针对成人的一般筛查指标,并非医学诊断。它没有考虑年龄、怀孕、肌肉量或个人健康史等因素。"
+  },
+  "imageResizerPage": {
+    "description": "图片尺寸与宽高比。"
+  },
+  "imageConverterPage": {
+    "description": "PNG、JPEG 与 WebP 图片。"
+  },
+  "imageTool": {
+    "choose": "原始图片",
+    "scope": "PNG、JPEG 或 WebP · 最大 20 MB、约 1600 万像素 · 输出静态图片,不保留动画和元数据。",
+    "width": "宽度(像素)",
+    "height": "高度(像素)",
+    "lock": "锁定原始宽高比",
+    "format": "输出格式",
+    "quality": "质量",
+    "background": "JPEG 背景色",
+    "loading": "正在读取图片…",
+    "processing": "正在处理…",
+    "resize": "调整尺寸",
+    "convert": "转换图片",
+    "original": "原图",
+    "output": "结果",
+    "noOutput": "暂无结果",
+    "download": "下载图片",
+    "errors": {
+      "type": "请选择 PNG、JPEG 或 WebP 文件。",
+      "size": "图片超过 20 MB 的文件大小限制。",
+      "decode": "无法将此文件解码为图片。",
+      "dimensions": "宽高须为正整数,单边不超过 8192 像素,总像素不超过 16,777,216。",
+      "export": "浏览器无法按所选格式导出此图片。"
+    }
   },
   "imageCompressorPage": {
     "description": "完全在浏览器中缩放并重新压缩图片——不上传任何数据。选择最大宽度、质量与格式,然后下载。",
