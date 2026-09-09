@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { cropFilename, validCrop, validDimensions, linkedSize, outputFilename } from "./image-tools.ts";
+import { buildIco, cropFilename, validCrop, validDimensions, linkedSize, outputFilename } from "./image-tools.ts";
 
 test("image dimensions enforce both side and pixel budgets", () => {
   assert.ok(validDimensions(4096, 4096));
@@ -34,4 +34,29 @@ test("crop rectangles must use integer pixels and remain inside the source", () 
     { x: 101, y: 0, width: 100, height: 10 },
     { x: 0.5, y: 0, width: 10, height: 10 },
   ]) assert.equal(validCrop(rect, 200, 100), false);
+});
+
+test("ICO files index each embedded PNG at the correct offset", () => {
+  const first = new Uint8Array([137, 80, 78, 71]);
+  const second = new Uint8Array([1, 2, 3]);
+  const ico = buildIco([{ size: 16, bytes: first }, { size: 256, bytes: second }]);
+  const view = new DataView(ico.buffer);
+  assert.equal(view.getUint16(0, true), 0);
+  assert.equal(view.getUint16(2, true), 1);
+  assert.equal(view.getUint16(4, true), 2);
+  assert.equal(ico[6], 16);
+  assert.equal(ico[22], 0);
+  assert.equal(view.getUint32(14, true), first.length);
+  assert.equal(view.getUint32(18, true), 38);
+  assert.equal(view.getUint32(30, true), second.length);
+  assert.equal(view.getUint32(34, true), 42);
+  assert.deepEqual(ico.slice(38, 42), first);
+  assert.deepEqual(ico.slice(42), second);
+});
+
+test("ICO files reject invalid, empty and duplicate image entries", () => {
+  assert.throws(() => buildIco([]));
+  assert.throws(() => buildIco([{ size: 0, bytes: new Uint8Array([1]) }]));
+  assert.throws(() => buildIco([{ size: 16, bytes: new Uint8Array() }]));
+  assert.throws(() => buildIco([{ size: 16, bytes: new Uint8Array([1]) }, { size: 16, bytes: new Uint8Array([2]) }]));
 });

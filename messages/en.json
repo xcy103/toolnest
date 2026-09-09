@@ -253,6 +253,10 @@
       "name": "Image Cropper",
       "description": "Crop an image by pixels or a common aspect ratio."
     },
+    "favicon-generator": {
+      "name": "Favicon Generator",
+      "description": "Create ICO, browser, Apple Touch and PWA icons from one image."
+    },
     "image-compressor": {
       "name": "Image Compressor",
       "description": "Resize and compress images in your browser, then download."
@@ -611,6 +615,21 @@
     "height": "Height (px)",
     "crop": "Crop image",
     "invalid": "The crop must use whole pixels and stay inside the source image."
+  },
+  "faviconGeneratorPage": {
+    "description": "Create a complete browser and app icon set locally from one image.",
+    "scope": "PNG, JPEG or WebP · Up to 20 MB and 16 megapixels · The full image is centered on a transparent square.",
+    "preview": "Source preview",
+    "generate": "Generate icon set",
+    "result": "Icon files",
+    "download": "Download {name}",
+    "purposes": {
+      "ico": "Browser favicon · 16, 32 and 48 px",
+      "browser": "Modern browser icon · 32 px",
+      "apple": "Apple Touch icon · 180 px",
+      "pwaSmall": "PWA icon · 192 px",
+      "pwaLarge": "PWA icon · 512 px"
+    }
   },
   "imageTool": {
     "choose": "Source image",

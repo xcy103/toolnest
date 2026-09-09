@@ -253,6 +253,10 @@
       "name": "图片裁剪",
       "description": "按像素或常用宽高比裁剪图片。"
     },
+    "favicon-generator": {
+      "name": "Favicon 生成器",
+      "description": "用一张图片生成 ICO、浏览器、Apple Touch 和 PWA 图标。"
+    },
     "image-compressor": {
       "name": "图片压缩",
       "description": "在浏览器中缩放并压缩图片,然后下载。"
@@ -611,6 +615,21 @@
     "height": "高度(像素)",
     "crop": "裁剪图片",
     "invalid": "裁剪区域须使用整数像素,并完整位于原图范围内。"
+  },
+  "faviconGeneratorPage": {
+    "description": "用一张图片在本地生成完整的浏览器与应用图标套件。",
+    "scope": "PNG、JPEG 或 WebP · 最大 20 MB、约 1600 万像素 · 完整图片会居中放入透明正方形画布。",
+    "preview": "原图预览",
+    "generate": "生成图标套件",
+    "result": "图标文件",
+    "download": "下载 {name}",
+    "purposes": {
+      "ico": "浏览器 favicon · 16、32、48 像素",
+      "browser": "现代浏览器图标 · 32 像素",
+      "apple": "Apple Touch 图标 · 180 像素",
+      "pwaSmall": "PWA 图标 · 192 像素",
+      "pwaLarge": "PWA 图标 · 512 像素"
+    }
   },
   "imageTool": {
     "choose": "原始图片",

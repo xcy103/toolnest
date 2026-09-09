@@ -3,6 +3,7 @@ export const MAX_IMAGE_PIXELS = 16_777_216;
 export const IMAGE_FORMATS = ["image/png", "image/jpeg", "image/webp"] as const;
 export type ImageFormat = (typeof IMAGE_FORMATS)[number];
 export type CropRect = { x: number; y: number; width: number; height: number };
+export type IcoImage = { size: number; bytes: Uint8Array };
 
 export function validDimensions(width: number, height: number): boolean {
   return Number.isInteger(width) && Number.isInteger(height) && width > 0 && height > 0
@@ -83,4 +84,61 @@ export async function encodeCrop(
     canvas.width = 0;
     canvas.height = 0;
   }
+}
+
+export async function encodeSquare(source: CanvasImageSource, sourceWidth: number, sourceHeight: number, size: number): Promise<Blob> {
+  if (!validDimensions(sourceWidth, sourceHeight) || !Number.isInteger(size) || size < 1 || size > 512) {
+    throw new Error("dimensions");
+  }
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  try {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("export");
+    const scale = Math.min(size / sourceWidth, size / sourceHeight);
+    const width = Math.max(1, Math.round(sourceWidth * scale));
+    const height = Math.max(1, Math.round(sourceHeight * scale));
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(source, Math.floor((size - width) / 2), Math.floor((size - height) / 2), width, height);
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
+    if (!blob || blob.type !== "image/png") throw new Error("export");
+    return blob;
+  } finally {
+    canvas.width = 0;
+    canvas.height = 0;
+  }
+}
+
+export function buildIco(images: readonly IcoImage[]): Uint8Array {
+  if (images.length < 1 || images.length > 65_535) throw new Error("images");
+  const seen = new Set<number>();
+  let total = 6 + images.length * 16;
+  for (const image of images) {
+    if (!Number.isInteger(image.size) || image.size < 1 || image.size > 256 || image.bytes.length < 1 || seen.has(image.size)) {
+      throw new Error("images");
+    }
+    seen.add(image.size);
+    total += image.bytes.length;
+  }
+  if (total > 0xffff_ffff) throw new Error("images");
+
+  const output = new Uint8Array(total);
+  const view = new DataView(output.buffer);
+  view.setUint16(2, 1, true);
+  view.setUint16(4, images.length, true);
+  let offset = 6 + images.length * 16;
+  images.forEach((image, index) => {
+    const entry = 6 + index * 16;
+    output[entry] = image.size === 256 ? 0 : image.size;
+    output[entry + 1] = image.size === 256 ? 0 : image.size;
+    view.setUint16(entry + 4, 1, true);
+    view.setUint16(entry + 6, 32, true);
+    view.setUint32(entry + 8, image.bytes.length, true);
+    view.setUint32(entry + 12, offset, true);
+    output.set(image.bytes, offset);
+    offset += image.bytes.length;
+  });
+  return output;
 }

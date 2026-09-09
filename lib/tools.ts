@@ -287,6 +287,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "favicon-generator",
+    href: "/favicon-generator",
+    icon: "★",
+    categoryKey: "image",
+    available: true,
+  },
+  {
     slug: "lorem",
     href: "/lorem",
     icon: "📄",
