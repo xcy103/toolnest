@@ -34,6 +34,23 @@ export function cropFilename(name: string, format: ImageFormat): string {
   return `${base}-cropped.${ext}`;
 }
 
+export function compressedFilename(name: string, format: ImageFormat): string {
+  const base = name.replace(/\.[^.]+$/, "") || "image";
+  const ext = format === "image/jpeg" ? "jpg" : format.split("/")[1];
+  return `${base}-compressed.${ext}`;
+}
+
+export function fitWithinWidth(width: number, height: number, maxWidth: number): { width: number; height: number } {
+  if (!validDimensions(width, height) || !Number.isInteger(maxWidth) || maxWidth < 1 || maxWidth > MAX_IMAGE_SIDE) {
+    throw new Error("dimensions");
+  }
+  const scale = Math.min(1, maxWidth / width);
+  return {
+    width: Math.max(1, Math.round(width * scale)),
+    height: Math.max(1, Math.round(height * scale)),
+  };
+}
+
 export async function encodeImage(
   source: CanvasImageSource, width: number, height: number,
   format: ImageFormat, quality: number, background: string,

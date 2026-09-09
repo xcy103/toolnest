@@ -664,7 +664,7 @@
     "format": "Format",
     "original": "Original",
     "compressed": "Compressed",
-    "download": "⬇️ Download",
+    "download": "Download image",
     "smaller": "{percent}% smaller"
   },
   "markdownPage": {

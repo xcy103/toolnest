@@ -664,7 +664,7 @@
     "format": "格式",
     "original": "原图",
     "compressed": "压缩后",
-    "download": "⬇️ 下载",
+    "download": "下载图片",
     "smaller": "缩小了 {percent}%"
   },
   "markdownPage": {

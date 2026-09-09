@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { buildIco, cropFilename, validCrop, validDimensions, linkedSize, outputFilename } from "./image-tools.ts";
+import { buildIco, compressedFilename, cropFilename, fitWithinWidth, validCrop, validDimensions, linkedSize, outputFilename } from "./image-tools.ts";
 
 test("image dimensions enforce both side and pixel budgets", () => {
   assert.ok(validDimensions(4096, 4096));
@@ -59,4 +59,13 @@ test("ICO files reject invalid, empty and duplicate image entries", () => {
   assert.throws(() => buildIco([{ size: 0, bytes: new Uint8Array([1]) }]));
   assert.throws(() => buildIco([{ size: 16, bytes: new Uint8Array() }]));
   assert.throws(() => buildIco([{ size: 16, bytes: new Uint8Array([1]) }, { size: 16, bytes: new Uint8Array([2]) }]));
+});
+
+test("compressor dimensions preserve aspect ratio without enlarging", () => {
+  assert.deepEqual(fitWithinWidth(1600, 1000, 800), { width: 800, height: 500 });
+  assert.deepEqual(fitWithinWidth(600, 900, 1920), { width: 600, height: 900 });
+  assert.deepEqual(fitWithinWidth(8192, 1, 1), { width: 1, height: 1 });
+  assert.throws(() => fitWithinWidth(1600, 1000, 0));
+  assert.throws(() => fitWithinWidth(8192, 8192, 100));
+  assert.equal(compressedFilename("holiday.photo.png", "image/jpeg"), "holiday.photo-compressed.jpg");
 });
