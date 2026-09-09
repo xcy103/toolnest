@@ -280,6 +280,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "image-crop",
+    href: "/image-crop",
+    icon: "✂",
+    categoryKey: "image",
+    available: true,
+  },
+  {
     slug: "lorem",
     href: "/lorem",
     icon: "📄",

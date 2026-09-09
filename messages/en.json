@@ -249,6 +249,10 @@
       "name": "Image Format Converter",
       "description": "Convert images between PNG, JPEG and WebP."
     },
+    "image-crop": {
+      "name": "Image Cropper",
+      "description": "Crop an image by pixels or a common aspect ratio."
+    },
     "image-compressor": {
       "name": "Image Compressor",
       "description": "Resize and compress images in your browser, then download."
@@ -595,6 +599,18 @@
   },
   "imageConverterPage": {
     "description": "PNG, JPEG and WebP images."
+  },
+  "imageCropPage": {
+    "description": "Select an exact area of an image and export it locally in your browser.",
+    "preview": "Crop selection preview",
+    "ratio": "Aspect ratio",
+    "ratios": { "free": "Free", "square": "1:1", "fourThree": "4:3", "sixteenNine": "16:9" },
+    "x": "Left (px)",
+    "y": "Top (px)",
+    "width": "Width (px)",
+    "height": "Height (px)",
+    "crop": "Crop image",
+    "invalid": "The crop must use whole pixels and stay inside the source image."
   },
   "imageTool": {
     "choose": "Source image",
