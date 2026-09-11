@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tools",
     "/about",
     "/privacy",
+    "/terms",
     ...categories.map((category) => `/c/${category}`),
     ...tools.map((tool) => tool.href),
   ];

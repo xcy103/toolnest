@@ -21,6 +21,9 @@ export default function Footer() {
           <Link href="/privacy" className="transition hover:text-foreground">
             {t("footer.privacy")}
           </Link>
+          <Link href="/terms" className="transition hover:text-foreground">
+            {t("footer.terms")}
+          </Link>
           <a
             href={siteConfig.githubUrl}
             target="_blank"

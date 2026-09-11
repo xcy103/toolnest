@@ -43,7 +43,7 @@
     },
     "howTitle": "How it's built",
     "howBody": "Next.js and TypeScript with Tailwind CSS, deployed as a static site on Vercel. The conversion logic — CSV parsing, colour maths, the expression evaluator and so on — is written from scratch and unit-tested, rather than pulled in as libraries, which keeps the pages small and the behaviour predictable.",
-    "sourceBody": "The whole site is open source; the code, including the history of how each tool was built, lives at"
+    "sourceBody": "The whole site's source code is publicly available, including the history of how each tool was built, at"
   },
   "privacyPage": {
     "title": "Privacy",
@@ -73,6 +73,60 @@
     },
     "updated": "Last updated: August 21, 2026"
   },
+  "termsPage": {
+    "title": "Terms of Use",
+    "description": "The rules and responsibilities that apply when you use ToolNest.",
+    "summary": "ToolNest provides free browser-based utilities. By accessing or using the site, you agree to these terms. If you do not agree, please do not use the site.",
+    "sections": {
+      "acceptance": {
+        "title": "Using ToolNest",
+        "body": "You may use ToolNest only if you can legally agree to these terms and your use complies with the laws that apply to you. These terms apply to the website and every tool offered through it."
+      },
+      "service": {
+        "title": "What the service provides",
+        "body": "ToolNest offers general-purpose utilities for convenience. The tools do not provide legal, financial, medical or other professional advice. Features may be corrected, changed, added or removed as the site develops."
+      },
+      "responsibility": {
+        "title": "Your responsibility",
+        "body": "You are responsible for checking results before relying on them, keeping backups of important content, and deciding whether a tool is suitable for your situation. You must have the right to use any text, image or other material you process and must comply with applicable law."
+      },
+      "acceptableUse": {
+        "title": "Acceptable use",
+        "body": "Do not use ToolNest to break the law, violate another person's rights, distribute harmful material, interfere with the site, overload its infrastructure, attempt unauthorized access, or bypass security or technical limits."
+      },
+      "source": {
+        "title": "Source code and intellectual property",
+        "body": "The site's source code is publicly viewable on GitHub. Reuse is governed by any licence or notice included in that repository; these terms grant no additional rights. ToolNest's name, site content and design remain protected to the extent allowed by law, and third-party names belong to their respective owners."
+      },
+      "availability": {
+        "title": "Availability and warranties",
+        "body": "ToolNest is provided on an “as is” and “as available” basis. To the extent permitted by law, no guarantee is made that the site will always be available, uninterrupted, secure or error-free, or that every result will be accurate or suitable for a particular purpose."
+      },
+      "liability": {
+        "title": "Limitation of liability",
+        "body": "To the fullest extent permitted by law, ToolNest is not responsible for indirect, incidental, special or consequential loss, or for lost data, revenue or business arising from use of, or inability to use, the site. Nothing here excludes liability or consumer rights that applicable law does not allow to be excluded."
+      },
+      "thirdParty": {
+        "title": "Third-party services and links",
+        "body": "The site is hosted by Vercel and may link to external sites such as GitHub. Those services operate under their own terms and privacy practices. ToolNest does not control and is not responsible for third-party content or availability."
+      },
+      "changes": {
+        "title": "Changes to these terms",
+        "body": "These terms may be updated as ToolNest changes. The updated date will appear on this page, and material changes will be made clear. Changes apply when posted; using the site after that date means accepting the revised terms."
+      }
+    },
+    "privacy": {
+      "title": "Privacy",
+      "body": "The Privacy page explains how tools process content locally and what limited technical data the hosting provider handles.",
+      "link": "Read the Privacy page"
+    },
+    "contact": {
+      "title": "Questions",
+      "body": "Questions or concerns about these terms can be raised through the project's public repository:",
+      "link": "ToolNest on GitHub"
+    },
+    "updated": "Last updated: September 10, 2026"
+  },
   "home": {
     "badgeFree": "✅ Free to use",
     "badgeLocal": "🔒 Data stays local",
@@ -93,7 +147,8 @@
   "footer": {
     "note": "Fully client-side · Data stays local",
     "about": "About",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "terms": "Terms"
   },
   "common": {
     "clear": "Clear",
