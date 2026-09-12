@@ -268,6 +268,10 @@
       "name": "Countdown & Date Diff",
       "description": "Count down to a date, or measure the time between two dates."
     },
+    "date-calculator": {
+      "name": "Date Calculator",
+      "description": "Add or subtract days, weeks, months or years from a date."
+    },
     "jwt": {
       "name": "JWT Decoder",
       "description": "Decode a JSON Web Token's header and payload."
@@ -888,6 +892,37 @@
     "pickDates": "Pick both dates to see the duration.",
     "durationLabel": "Duration",
     "totals": "{days, plural, one {# day} other {# days}} · {weeks, plural, one {# week} other {# weeks}} in total"
+  },
+  "dateCalculatorPage": {
+    "description": "Add or subtract calendar time from any date. Date-only arithmetic runs locally in your browser and stays stable across time zones.",
+    "baseDate": "Starting date",
+    "today": "Today",
+    "operation": "Operation",
+    "operations": {
+      "add": "Add",
+      "subtract": "Subtract"
+    },
+    "amount": "Amount",
+    "unit": "Unit",
+    "units": {
+      "days": "Days",
+      "weeks": "Weeks",
+      "months": "Months",
+      "years": "Years"
+    },
+    "endOfMonthRule": "Month-end rule: if the target month or year has fewer days, the result uses its last valid day.",
+    "summaries": {
+      "days": "{operation, select, add {Add} subtract {Subtract} other {Change by}} {amount, plural, one {# day} other {# days}} from {date}.",
+      "weeks": "{operation, select, add {Add} subtract {Subtract} other {Change by}} {amount, plural, one {# week} other {# weeks}} from {date}.",
+      "months": "{operation, select, add {Add} subtract {Subtract} other {Change by}} {amount, plural, one {# month} other {# months}} from {date}.",
+      "years": "{operation, select, add {Add} subtract {Subtract} other {Change by}} {amount, plural, one {# year} other {# years}} from {date}."
+    },
+    "clamped": "The original day did not exist in the target month, so the result was adjusted to the month's last day.",
+    "errors": {
+      "date": "Choose a valid starting date to see the result.",
+      "amount": "Enter a whole number from 0 to 9,999.",
+      "range": "That calculation falls outside the supported years 0001–9999."
+    }
   },
   "meetingPlannerPage": {
     "description": "Find working-hour overlaps across time zones — pick your cities and see when everyone is available. Computed locally in your browser.",

@@ -268,6 +268,10 @@
       "name": "倒计时与日期差",
       "description": "倒数到某个日期,或计算两个日期之间的时长。"
     },
+    "date-calculator": {
+      "name": "日期加减计算器",
+      "description": "从指定日期增加或减去天、周、月或年。"
+    },
     "jwt": {
       "name": "JWT 解码",
       "description": "解码 JSON Web Token 的头部与载荷。"
@@ -888,6 +892,37 @@
     "pickDates": "请选择两个日期以查看时长。",
     "durationLabel": "时长",
     "totals": "共 {days} 天 · {weeks} 周"
+  },
+  "dateCalculatorPage": {
+    "description": "从任意日期增加或减去一段日历时间。日期运算全部在浏览器本地完成,不受时区和夏令时影响。",
+    "baseDate": "起始日期",
+    "today": "今天",
+    "operation": "运算方式",
+    "operations": {
+      "add": "增加",
+      "subtract": "减去"
+    },
+    "amount": "数量",
+    "unit": "单位",
+    "units": {
+      "days": "天",
+      "weeks": "周",
+      "months": "月",
+      "years": "年"
+    },
+    "endOfMonthRule": "月末规则:如果目标月份或年份没有对应日期,结果取该月最后一个有效日期。",
+    "summaries": {
+      "days": "从 {date} 开始{operation, select, add {增加} subtract {减去} other {调整}} {amount} 天。",
+      "weeks": "从 {date} 开始{operation, select, add {增加} subtract {减去} other {调整}} {amount} 周。",
+      "months": "从 {date} 开始{operation, select, add {增加} subtract {减去} other {调整}} {amount} 个月。",
+      "years": "从 {date} 开始{operation, select, add {增加} subtract {减去} other {调整}} {amount} 年。"
+    },
+    "clamped": "目标月份没有原来的日期,结果已调整为该月最后一天。",
+    "errors": {
+      "date": "请选择有效的起始日期以查看结果。",
+      "amount": "请输入 0 到 9,999 之间的整数。",
+      "range": "计算结果超出支持的 0001–9999 年范围。"
+    }
   },
   "meetingPlannerPage": {
     "description": "跨时区寻找工作时间的重叠——选择城市,一眼看出大家都有空的时段。全部在浏览器本地计算。",

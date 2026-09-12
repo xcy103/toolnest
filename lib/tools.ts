@@ -203,6 +203,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "date-calculator",
+    href: "/date-calculator",
+    icon: "📆",
+    categoryKey: "time",
+    available: true,
+  },
+  {
     slug: "jwt",
     href: "/jwt",
     icon: "🎫",
