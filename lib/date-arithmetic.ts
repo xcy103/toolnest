@@ -56,6 +56,15 @@ export function calendarDateToUtc(date: CalendarDate): Date {
   return result;
 }
 
+export function localTodayInputValue(): string {
+  const today = new Date();
+  return [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0"),
+  ].join("-");
+}
+
 function fromUtcDate(date: Date): CalendarDate | null {
   const result = {
     year: date.getUTCFullYear(),

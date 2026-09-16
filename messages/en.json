@@ -272,6 +272,14 @@
       "name": "Date Calculator",
       "description": "Add or subtract days, weeks, months or years from a date."
     },
+    "business-days": {
+      "name": "Business Days Calculator",
+      "description": "Count working days between two dates with configurable weekends."
+    },
+    "business-date-calculator": {
+      "name": "Business Date Calculator",
+      "description": "Add or subtract working days while skipping custom weekend days."
+    },
     "jwt": {
       "name": "JWT Decoder",
       "description": "Decode a JSON Web Token's header and payload."
@@ -918,6 +926,54 @@
       "years": "{operation, select, add {Add} subtract {Subtract} other {Change by}} {amount, plural, one {# year} other {# years}} from {date}."
     },
     "clamped": "The original day did not exist in the target month, so the result was adjusted to the month's last day.",
+    "errors": {
+      "date": "Choose a valid starting date to see the result.",
+      "amount": "Enter a whole number from 0 to 9,999.",
+      "range": "That calculation falls outside the supported years 0001–9999."
+    }
+  },
+  "businessDaysCommon": {
+    "weekendLabel": "Weekend days",
+    "weekendHint": "Select up to six days. Public holidays are not included in this version.",
+    "days": {
+      "sun": { "short": "Sun", "long": "Sunday" },
+      "mon": { "short": "Mon", "long": "Monday" },
+      "tue": { "short": "Tue", "long": "Tuesday" },
+      "wed": { "short": "Wed", "long": "Wednesday" },
+      "thu": { "short": "Thu", "long": "Thursday" },
+      "fri": { "short": "Fri", "long": "Friday" },
+      "sat": { "short": "Sat", "long": "Saturday" }
+    }
+  },
+  "businessDaysPage": {
+    "description": "Count working days between two dates using your own weekend schedule. Everything is calculated locally in your browser.",
+    "startDate": "Starting date",
+    "endDate": "Ending date",
+    "includeEnd": "Include the ending date",
+    "rangeRule": "The starting date is never counted. Turn on the option above to count the ending date when it is a workday.",
+    "businessDayCount": "{count, plural, one {# business day} other {# business days}}",
+    "countedDates": "Dates considered",
+    "nonBusinessDays": "Weekend days skipped",
+    "summary": "From {start} to {end}. The starting date is excluded and the ending date is {endRule}.",
+    "included": "included",
+    "excluded": "excluded",
+    "errors": {
+      "dates": "Choose valid starting and ending dates to see the result.",
+      "order": "The ending date must be the same as or later than the starting date."
+    }
+  },
+  "businessDateCalculatorPage": {
+    "description": "Move forward or backward by working days while skipping the weekend days you choose. Calculated locally in your browser.",
+    "startDate": "Starting date",
+    "operation": "Direction",
+    "operations": {
+      "add": "Forward",
+      "subtract": "Backward"
+    },
+    "amount": "Number of business days",
+    "startRule": "The starting date is not counted. Public holidays are not included.",
+    "summary": "Move {operation, select, add {forward} subtract {backward} other {by}} {amount, plural, one {# business day} other {# business days}} from {start}.",
+    "skipped": "Moved {calendarDays, plural, one {# calendar day} other {# calendar days}} and skipped {skippedDays, plural, one {# weekend day} other {# weekend days}}.",
     "errors": {
       "date": "Choose a valid starting date to see the result.",
       "amount": "Enter a whole number from 0 to 9,999.",

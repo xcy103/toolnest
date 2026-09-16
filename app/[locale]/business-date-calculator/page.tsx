@@ -4,28 +4,28 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import CopyButton from "@/components/CopyButton";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
+import WeekendSelector from "@/components/WeekendSelector";
+import { addBusinessDays } from "@/lib/business-days";
 import {
-  addToCalendarDate,
   calendarDateToUtc,
   formatCalendarDate,
   localTodayInputValue,
   parseCalendarDate,
-  type DateUnit,
 } from "@/lib/date-arithmetic";
 
 type Operation = "add" | "subtract";
 
-export default function DateCalculatorPage() {
+export default function BusinessDateCalculatorPage() {
   const t = useTranslations();
   const locale = useLocale();
   const [baseDate, setBaseDate] = useState("");
   const [operation, setOperation] = useState<Operation>("add");
   const [amount, setAmount] = useState("1");
-  const [unit, setUnit] = useState<DateUnit>("days");
+  const [weekendDays, setWeekendDays] = useState([0, 6]);
 
   const calculation = useMemo(() => {
-    const parsedDate = parseCalendarDate(baseDate);
-    if (!parsedDate) return { state: "date" as const };
+    const start = parseCalendarDate(baseDate);
+    if (!start) return { state: "date" as const };
     if (!/^\d+$/.test(amount)) return { state: "amount" as const };
 
     const parsedAmount = Number(amount);
@@ -33,15 +33,15 @@ export default function DateCalculatorPage() {
       return { state: "amount" as const };
     }
 
-    const result = addToCalendarDate(
-      parsedDate,
+    const result = addBusinessDays(
+      start,
       operation === "add" ? parsedAmount : -parsedAmount,
-      unit,
+      weekendDays,
     );
     return result
       ? { state: "ready" as const, ...result, amount: parsedAmount }
       : { state: "range" as const };
-  }, [amount, baseDate, operation, unit]);
+  }, [amount, baseDate, operation, weekendDays]);
 
   const resultValue =
     calculation.state === "ready" ? formatCalendarDate(calculation.date) : "";
@@ -55,19 +55,19 @@ export default function DateCalculatorPage() {
 
   return (
     <ToolLayout
-      title={t("tools.date-calculator.name")}
-      description={t("dateCalculatorPage.description")}
-      icon="📆"
+      title={t("tools.business-date-calculator.name")}
+      description={t("businessDateCalculatorPage.description")}
+      icon="🗓️"
     >
       <ToolPanel>
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="space-y-2 text-sm font-medium">
-            <label htmlFor="base-date" className="block">
-              {t("dateCalculatorPage.baseDate")}
+            <label htmlFor="business-base-date" className="block">
+              {t("businessDateCalculatorPage.startDate")}
             </label>
             <div className="flex gap-2">
               <input
-                id="base-date"
+                id="business-base-date"
                 type="date"
                 min="0001-01-01"
                 max="9999-12-31"
@@ -87,7 +87,7 @@ export default function DateCalculatorPage() {
 
           <fieldset className="space-y-2">
             <legend className="text-sm font-medium">
-              {t("dateCalculatorPage.operation")}
+              {t("businessDateCalculatorPage.operation")}
             </legend>
             <div className="grid grid-cols-2 gap-2">
               {(["add", "subtract"] as const).map((value) => (
@@ -102,52 +102,41 @@ export default function DateCalculatorPage() {
                       : "border-border hover:bg-foreground/5"
                   }`}
                 >
-                  {t(`dateCalculatorPage.operations.${value}`)}
+                  {t(`businessDateCalculatorPage.operations.${value}`)}
                 </button>
               ))}
             </div>
           </fieldset>
-
-          <label className="space-y-2 text-sm font-medium">
-            <span>{t("dateCalculatorPage.amount")}</span>
-            <input
-              type="number"
-              min="0"
-              max="9999"
-              step="1"
-              inputMode="numeric"
-              value={amount}
-              onChange={(event) => setAmount(event.target.value)}
-              className="w-full rounded-lg border border-border bg-background p-3 font-mono outline-none focus:border-emerald-500"
-            />
-          </label>
-
-          <label className="space-y-2 text-sm font-medium">
-            <span>{t("dateCalculatorPage.unit")}</span>
-            <select
-              value={unit}
-              onChange={(event) => setUnit(event.target.value as DateUnit)}
-              className="w-full rounded-lg border border-border bg-background p-3 outline-none focus:border-emerald-500"
-            >
-              {(["days", "weeks", "months", "years"] as const).map((value) => (
-                <option key={value} value={value}>
-                  {t(`dateCalculatorPage.units.${value}`)}
-                </option>
-              ))}
-            </select>
-          </label>
         </div>
 
-        <p className="mt-4 text-sm text-muted">
-          {t("dateCalculatorPage.endOfMonthRule")}
+        <label className="mt-5 block space-y-2 text-sm font-medium">
+          <span>{t("businessDateCalculatorPage.amount")}</span>
+          <input
+            type="number"
+            min="0"
+            max="9999"
+            step="1"
+            inputMode="numeric"
+            value={amount}
+            onChange={(event) => setAmount(event.target.value)}
+            className="w-full rounded-lg border border-border bg-background p-3 font-mono outline-none focus:border-emerald-500"
+          />
+        </label>
+
+        <p className="mt-3 text-sm text-muted">
+          {t("businessDateCalculatorPage.startRule")}
         </p>
+      </ToolPanel>
+
+      <ToolPanel>
+        <WeekendSelector value={weekendDays} onChange={setWeekendDays} />
       </ToolPanel>
 
       <ToolPanel
         label={t("common.result")}
         action={<CopyButton value={resultValue} />}
       >
-        <div className="min-h-24" aria-live="polite">
+        <div className="min-h-28" aria-live="polite">
           {calculation.state === "ready" ? (
             <>
               <time
@@ -157,22 +146,23 @@ export default function DateCalculatorPage() {
                 {formattedResult}
               </time>
               <p className="mt-2 font-mono text-sm text-muted">{resultValue}</p>
-              <p className="mt-3 text-sm text-foreground/75">
-                {t(`dateCalculatorPage.summaries.${unit}`, {
+              <p className="mt-4 text-sm text-foreground/75">
+                {t("businessDateCalculatorPage.summary", {
                   operation,
                   amount: calculation.amount,
-                  date: baseDate,
+                  start: baseDate,
                 })}
               </p>
-              {calculation.clamped && (
-                <p className="mt-2 text-sm font-medium text-amber-700 dark:text-amber-300">
-                  {t("dateCalculatorPage.clamped")}
-                </p>
-              )}
+              <p className="mt-2 text-sm text-muted">
+                {t("businessDateCalculatorPage.skipped", {
+                  calendarDays: calculation.calendarDaysMoved,
+                  skippedDays: calculation.skippedDays,
+                })}
+              </p>
             </>
           ) : (
-            <p className="py-7 text-center text-muted">
-              {t(`dateCalculatorPage.errors.${calculation.state}`)}
+            <p className="py-8 text-center text-muted">
+              {t(`businessDateCalculatorPage.errors.${calculation.state}`)}
             </p>
           )}
         </div>

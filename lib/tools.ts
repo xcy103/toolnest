@@ -210,6 +210,20 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "business-days",
+    href: "/business-days",
+    icon: "💼",
+    categoryKey: "time",
+    available: true,
+  },
+  {
+    slug: "business-date-calculator",
+    href: "/business-date-calculator",
+    icon: "🗓️",
+    categoryKey: "time",
+    available: true,
+  },
+  {
     slug: "jwt",
     href: "/jwt",
     icon: "🎫",

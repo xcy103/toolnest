@@ -272,6 +272,14 @@
       "name": "日期加减计算器",
       "description": "从指定日期增加或减去天、周、月或年。"
     },
+    "business-days": {
+      "name": "工作日天数计算器",
+      "description": "按自定义周末计算两个日期之间的工作日数量。"
+    },
+    "business-date-calculator": {
+      "name": "工作日期加减计算器",
+      "description": "跳过自定义周末,向前或向后推算工作日期。"
+    },
     "jwt": {
       "name": "JWT 解码",
       "description": "解码 JSON Web Token 的头部与载荷。"
@@ -918,6 +926,54 @@
       "years": "从 {date} 开始{operation, select, add {增加} subtract {减去} other {调整}} {amount} 年。"
     },
     "clamped": "目标月份没有原来的日期,结果已调整为该月最后一天。",
+    "errors": {
+      "date": "请选择有效的起始日期以查看结果。",
+      "amount": "请输入 0 到 9,999 之间的整数。",
+      "range": "计算结果超出支持的 0001–9999 年范围。"
+    }
+  },
+  "businessDaysCommon": {
+    "weekendLabel": "周末休息日",
+    "weekendHint": "最多选择六天。本版本不包含法定节假日。",
+    "days": {
+      "sun": { "short": "周日", "long": "星期日" },
+      "mon": { "short": "周一", "long": "星期一" },
+      "tue": { "short": "周二", "long": "星期二" },
+      "wed": { "short": "周三", "long": "星期三" },
+      "thu": { "short": "周四", "long": "星期四" },
+      "fri": { "short": "周五", "long": "星期五" },
+      "sat": { "short": "周六", "long": "星期六" }
+    }
+  },
+  "businessDaysPage": {
+    "description": "按照你的周末安排,计算两个日期之间的工作日数量。所有计算均在浏览器本地完成。",
+    "startDate": "起始日期",
+    "endDate": "结束日期",
+    "includeEnd": "计入结束日期",
+    "rangeRule": "起始日期始终不计入。开启上方选项后,如果结束日期是工作日则计入结果。",
+    "businessDayCount": "{count} 个工作日",
+    "countedDates": "参与计算的日期",
+    "nonBusinessDays": "跳过的周末天数",
+    "summary": "从 {start} 到 {end}。起始日期不计入,结束日期{endRule}。",
+    "included": "计入",
+    "excluded": "不计入",
+    "errors": {
+      "dates": "请选择有效的起始日期和结束日期以查看结果。",
+      "order": "结束日期必须等于或晚于起始日期。"
+    }
+  },
+  "businessDateCalculatorPage": {
+    "description": "跳过你选择的周末休息日,按工作日向前或向后推算日期。所有计算均在浏览器本地完成。",
+    "startDate": "起始日期",
+    "operation": "推算方向",
+    "operations": {
+      "add": "向前",
+      "subtract": "向后"
+    },
+    "amount": "工作日数量",
+    "startRule": "起始日期不计入。本版本不包含法定节假日。",
+    "summary": "从 {start} 开始{operation, select, add {向前} subtract {向后} other {移动}} {amount} 个工作日。",
+    "skipped": "共移动 {calendarDays} 个自然日,跳过 {skippedDays} 个周末日。",
     "errors": {
       "date": "请选择有效的起始日期以查看结果。",
       "amount": "请输入 0 到 9,999 之间的整数。",
