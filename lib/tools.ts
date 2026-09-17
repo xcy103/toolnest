@@ -224,6 +224,20 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "week-number",
+    href: "/week-number",
+    icon: "📅",
+    categoryKey: "time",
+    available: true,
+  },
+  {
+    slug: "weekday",
+    href: "/weekday",
+    icon: "🗓️",
+    categoryKey: "time",
+    available: true,
+  },
+  {
     slug: "jwt",
     href: "/jwt",
     icon: "🎫",

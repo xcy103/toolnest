@@ -280,6 +280,14 @@
       "name": "Business Date Calculator",
       "description": "Add or subtract working days while skipping custom weekend days."
     },
+    "week-number": {
+      "name": "Week Number Calculator",
+      "description": "Find the ISO week number, week-year and Monday-to-Sunday range for a date."
+    },
+    "weekday": {
+      "name": "Weekday Calculator",
+      "description": "Find the weekday of any date and the next date on a chosen weekday."
+    },
     "jwt": {
       "name": "JWT Decoder",
       "description": "Decode a JSON Web Token's header and payload."
@@ -944,6 +952,27 @@
       "fri": { "short": "Fri", "long": "Friday" },
       "sat": { "short": "Sat", "long": "Saturday" }
     }
+  },
+  "weekNumberPage": {
+    "description": "Find the ISO week number and the Monday-to-Sunday date range for any date. Calculated locally in your browser.",
+    "date": "Date",
+    "week": "Week {week}",
+    "weekYear": "ISO week-year: {year}",
+    "monday": "Monday",
+    "sunday": "Sunday",
+    "rule": "ISO weeks begin on Monday. Week 1 is the week containing January 4, so the week-year can differ from the calendar year.",
+    "empty": "Choose a valid date to see its ISO week.",
+    "range": "This week extends beyond the supported years 0001–9999."
+  },
+  "weekdayPage": {
+    "description": "Look up the weekday of any date and find the next occurrence of a selected weekday. Calculated locally in your browser.",
+    "date": "Date",
+    "weekday": "Weekday",
+    "nextTitle": "Next occurrence",
+    "target": "Target weekday",
+    "rule": "Search starts after the selected date. If it is already the chosen weekday, the next result is seven days later.",
+    "empty": "Choose a valid date to see the result.",
+    "range": "The next occurrence is beyond the supported year 9999."
   },
   "businessDaysPage": {
     "description": "Count working days between two dates using your own weekend schedule. Everything is calculated locally in your browser.",

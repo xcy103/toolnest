@@ -280,6 +280,14 @@
       "name": "工作日期加减计算器",
       "description": "跳过自定义周末,向前或向后推算工作日期。"
     },
+    "week-number": {
+      "name": "周数计算器",
+      "description": "查询日期的 ISO 周数、周年份和周一至周日范围。"
+    },
+    "weekday": {
+      "name": "星期计算器",
+      "description": "查询任意日期是星期几,并寻找下一个指定星期的日期。"
+    },
     "jwt": {
       "name": "JWT 解码",
       "description": "解码 JSON Web Token 的头部与载荷。"
@@ -944,6 +952,27 @@
       "fri": { "short": "周五", "long": "星期五" },
       "sat": { "short": "周六", "long": "星期六" }
     }
+  },
+  "weekNumberPage": {
+    "description": "查询任意日期的 ISO 周数及周一至周日的日期范围。全部在浏览器本地计算。",
+    "date": "日期",
+    "week": "第 {week} 周",
+    "weekYear": "ISO 周年份: {year}",
+    "monday": "周一",
+    "sunday": "周日",
+    "rule": "ISO 周从周一开始。第 1 周是包含 1 月 4 日的那一周,因此周年份可能不同于日历年份。",
+    "empty": "请选择有效日期以查看 ISO 周数。",
+    "range": "这一周超出了支持的 0001–9999 年范围。"
+  },
+  "weekdayPage": {
+    "description": "查询任意日期是星期几,并查找下一次指定星期几的日期。全部在浏览器本地计算。",
+    "date": "日期",
+    "weekday": "星期",
+    "nextTitle": "下一次出现",
+    "target": "目标星期",
+    "rule": "从所选日期的下一天开始查找。如果当天正好是目标星期,结果为七天后。",
+    "empty": "请选择有效日期以查看结果。",
+    "range": "下一个日期超出了支持的 9999 年范围。"
   },
   "businessDaysPage": {
     "description": "按照你的周末安排,计算两个日期之间的工作日数量。所有计算均在浏览器本地完成。",
