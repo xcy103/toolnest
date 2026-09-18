@@ -238,6 +238,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "age-calculator",
+    href: "/age-calculator",
+    icon: "🎂",
+    categoryKey: "time",
+    available: true,
+  },
+  {
     slug: "jwt",
     href: "/jwt",
     icon: "🎫",

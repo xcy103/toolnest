@@ -288,6 +288,10 @@
       "name": "星期计算器",
       "description": "查询任意日期是星期几,并寻找下一个指定星期的日期。"
     },
+    "age-calculator": {
+      "name": "年龄计算器",
+      "description": "根据出生日期计算日历年龄和下一次生日。"
+    },
     "jwt": {
       "name": "JWT 解码",
       "description": "解码 JSON Web Token 的头部与载荷。"
@@ -973,6 +977,21 @@
     "rule": "从所选日期的下一天开始查找。如果当天正好是目标星期,结果为七天后。",
     "empty": "请选择有效日期以查看结果。",
     "range": "下一个日期超出了支持的 9999 年范围。"
+  },
+  "ageCalculatorPage": {
+    "description": "按年、月、日计算日历年龄,并查询下一次生日。日期全部在浏览器本地处理。",
+    "birthDate": "出生日期",
+    "asOf": "截至日期",
+    "leapRule": "本计算中,2 月 29 日生日在非闰年按 2 月 28 日处理。",
+    "units": { "years": "年", "months": "月", "days": "日" },
+    "totalDays": "共经过 {days} 天",
+    "birthdayToday": "今天是生日",
+    "nextBirthday": "下一次生日",
+    "daysRemaining": "还剩 {days} 天",
+    "empty": "请选择出生日期和截至日期以查看结果。",
+    "future": "出生日期不能晚于截至日期。",
+    "outOfRange": "下一次生日超出了支持的 0001–9999 年范围。",
+    "disclaimer": "仅用于一般日历计算。法律或医疗领域的年龄认定规则可能不同。"
   },
   "businessDaysPage": {
     "description": "按照你的周末安排,计算两个日期之间的工作日数量。所有计算均在浏览器本地完成。",

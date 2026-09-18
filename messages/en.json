@@ -288,6 +288,10 @@
       "name": "Weekday Calculator",
       "description": "Find the weekday of any date and the next date on a chosen weekday."
     },
+    "age-calculator": {
+      "name": "Age Calculator",
+      "description": "Calculate calendar age and the next birthday from a birth date."
+    },
     "jwt": {
       "name": "JWT Decoder",
       "description": "Decode a JSON Web Token's header and payload."
@@ -973,6 +977,21 @@
     "rule": "Search starts after the selected date. If it is already the chosen weekday, the next result is seven days later.",
     "empty": "Choose a valid date to see the result.",
     "range": "The next occurrence is beyond the supported year 9999."
+  },
+  "ageCalculatorPage": {
+    "description": "Calculate calendar age in years, months and days, and find the next birthday. Dates are processed locally in your browser.",
+    "birthDate": "Birth date",
+    "asOf": "As of",
+    "leapRule": "February 29 birthdays are observed on February 28 in non-leap years for this calculation.",
+    "units": { "years": "Years", "months": "Months", "days": "Days" },
+    "totalDays": "{days, plural, one {# day} other {# days}} lived in total",
+    "birthdayToday": "Birthday today",
+    "nextBirthday": "Next birthday",
+    "daysRemaining": "{days, plural, one {# day} other {# days}} remaining",
+    "empty": "Choose a birth date and an as-of date to see the result.",
+    "future": "The birth date cannot be after the as-of date.",
+    "outOfRange": "The next birthday is outside the supported years 0001–9999.",
+    "disclaimer": "For general calendar use only. Legal or medical age rules may differ."
   },
   "businessDaysPage": {
     "description": "Count working days between two dates using your own weekend schedule. Everything is calculated locally in your browser.",
