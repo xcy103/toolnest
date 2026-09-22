@@ -1,6 +1,38 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { removeDuplicateLines, sortLines } from "./lines.ts";
+import { compareLists, removeDuplicateLines, sortLines } from "./lines.ts";
+
+test("list comparison preserves each side's first spelling and order", () => {
+  assert.deepEqual(compareLists(
+    " Apple \nbanana\napple\npear\n", "apple\nCherry\ncherry\nbanana",
+    { caseSensitive: false, trimWhitespace: true },
+  ), {
+    intersection: [" Apple ", "banana"],
+    leftOnly: ["pear"],
+    rightOnly: ["Cherry"],
+    combined: [" Apple ", "banana", "pear", "Cherry"],
+  });
+});
+
+test("list comparison honors case and whitespace settings", () => {
+  const left = " Apple \nAPPLE";
+  const right = "apple\nApple";
+  assert.deepEqual(compareLists(left, right, { caseSensitive: true, trimWhitespace: false }), {
+    intersection: [], leftOnly: [" Apple ", "APPLE"], rightOnly: ["apple", "Apple"],
+    combined: [" Apple ", "APPLE", "apple", "Apple"],
+  });
+  assert.deepEqual(compareLists(left, right, { caseSensitive: true, trimWhitespace: true }).intersection, [" Apple "]);
+  assert.deepEqual(compareLists(left, right, { caseSensitive: false, trimWhitespace: true }).intersection, [" Apple "]);
+});
+
+test("list comparison ignores blank lines and supports either side empty", () => {
+  assert.deepEqual(compareLists("\n  \nA\r\nB\r", "", { caseSensitive: false, trimWhitespace: true }), {
+    intersection: [], leftOnly: ["A", "B"], rightOnly: [], combined: ["A", "B"],
+  });
+  assert.deepEqual(compareLists("", "", { caseSensitive: false, trimWhitespace: true }), {
+    intersection: [], leftOnly: [], rightOnly: [], combined: [],
+  });
+});
 
 test("removeDuplicateLines keeps the first occurrence", () => {
   const result = removeDuplicateLines("apple\nbanana\napple", {

@@ -27,6 +27,50 @@ function normalizeKey(line: string, caseSensitive: boolean, trimWhitespace: bool
   return caseSensitive ? value : value.toLocaleLowerCase();
 }
 
+export type ListComparison = {
+  intersection: string[];
+  leftOnly: string[];
+  rightOnly: string[];
+  combined: string[];
+};
+
+export function compareLists(
+  leftText: string,
+  rightText: string,
+  options: Pick<DuplicateOptions, "caseSensitive" | "trimWhitespace">,
+): ListComparison {
+  const unique = (text: string) => {
+    const items = new Map<string, string>();
+    if (!text) return items;
+    for (const line of splitLines(text)) {
+      if (!line.trim()) continue;
+      const key = normalizeKey(line, options.caseSensitive, options.trimWhitespace);
+      if (!items.has(key)) items.set(key, line);
+    }
+    return items;
+  };
+
+  const left = unique(leftText);
+  const right = unique(rightText);
+  const intersection: string[] = [];
+  const leftOnly: string[] = [];
+  const rightOnly: string[] = [];
+
+  for (const [key, line] of left) {
+    (right.has(key) ? intersection : leftOnly).push(line);
+  }
+  for (const [key, line] of right) {
+    if (!left.has(key)) rightOnly.push(line);
+  }
+
+  return {
+    intersection,
+    leftOnly,
+    rightOnly,
+    combined: [...left.values(), ...rightOnly],
+  };
+}
+
 export function removeDuplicateLines(
   text: string,
   options: DuplicateOptions,

@@ -256,6 +256,10 @@
       "name": "文本排序",
       "description": "按字母或数字顺序排序每一行。"
     },
+    "list-comparison": {
+      "name": "列表比较",
+      "description": "比较两个列表,找出共有项和独有项。"
+    },
     "base-converter": {
       "name": "进制转换",
       "description": "在二进制、八进制、十进制、十六进制之间互转。"
@@ -885,6 +889,23 @@
     "inputLabel": "文本行",
     "placeholder": "每行粘贴一个项目…",
     "summary": "共 {count} 行"
+  },
+  "listComparisonPage": {
+    "description": "比较两个逐行列表,找出共有项、独有项和合并去重结果。全部在浏览器本地完成。",
+    "caseSensitive": "区分大小写",
+    "trimWhitespace": "比较前去掉首尾空白",
+    "example": "示例",
+    "left": "左侧列表",
+    "right": "右侧列表",
+    "placeholder": "每行输入一个项目…",
+    "empty": "没有项目",
+    "rule": "空行会被忽略。每个列表保留首次出现的项目;共有项和合并结果采用左侧列表的原文及顺序。",
+    "results": {
+      "intersection": "两个列表共有",
+      "leftOnly": "仅左侧",
+      "rightOnly": "仅右侧",
+      "combined": "合并去重"
+    }
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",

@@ -182,6 +182,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "list-comparison",
+    href: "/list-comparison",
+    icon: "∩",
+    categoryKey: "text",
+    available: true,
+  },
+  {
     slug: "base-converter",
     href: "/base-converter",
     icon: "🔢",

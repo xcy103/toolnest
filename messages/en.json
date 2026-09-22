@@ -256,6 +256,10 @@
       "name": "Text Sorter",
       "description": "Sort lines alphabetically or numerically."
     },
+    "list-comparison": {
+      "name": "List Comparison",
+      "description": "Compare two lists and find shared or unique entries."
+    },
     "base-converter": {
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
@@ -885,6 +889,23 @@
     "inputLabel": "Lines",
     "placeholder": "Paste one item per line…",
     "summary": "{count, plural, one {# line} other {# lines}}"
+  },
+  "listComparisonPage": {
+    "description": "Compare two line-based lists to find shared and unique entries. Everything runs locally in your browser.",
+    "caseSensitive": "Case sensitive",
+    "trimWhitespace": "Trim before comparing",
+    "example": "Example",
+    "left": "Left list",
+    "right": "Right list",
+    "placeholder": "One item per line…",
+    "empty": "No items",
+    "rule": "Blank lines are ignored. Each list keeps its first matching entry; shared entries and the combined list keep the left list's spelling and order.",
+    "results": {
+      "intersection": "In both lists",
+      "leftOnly": "Left only",
+      "rightOnly": "Right only",
+      "combined": "Combined unique"
+    }
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",
