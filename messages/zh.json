@@ -188,6 +188,10 @@
       "name": "JSON ↔ CSV 转换",
       "description": "JSON 与 CSV 表格互相转换。"
     },
+    "csv-viewer": {
+      "name": "CSV 表格查看器",
+      "description": "在本地打开、搜索、筛选和排序 CSV 文件。"
+    },
     "json-yaml": {
       "name": "JSON ↔ YAML 转换",
       "description": "JSON 与 YAML 互相转换。"
@@ -425,6 +429,41 @@
       "csvUnclosedQuote": "第 {line} 行的引号没有闭合——每个 \" 都需要成对出现。",
       "csvRagged": "第 {line} 行有 {got} 个字段,而表头有 {expected} 个,请检查分隔符或引号内的逗号。",
       "unknown": "无法转换该输入,请检查格式。"
+    }
+  },
+  "csvViewerPage": {
+    "description": "把 CSV 文件打开为可搜索、可排序的表格。文件只在浏览器本地处理,不会上传。",
+    "source": "CSV 数据源",
+    "openFile": "打开 CSV 文件",
+    "limits": "最大 {size} MB、{rows} 行数据、{columns} 列",
+    "orPaste": "或粘贴 CSV",
+    "placeholder": "在这里粘贴 CSV 数据…",
+    "delimiter": "分隔符",
+    "comma": "逗号 (,)",
+    "semicolon": "分号 (;)",
+    "tab": "制表符",
+    "header": "首行为表头",
+    "example": "载入示例",
+    "table": "表格",
+    "summary": "显示 {shown}/{total} 行 · {columns} 列",
+    "columnSearch": "查找列",
+    "columnPlaceholder": "搜索表头名称…",
+    "rowFilter": "筛选行",
+    "rowPlaceholder": "搜索所有单元格…",
+    "noColumns": "没有匹配该搜索的列名。",
+    "noRows": "没有匹配该筛选条件的数据行。",
+    "sortBy": "按{column}排序",
+    "previous": "上一页",
+    "next": "下一页",
+    "page": "第 {page}/{pages} 页",
+    "errors": {
+      "csvUnclosedQuote": "第 {line} 行开始的引号没有闭合。",
+      "csvRagged": "第 {line} 行有 {got} 个字段,应为 {expected} 个。",
+      "csvTooLarge": "该 CSV 超过 {max} MB 限制。",
+      "csvTooManyRows": "该 CSV 超过 {max} 行数据限制。",
+      "csvTooManyColumns": "该 CSV 超过 {max} 列限制。",
+      "fileRead": "无法读取所选文件。",
+      "unknown": "无法打开该 CSV,请检查格式和分隔符。"
     }
   },
   "jsonYamlPage": {

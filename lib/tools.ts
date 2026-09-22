@@ -63,6 +63,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "csv-viewer",
+    href: "/csv-viewer",
+    icon: "▦",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "json-yaml",
     href: "/json-yaml",
     icon: "⇄",

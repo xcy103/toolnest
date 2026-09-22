@@ -188,6 +188,10 @@
       "name": "JSON ↔ CSV Converter",
       "description": "Convert JSON to CSV and back."
     },
+    "csv-viewer": {
+      "name": "CSV Table Viewer",
+      "description": "Open, search, filter and sort CSV files locally."
+    },
     "json-yaml": {
       "name": "JSON ↔ YAML Converter",
       "description": "Convert JSON to YAML and YAML back to JSON."
@@ -425,6 +429,41 @@
       "csvUnclosedQuote": "Unclosed quote starting on line {line} — every opening \" needs a closing one.",
       "csvRagged": "Line {line} has {got} fields but the header has {expected} — please check the delimiter and any quoted commas.",
       "unknown": "Could not convert this input — please check the format."
+    }
+  },
+  "csvViewerPage": {
+    "description": "Open a CSV file as a searchable, sortable table. Files stay in your browser and are never uploaded.",
+    "source": "CSV source",
+    "openFile": "Open a CSV file",
+    "limits": "Up to {size} MB, {rows} rows and {columns} columns",
+    "orPaste": "or paste CSV",
+    "placeholder": "Paste CSV data here…",
+    "delimiter": "Delimiter",
+    "comma": "Comma (,)",
+    "semicolon": "Semicolon (;)",
+    "tab": "Tab",
+    "header": "First row is a header",
+    "example": "Load example",
+    "table": "Table",
+    "summary": "{shown} of {total} rows · {columns} columns",
+    "columnSearch": "Find columns",
+    "columnPlaceholder": "Search header names…",
+    "rowFilter": "Filter rows",
+    "rowPlaceholder": "Search every cell…",
+    "noColumns": "No column names match this search.",
+    "noRows": "No rows match this filter.",
+    "sortBy": "Sort by {column}",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page} of {pages}",
+    "errors": {
+      "csvUnclosedQuote": "Unclosed quote starting on line {line}.",
+      "csvRagged": "Line {line} has {got} fields; expected {expected}.",
+      "csvTooLarge": "This CSV is larger than the {max} MB limit.",
+      "csvTooManyRows": "This CSV has more than the {max} data-row limit.",
+      "csvTooManyColumns": "This CSV has more than the {max}-column limit.",
+      "fileRead": "The selected file could not be read.",
+      "unknown": "This CSV could not be opened. Check its format and delimiter."
     }
   },
   "jsonYamlPage": {
