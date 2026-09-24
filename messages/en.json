@@ -260,6 +260,10 @@
       "name": "List Comparison",
       "description": "Compare two lists and find shared or unique entries."
     },
+    "slug-generator": {
+      "name": "Slug Generator",
+      "description": "Turn titles into readable URL path segments."
+    },
     "base-converter": {
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
@@ -906,6 +910,19 @@
       "rightOnly": "Right only",
       "combined": "Combined unique"
     }
+  },
+  "slugGeneratorPage": {
+    "description": "Turn titles and phrases into URL path segments with predictable handling for accented letters and Chinese text. Everything runs locally in your browser.",
+    "inputLabel": "Title or phrase",
+    "placeholder": "Enter a title or phrase…",
+    "example": "Example",
+    "separator": "Separator",
+    "lowercase": "Lowercase",
+    "collapse": "Collapse repeated separators",
+    "slugLabel": "Readable slug",
+    "encodedLabel": "URL-encoded path segment",
+    "noSlug": "Enter at least one letter or number to make a slug.",
+    "rule": "Common Latin accents become plain letters. Chinese characters remain in the readable slug; use the encoded version where an ASCII URL segment is needed."
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",

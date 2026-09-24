@@ -189,6 +189,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "slug-generator",
+    href: "/slug-generator",
+    icon: "#",
+    categoryKey: "text",
+    available: true,
+  },
+  {
     slug: "base-converter",
     href: "/base-converter",
     icon: "🔢",

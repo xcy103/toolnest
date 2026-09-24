@@ -260,6 +260,10 @@
       "name": "列表比较",
       "description": "比较两个列表,找出共有项和独有项。"
     },
+    "slug-generator": {
+      "name": "Slug 生成器",
+      "description": "将标题转换为易读的 URL 路径片段。"
+    },
     "base-converter": {
       "name": "进制转换",
       "description": "在二进制、八进制、十进制、十六进制之间互转。"
@@ -906,6 +910,19 @@
       "rightOnly": "仅右侧",
       "combined": "合并去重"
     }
+  },
+  "slugGeneratorPage": {
+    "description": "将标题或短语转换为 URL 路径片段,明确处理拉丁重音和中文。所有处理均在浏览器本地完成。",
+    "inputLabel": "标题或短语",
+    "placeholder": "输入标题或短语…",
+    "example": "示例",
+    "separator": "分隔符",
+    "lowercase": "转为小写",
+    "collapse": "合并连续分隔符",
+    "slugLabel": "易读 Slug",
+    "encodedLabel": "URL 编码路径片段",
+    "noSlug": "请输入至少一个字母或数字。",
+    "rule": "常见拉丁重音会还原为基本字母;中文在易读 Slug 中保留原字。需要纯 ASCII URL 路径时可复制编码版本。"
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",
