@@ -240,6 +240,10 @@
       "name": "UUID 生成器",
       "description": "批量生成第 4 版(随机)UUID。"
     },
+    "random-picker": {
+      "name": "随机抽取器",
+      "description": "从列表中随机抽取一个或多个项目。"
+    },
     "word-counter": {
       "name": "字数统计",
       "description": "统计字符数、单词数、行数与预计阅读时间。"
@@ -923,6 +927,22 @@
     "encodedLabel": "URL 编码路径片段",
     "noSlug": "请输入至少一个字母或数字。",
     "rule": "常见拉丁重音会还原为基本字母;中文在易读 Slug 中保留原字。需要纯 ASCII URL 路径时可复制编码版本。"
+  },
+  "randomPickerPage": {
+    "description": "从粘贴的列表中随机抽取一个或多个项目,全部在浏览器本地完成。",
+    "entries": "候选项目",
+    "placeholder": "每行输入一个项目…",
+    "example": "示例",
+    "summary": "输入 {input} 项 · 可抽取 {eligible} 项",
+    "count": "抽取数量",
+    "removeDuplicates": "移除重复项目",
+    "withoutReplacement": "不放回抽取",
+    "invalidCount": "请输入 1 到 {max} 之间的整数。",
+    "tooMany": "不放回抽取时最多只能选 {max} 项。",
+    "draw": "开始抽取",
+    "drawAgain": "再次抽取",
+    "drawNumber": "第 {number} 次抽取",
+    "rule": "空行会被忽略,项目会去掉首尾空白;去重按完全相同的文字判断。每次抽取会替换当前结果。"
   },
   "cronPage": {
     "description": "把 cron 表达式解析为逐字段的可读说明。全部在浏览器本地运行。",

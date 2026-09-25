@@ -196,6 +196,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "random-picker",
+    href: "/random-picker",
+    icon: "🎲",
+    categoryKey: "generate",
+    available: true,
+  },
+  {
     slug: "base-converter",
     href: "/base-converter",
     icon: "🔢",

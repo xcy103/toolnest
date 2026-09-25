@@ -240,6 +240,10 @@
       "name": "UUID Generator",
       "description": "Generate version 4 (random) UUIDs, one or many at a time."
     },
+    "random-picker": {
+      "name": "Random Picker",
+      "description": "Draw one or more random entries from a list."
+    },
     "word-counter": {
       "name": "Word & Character Counter",
       "description": "Count characters, words, lines and estimated reading time."
@@ -923,6 +927,22 @@
     "encodedLabel": "URL-encoded path segment",
     "noSlug": "Enter at least one letter or number to make a slug.",
     "rule": "Common Latin accents become plain letters. Chinese characters remain in the readable slug; use the encoded version where an ASCII URL segment is needed."
+  },
+  "randomPickerPage": {
+    "description": "Draw one or more entries from a pasted list with browser-based randomness. Everything stays local.",
+    "entries": "Entries",
+    "placeholder": "One entry per line…",
+    "example": "Example",
+    "summary": "{input} entries · {eligible} eligible",
+    "count": "Pick",
+    "removeDuplicates": "Remove duplicate entries",
+    "withoutReplacement": "Without replacement",
+    "invalidCount": "Enter a whole number from 1 to {max}.",
+    "tooMany": "Only {max} eligible entries are available without replacement.",
+    "draw": "Draw",
+    "drawAgain": "Draw again",
+    "drawNumber": "Draw #{number}",
+    "rule": "Blank lines are ignored. Entries are trimmed; duplicate removal matches exact text. A new draw replaces the displayed result."
   },
   "cronPage": {
     "description": "Break a cron expression into a readable, field-by-field description. Everything runs locally in your browser.",
