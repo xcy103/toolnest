@@ -36,6 +36,7 @@ export type CsvValue = string | number | boolean | null;
  * doubled quotes, and CRLF / CR / LF line endings. Blank lines are dropped.
  */
 export function parseCsv(text: string, delimiter: Delimiter): string[][] {
+  if (text.startsWith("\uFEFF")) text = text.slice(1);
   const rows: string[][] = [];
   let row: string[] = [];
   let field = "";

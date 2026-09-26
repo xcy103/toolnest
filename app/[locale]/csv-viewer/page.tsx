@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import { ConvertError, type Delimiter } from "@/lib/csv";
@@ -32,6 +32,13 @@ export default function CsvViewerPage() {
   const [sort, setSort] = useState<{ column: number; direction: "asc" | "desc" } | null>(null);
   const [page, setPage] = useState(1);
   const [fileError, setFileError] = useState<ViewerError>(null);
+  const sourceVersion = useRef(0);
+  const [readingFile, setReadingFile] = useState(false);
+
+  function cancelFileRead() {
+    sourceVersion.current += 1;
+    setReadingFile(false);
+  }
 
   const parsed = useMemo(() => {
     if (!input.trim()) return { table: null, error: null as ViewerError };
@@ -76,18 +83,25 @@ export default function CsvViewerPage() {
 
   async function loadFile(file?: File) {
     if (!file) return;
+    const version = ++sourceVersion.current;
+    setReadingFile(false);
     setFileError(null);
     if (file.size > CSV_TABLE_LIMITS.bytes) {
       setFileError({ key: "csvTooLarge", values: { max: CSV_TABLE_LIMITS.bytes / 1024 / 1024 } });
       return;
     }
+    setReadingFile(true);
     try {
-      setInput(await file.text());
+      const text = await file.text();
+      if (version !== sourceVersion.current) return;
+      setInput(text);
       setFileName(file.name);
       clearSearches();
       resetView();
     } catch {
-      setFileError({ key: "fileRead" });
+      if (version === sourceVersion.current) setFileError({ key: "fileRead" });
+    } finally {
+      if (version === sourceVersion.current) setReadingFile(false);
     }
   }
 
@@ -100,7 +114,7 @@ export default function CsvViewerPage() {
 
   return (
     <ToolLayout title={t("tools.csv-viewer.name")} description={t("csvViewerPage.description")} icon="▦">
-      <ToolPanel label={t("csvViewerPage.source")} action={input && <button type="button" onClick={() => { setInput(""); setFileName(""); setFileError(null); clearSearches(); resetView(); }} className="text-sm text-muted hover:text-foreground">{t("common.clear")}</button>}>
+      <ToolPanel label={t("csvViewerPage.source")} action={(input || readingFile || fileError) && <button type="button" onClick={() => { cancelFileRead(); setInput(""); setFileName(""); setFileError(null); clearSearches(); resetView(); }} className="text-sm text-muted hover:text-foreground">{t("common.clear")}</button>}>
         <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border p-5 text-center transition hover:border-emerald-500/50 hover:bg-foreground/5">
           <span aria-hidden className="text-2xl">↥</span>
           <span className="text-sm font-medium text-foreground/80">{fileName || t("csvViewerPage.openFile")}</span>
@@ -109,7 +123,7 @@ export default function CsvViewerPage() {
         </label>
 
         <div className="my-4 flex items-center gap-3 text-xs text-muted"><span className="h-px flex-1 bg-border" /><span>{t("csvViewerPage.orPaste")}</span><span className="h-px flex-1 bg-border" /></div>
-        <textarea value={input} onChange={(event) => { setInput(event.target.value); setFileName(""); setFileError(null); resetView(); }} rows={6} spellCheck={false} placeholder={t("csvViewerPage.placeholder")} className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500" />
+        <textarea value={input} onChange={(event) => { cancelFileRead(); setInput(event.target.value); setFileName(""); setFileError(null); resetView(); }} rows={6} spellCheck={false} placeholder={t("csvViewerPage.placeholder")} className="w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500" />
         <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
           <label className="flex items-center gap-2 text-muted">{t("csvViewerPage.delimiter")}
             <select value={delimiter} onChange={(event) => { setDelimiter(event.target.value as Delimiter); resetView(); }} className="rounded-lg border border-border bg-background p-2 text-foreground outline-none focus:border-emerald-500">
@@ -117,7 +131,7 @@ export default function CsvViewerPage() {
             </select>
           </label>
           <label className="flex items-center gap-2"><input type="checkbox" checked={header} onChange={(event) => { setHeader(event.target.checked); resetView(); }} className="h-4 w-4 accent-emerald-500" />{t("csvViewerPage.header")}</label>
-          <button type="button" onClick={() => { setInput(EXAMPLE); setFileName(""); setFileError(null); setDelimiter(","); setHeader(true); clearSearches(); resetView(); }} className="text-muted hover:text-foreground">{t("csvViewerPage.example")}</button>
+          <button type="button" onClick={() => { cancelFileRead(); setInput(EXAMPLE); setFileName(""); setFileError(null); setDelimiter(","); setHeader(true); clearSearches(); resetView(); }} className="text-muted hover:text-foreground">{t("csvViewerPage.example")}</button>
         </div>
       </ToolPanel>
 

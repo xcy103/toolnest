@@ -4,6 +4,19 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("accepts a leading BOM without stripping BOMs inside cells", () => {
+  assert.deepEqual(parseCsv('\uFEFF"name,tag",value\r\nAda,2', ","), [
+    ["name,tag", "value"], ["Ada", "2"],
+  ]);
+  assert.deepEqual(parseCsv('name,note\nAda,"x\uFEFFy"', ","), [
+    ["name", "note"], ["Ada", "x\uFEFFy"],
+  ]);
+  assert.deepEqual(parseCsv("\uFEFF", ","), []);
+  assert.deepEqual(csvToJson('\uFEFF"name,tag",value\nAda,2', opts), [
+    { "name,tag": "Ada", value: 2 },
+  ]);
+});
+
 /** Assert that `fn` fails with a specific error identifier. */
 function failsWith(fn: () => unknown, key: string) {
   assert.throws(
