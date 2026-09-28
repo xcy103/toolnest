@@ -268,6 +268,10 @@
       "name": "Slug Generator",
       "description": "Turn titles into readable URL path segments."
     },
+    "url-parser": {
+      "name": "URL Parser",
+      "description": "Inspect URL components and decoded query parameters."
+    },
     "base-converter": {
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
@@ -1123,6 +1127,40 @@
       "date": "Choose a valid starting date to see the result.",
       "amount": "Enter a whole number from 0 to 9,999.",
       "range": "That calculation falls outside the supported years 0001–9999."
+    }
+  },
+  "urlParserPage": {
+    "description": "Inspect a URL locally, without opening it. Repeated query parameters keep their order; path and fragment values keep their URL encoding.",
+    "input": "URL",
+    "placeholder": "https://example.com/path?tag=one&tag=two#section",
+    "base": "Base URL (optional, for relative paths)",
+    "example": "Load example",
+    "normalized": "Normalized URL",
+    "components": "Components",
+    "parameters": "Decoded query parameters",
+    "count": "{count, plural, one {# parameter} other {# parameters}}",
+    "key": "Key",
+    "value": "Value",
+    "empty": "Empty",
+    "absent": "None",
+    "noParameters": "No query parameters.",
+    "fields": {
+      "protocol": "Protocol",
+      "origin": "Origin",
+      "hostname": "Hostname",
+      "port": "Explicit port",
+      "pathname": "Path",
+      "search": "Raw query",
+      "hash": "Fragment",
+      "username": "Username",
+      "password": "Password"
+    },
+    "errors": {
+      "empty": "Enter a URL.",
+      "tooLong": "Limit each URL to {characters} characters.",
+      "base": "Enter an absolute HTTP, HTTPS, FTP, WS, WSS or file base URL.",
+      "invalid": "Enter a valid absolute URL, or add a base URL for a relative path.",
+      "parameters": "This URL exceeds the limit of {parameters} query parameters."
     }
   },
   "meetingPlannerPage": {

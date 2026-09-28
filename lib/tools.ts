@@ -56,6 +56,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "url-parser",
+    href: "/url-parser",
+    icon: "↗",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "json-csv",
     href: "/json-csv",
     icon: "🧾",
