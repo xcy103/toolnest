@@ -272,6 +272,10 @@
       "name": "URL 解析器",
       "description": "查看 URL 的各个组成部分及解码后的查询参数。"
     },
+    "utm-builder": {
+      "name": "UTM 链接生成器",
+      "description": "为链接添加营销活动追踪参数。"
+    },
     "base-converter": {
       "name": "进制转换",
       "description": "在二进制、八进制、十进制、十六进制之间互转。"
@@ -1127,6 +1131,38 @@
       "date": "请选择有效的起始日期以查看结果。",
       "amount": "请输入 0 到 9,999 之间的整数。",
       "range": "计算结果超出支持的 0001–9999 年范围。"
+    }
+  },
+  "utmBuilderPage": {
+    "description": "在本地生成营销活动 URL,保留无关查询参数和片段。链接不会被打开或发送到任何地方。",
+    "destination": "目标 URL",
+    "example": "载入示例",
+    "campaignDetails": "活动信息",
+    "generated": "生成的活动 URL",
+    "requiredHint": "来源、媒介和活动名称为必填项。可选字段留空时,将删除目标 URL 中对应的 UTM 参数。",
+    "privacy": "全部在本地生成。ToolNest 不会打开、测试或追踪此链接。",
+    "fields": {
+      "source": "活动来源",
+      "medium": "活动媒介",
+      "campaign": "活动名称",
+      "term": "活动关键词(可选)",
+      "content": "活动内容(可选)"
+    },
+    "placeholders": {
+      "source": "newsletter",
+      "medium": "email",
+      "campaign": "fall launch",
+      "term": "running shoes",
+      "content": "hero button"
+    },
+    "errors": {
+      "urlRequired": "请输入目标 URL。",
+      "urlTooLong": "目标 URL 不得超过 {urlCharacters} 个字符。",
+      "invalidUrl": "请输入包含 http:// 或 https:// 的完整有效 URL。",
+      "protocol": "目标 URL 必须使用 HTTP 或 HTTPS。",
+      "required": "请填写来源、媒介和活动名称。",
+      "fieldTooLong": "每个活动字段不得超过 {fieldCharacters} 个字符。",
+      "parameters": "生成的链接不得超过 {parameters} 个查询参数。"
     }
   },
   "urlParserPage": {

@@ -272,6 +272,10 @@
       "name": "URL Parser",
       "description": "Inspect URL components and decoded query parameters."
     },
+    "utm-builder": {
+      "name": "UTM Link Builder",
+      "description": "Add campaign tracking parameters to a link."
+    },
     "base-converter": {
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
@@ -1127,6 +1131,38 @@
       "date": "Choose a valid starting date to see the result.",
       "amount": "Enter a whole number from 0 to 9,999.",
       "range": "That calculation falls outside the supported years 0001–9999."
+    }
+  },
+  "utmBuilderPage": {
+    "description": "Build a campaign URL locally while preserving unrelated query parameters and the fragment. The link is never opened or sent anywhere.",
+    "destination": "Destination URL",
+    "example": "Load example",
+    "campaignDetails": "Campaign details",
+    "generated": "Generated campaign URL",
+    "requiredHint": "Source, medium and campaign are required. Optional blank fields remove matching UTM parameters already in the destination URL.",
+    "privacy": "Generated locally. ToolNest does not open, test or track this link.",
+    "fields": {
+      "source": "Campaign source",
+      "medium": "Campaign medium",
+      "campaign": "Campaign name",
+      "term": "Campaign term (optional)",
+      "content": "Campaign content (optional)"
+    },
+    "placeholders": {
+      "source": "newsletter",
+      "medium": "email",
+      "campaign": "fall launch",
+      "term": "running shoes",
+      "content": "hero button"
+    },
+    "errors": {
+      "urlRequired": "Enter a destination URL.",
+      "urlTooLong": "The destination URL cannot exceed {urlCharacters} characters.",
+      "invalidUrl": "Enter a complete, valid destination URL including http:// or https://.",
+      "protocol": "The destination must use HTTP or HTTPS.",
+      "required": "Complete the source, medium and campaign fields.",
+      "fieldTooLong": "Each campaign field is limited to {fieldCharacters} characters.",
+      "parameters": "The generated link cannot exceed {parameters} query parameters."
     }
   },
   "urlParserPage": {

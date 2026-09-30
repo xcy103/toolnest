@@ -63,6 +63,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "utm-builder",
+    href: "/utm-builder",
+    icon: "↗",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "json-csv",
     href: "/json-csv",
     icon: "🧾",
