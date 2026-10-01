@@ -188,6 +188,10 @@
       "name": "JSON ↔ CSV 转换",
       "description": "JSON 与 CSV 表格互相转换。"
     },
+    "json-flatten": {
+      "name": "JSON 扁平化 / 还原",
+      "description": "将嵌套 JSON 转换为可无损还原的 JSON Pointer 映射。"
+    },
     "csv-viewer": {
       "name": "CSV 表格查看器",
       "description": "在本地打开、搜索、筛选和排序 CSV 文件。"
@@ -1131,6 +1135,30 @@
       "date": "请选择有效的起始日期以查看结果。",
       "amount": "请输入 0 到 9,999 之间的整数。",
       "range": "计算结果超出支持的 0001–9999 年范围。"
+    }
+  },
+  "jsonFlattenPage": {
+    "description": "将嵌套 JSON 扁平化为可无损还原的 JSON Pointer 映射,或重建原始结构。数组、空容器和转义键都能保持区别。",
+    "mode": "转换方向",
+    "modes": { "flatten": "扁平化", "unflatten": "还原" },
+    "input": { "flatten": "嵌套 JSON", "unflatten": "JSON Pointer 映射" },
+    "output": { "flatten": "扁平化映射", "unflatten": "重建的 JSON" },
+    "placeholders": { "flatten": "粘贴嵌套 JSON…", "unflatten": "粘贴以 JSON Pointer 为键的映射…" },
+    "example": "载入示例",
+    "rule": "空 Pointer 代表根节点。空对象和空数组值用作结构标记,因此数字对象键与数组不会混淆。",
+    "errors": {
+      "syntax": "请输入有效的 JSON。",
+      "tooLarge": "输入不得超过 {characters} 个字符。",
+      "tooDeep": "JSON 嵌套不得超过 {depth} 层。",
+      "tooMany": "扁平化映射不得超过 {entries} 项。",
+      "flatRoot": "扁平化输入必须是以 JSON Pointer 为键的 JSON 对象。",
+      "rootMissing": "扁平化映射必须包含空的根 Pointer \"\"。",
+      "pointer": "每个键都必须是有效且规范的 JSON Pointer。",
+      "marker": "扁平化映射中的对象和数组值必须是空的结构标记。",
+      "parent": "某条路径缺少父容器标记。",
+      "arrayIndex": "数组子路径必须使用规范的非负整数索引。",
+      "arrayGap": "数组索引必须从 0 开始连续且没有缺号。",
+      "conflict": "扁平化映射中存在冲突路径。"
     }
   },
   "utmBuilderPage": {

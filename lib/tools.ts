@@ -77,6 +77,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "json-flatten",
+    href: "/json-flatten",
+    icon: "↔",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "csv-viewer",
     href: "/csv-viewer",
     icon: "▦",

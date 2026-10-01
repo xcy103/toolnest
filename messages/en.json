@@ -188,6 +188,10 @@
       "name": "JSON ↔ CSV Converter",
       "description": "Convert JSON to CSV and back."
     },
+    "json-flatten": {
+      "name": "JSON Flatten / Unflatten",
+      "description": "Convert nested JSON to a reversible JSON Pointer map."
+    },
     "csv-viewer": {
       "name": "CSV Table Viewer",
       "description": "Open, search, filter and sort CSV files locally."
@@ -1131,6 +1135,30 @@
       "date": "Choose a valid starting date to see the result.",
       "amount": "Enter a whole number from 0 to 9,999.",
       "range": "That calculation falls outside the supported years 0001–9999."
+    }
+  },
+  "jsonFlattenPage": {
+    "description": "Flatten nested JSON into a reversible JSON Pointer map, or rebuild the original structure. Arrays, empty containers and escaped keys stay distinct.",
+    "mode": "Conversion direction",
+    "modes": { "flatten": "Flatten", "unflatten": "Unflatten" },
+    "input": { "flatten": "Nested JSON", "unflatten": "JSON Pointer map" },
+    "output": { "flatten": "Flattened map", "unflatten": "Rebuilt JSON" },
+    "placeholders": { "flatten": "Paste nested JSON…", "unflatten": "Paste a JSON Pointer-keyed map…" },
+    "example": "Load example",
+    "rule": "The empty pointer represents the root. Empty object and array values are structural markers, which keeps numeric object keys and arrays unambiguous.",
+    "errors": {
+      "syntax": "Enter valid JSON.",
+      "tooLarge": "Input is limited to {characters} characters.",
+      "tooDeep": "JSON nesting cannot exceed {depth} levels.",
+      "tooMany": "The flattened map cannot exceed {entries} entries.",
+      "flatRoot": "The flattened input must be a JSON object keyed by JSON Pointers.",
+      "rootMissing": "The flattened map must include the empty root pointer \"\".",
+      "pointer": "Every key must be a valid, canonical JSON Pointer.",
+      "marker": "Object and array values in a flattened map must be empty structural markers.",
+      "parent": "A path is missing its parent container marker.",
+      "arrayIndex": "Array child paths must use canonical non-negative integer indexes.",
+      "arrayGap": "Array indexes must be continuous from 0 with no gaps.",
+      "conflict": "The flattened map contains conflicting paths."
     }
   },
   "utmBuilderPage": {
