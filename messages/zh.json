@@ -192,6 +192,10 @@
       "name": "JSON 扁平化 / 还原",
       "description": "将嵌套 JSON 转换为可无损还原的 JSON Pointer 映射。"
     },
+    "json-path-explorer": {
+      "name": "JSON 路径浏览器",
+      "description": "以可搜索树浏览 JSON 并复制精确路径。"
+    },
     "csv-viewer": {
       "name": "CSV 表格查看器",
       "description": "在本地打开、搜索、筛选和排序 CSV 文件。"
@@ -1135,6 +1139,31 @@
       "date": "请选择有效的起始日期以查看结果。",
       "amount": "请输入 0 到 9,999 之间的整数。",
       "range": "计算结果超出支持的 0001–9999 年范围。"
+    }
+  },
+  "jsonPathExplorerPage": {
+    "description": "以可折叠树浏览 JSON,搜索对象键名,并复制选中值或规范 JSON Pointer 路径。不会执行表达式或代码。",
+    "input": "JSON 输入",
+    "placeholder": "粘贴要浏览的 JSON…",
+    "example": "载入示例",
+    "tree": "JSON 树",
+    "nodeCount": "{count} 个节点",
+    "search": "搜索对象键名",
+    "searchPlaceholder": "键名…",
+    "expandAll": "全部展开",
+    "collapseAll": "全部收起",
+    "matchCount": "{count} 个匹配键名",
+    "noMatches": "没有匹配此搜索的对象键名。",
+    "selected": "选中节点",
+    "pointer": "JSON Pointer",
+    "type": "类型",
+    "value": "值",
+    "types": { "object": "对象", "array": "数组", "string": "字符串", "number": "数字", "boolean": "布尔值", "null": "Null" },
+    "errors": {
+      "syntax": "请输入有效的 JSON。",
+      "tooLarge": "输入不得超过 {characters} 个字符。",
+      "tooDeep": "JSON 嵌套不得超过 {depth} 层。",
+      "tooMany": "树不得超过 {nodes} 个节点。"
     }
   },
   "jsonFlattenPage": {

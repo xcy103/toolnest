@@ -84,6 +84,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "json-path-explorer",
+    href: "/json-path-explorer",
+    icon: "⌘",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "csv-viewer",
     href: "/csv-viewer",
     icon: "▦",

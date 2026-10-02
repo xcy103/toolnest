@@ -192,6 +192,10 @@
       "name": "JSON Flatten / Unflatten",
       "description": "Convert nested JSON to a reversible JSON Pointer map."
     },
+    "json-path-explorer": {
+      "name": "JSON Path Explorer",
+      "description": "Browse JSON as a searchable tree and copy precise paths."
+    },
     "csv-viewer": {
       "name": "CSV Table Viewer",
       "description": "Open, search, filter and sort CSV files locally."
@@ -1135,6 +1139,31 @@
       "date": "Choose a valid starting date to see the result.",
       "amount": "Enter a whole number from 0 to 9,999.",
       "range": "That calculation falls outside the supported years 0001–9999."
+    }
+  },
+  "jsonPathExplorerPage": {
+    "description": "Browse JSON as a collapsible tree, search object keys, and copy selected values or canonical JSON Pointer paths. No expressions or code are executed.",
+    "input": "JSON input",
+    "placeholder": "Paste JSON to explore…",
+    "example": "Load example",
+    "tree": "JSON tree",
+    "nodeCount": "{count, plural, one {# node} other {# nodes}}",
+    "search": "Search object keys",
+    "searchPlaceholder": "Key name…",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "matchCount": "{count, plural, one {# matching key} other {# matching keys}}",
+    "noMatches": "No object keys match this search.",
+    "selected": "Selected node",
+    "pointer": "JSON Pointer",
+    "type": "Type",
+    "value": "Value",
+    "types": { "object": "Object", "array": "Array", "string": "String", "number": "Number", "boolean": "Boolean", "null": "Null" },
+    "errors": {
+      "syntax": "Enter valid JSON.",
+      "tooLarge": "Input is limited to {characters} characters.",
+      "tooDeep": "JSON nesting cannot exceed {depth} levels.",
+      "tooMany": "The tree cannot exceed {nodes} nodes."
     }
   },
   "jsonFlattenPage": {
