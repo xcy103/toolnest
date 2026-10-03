@@ -180,6 +180,10 @@
       "name": "HTML 实体编解码",
       "description": "转义 HTML 字符,并把实体还原为文本。"
     },
+    "json-string": {
+      "name": "JSON 字符串转义 / 反转义",
+      "description": "将普通文本转为 JSON 字符串字面量,或严格解析回原始文本。"
+    },
     "json": {
       "name": "JSON 工具",
       "description": "JSON 格式化、压缩与语法校验。"
@@ -1164,6 +1168,25 @@
       "tooLarge": "输入不得超过 {characters} 个字符。",
       "tooDeep": "JSON 嵌套不得超过 {depth} 层。",
       "tooMany": "树不得超过 {nodes} 个节点。"
+    }
+  },
+  "jsonStringPage": {
+    "description": "将普通文本转义为完整的 JSON 字符串字面量,或严格解析回原始文本。所有处理均在浏览器本地完成。",
+    "mode": "转换方向",
+    "modes": { "escape": "转义", "unescape": "反转义" },
+    "input": { "escape": "普通文本", "unescape": "JSON 字符串字面量" },
+    "output": { "escape": "JSON 字符串字面量", "unescape": "普通文本" },
+    "placeholders": { "escape": "输入或粘贴普通文本…", "unescape": "粘贴带双引号的 JSON 字符串字面量…" },
+    "hints": {
+      "escape": "引号、反斜杠、制表符、换行和控制字符会被转义,普通 Unicode 字符保持可读。",
+      "unescape": "输入必须是一个完整且带双引号的 JSON 字符串。对象、数组、数字和单引号文本均不接受。"
+    },
+    "example": "载入示例",
+    "rule": "本工具遵循 JSON 字符串语法,不会进行 URL、HTML 或 Base64 编码。",
+    "errors": {
+      "syntax": "请输入有效且带双引号的 JSON 字符串字面量。",
+      "notString": "JSON 值必须是字符串,不能是对象、数组、数字、布尔值或 null。",
+      "tooLarge": "输入不得超过 {characters} 个字符。"
     }
   },
   "jsonFlattenPage": {

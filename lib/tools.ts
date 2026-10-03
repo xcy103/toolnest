@@ -49,6 +49,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "json-string",
+    href: "/json-string",
+    icon: "\\n",
+    categoryKey: "encode",
+    available: true,
+  },
+  {
     slug: "json",
     href: "/json",
     icon: "{ }",

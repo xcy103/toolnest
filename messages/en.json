@@ -180,6 +180,10 @@
       "name": "HTML Entity Encode / Decode",
       "description": "Escape HTML characters and decode entities back to text."
     },
+    "json-string": {
+      "name": "JSON String Escape / Unescape",
+      "description": "Escape plain text as a JSON string literal, or strictly parse a literal back to text."
+    },
     "json": {
       "name": "JSON Tools",
       "description": "Format, minify and validate JSON."
@@ -1164,6 +1168,25 @@
       "tooLarge": "Input is limited to {characters} characters.",
       "tooDeep": "JSON nesting cannot exceed {depth} levels.",
       "tooMany": "The tree cannot exceed {nodes} nodes."
+    }
+  },
+  "jsonStringPage": {
+    "description": "Escape plain text as a complete JSON string literal, or strictly parse a literal back to its original text. Everything runs locally in your browser.",
+    "mode": "Conversion direction",
+    "modes": { "escape": "Escape", "unescape": "Unescape" },
+    "input": { "escape": "Plain text", "unescape": "JSON string literal" },
+    "output": { "escape": "JSON string literal", "unescape": "Plain text" },
+    "placeholders": { "escape": "Type or paste plain text…", "unescape": "Paste a quoted JSON string literal…" },
+    "hints": {
+      "escape": "Quotes, backslashes, tabs, newlines and control characters are escaped. Regular Unicode remains readable.",
+      "unescape": "Input must be one complete, double-quoted JSON string. Objects, arrays, numbers and single-quoted text are rejected."
+    },
+    "example": "Load example",
+    "rule": "This tool follows JSON string syntax. It does not apply URL, HTML or Base64 encoding.",
+    "errors": {
+      "syntax": "Enter a valid, double-quoted JSON string literal.",
+      "notString": "The JSON value must be a string, not an object, array, number, boolean or null.",
+      "tooLarge": "Input is limited to {characters} characters."
     }
   },
   "jsonFlattenPage": {
