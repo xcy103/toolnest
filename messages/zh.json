@@ -292,6 +292,10 @@
       "name": "进制转换",
       "description": "在二进制、八进制、十进制、十六进制之间互转。"
     },
+    "px-rem": {
+      "name": "PX / REM 转换器",
+      "description": "在像素与 rem 单位之间转换 CSS 长度数值。"
+    },
     "world-clock": {
       "name": "世界时钟",
       "description": "一眼查看全球主要城市的当前时间。"
@@ -664,6 +668,32 @@
     "customLabel": "自定义进制 ({base})",
     "placeholder": "输入一个数值…",
     "error": "不是有效的 {base} 进制数字。"
+  },
+  "pxRemPage": {
+    "description": "按照自定义根字号在 px 与 rem 之间转换 CSS 长度数值。支持单值或有数量上限的列表,全部在浏览器本地完成。",
+    "direction": "转换方向",
+    "directions": { "pxToRem": "PX → REM", "remToPx": "REM → PX" },
+    "inputMode": "输入模式",
+    "modes": { "single": "单个", "list": "列表" },
+    "rootSize": "根字号",
+    "rootHint": "请输入大于 0 且不超过 {root}px 的根字号。浏览器通常默认为 16px,但实际设计页面可能不同。",
+    "input": { "single": "{unit} 数值", "list": "{unit} 数值列表" },
+    "output": { "single": "转换后的 {unit} 数值", "list": "转换后的 {unit} 数值列表" },
+    "placeholders": { "single": "输入一个数值…", "list": "每行输入一个数值…" },
+    "hints": {
+      "single": "请输入 -{value} 到 {value} 之间的纯数字,不解析单位后缀或 CSS 表达式。",
+      "list": "每行输入一个纯数字,最多 {items} 个;空白行会原样保留。"
+    },
+    "example": "载入示例",
+    "converted": "已转换 {count} 个数值。",
+    "rule": "结果最多保留 10 位小数,并省略不必要的末尾零。",
+    "errors": {
+      "root": "根字号必须是大于 0 且不超过 {root}px 的纯数字。",
+      "value": "请输入 -{value} 到 {value} 之间的纯数字,不含单位或 CSS 表达式。",
+      "lineValue": "第 {line} 行必须是 -{value} 到 {value} 之间的纯数字。",
+      "tooMany": "列表模式最多接受 {items} 个非空数值。",
+      "tooLarge": "输入不得超过 {characters} 个字符。"
+    }
   },
   "worldClockPage": {
     "description": "全球主要城市的当前时间,实时更新。所有时间在浏览器本地计算。",

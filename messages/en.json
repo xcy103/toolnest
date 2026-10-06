@@ -292,6 +292,10 @@
       "name": "Number Base Converter",
       "description": "Convert numbers between binary, octal, decimal and hex."
     },
+    "px-rem": {
+      "name": "PX / REM Converter",
+      "description": "Convert CSS length values between pixels and rem units."
+    },
     "world-clock": {
       "name": "World Clock",
       "description": "See the current time in cities around the world at a glance."
@@ -664,6 +668,32 @@
     "customLabel": "Custom base ({base})",
     "placeholder": "Enter a value…",
     "error": "Invalid digits for base {base}."
+  },
+  "pxRemPage": {
+    "description": "Convert numeric CSS lengths between px and rem with your chosen root font size. Supports one value or a bounded list, entirely in your browser.",
+    "direction": "Conversion direction",
+    "directions": { "pxToRem": "PX → REM", "remToPx": "REM → PX" },
+    "inputMode": "Input mode",
+    "modes": { "single": "Single", "list": "List" },
+    "rootSize": "Root font size",
+    "rootHint": "Use a positive root size up to {root}px. Browsers commonly default to 16px, but the page you are designing may differ.",
+    "input": { "single": "{unit} value", "list": "{unit} values" },
+    "output": { "single": "Converted {unit} value", "list": "Converted {unit} values" },
+    "placeholders": { "single": "Enter a numeric value…", "list": "Enter one numeric value per line…" },
+    "hints": {
+      "single": "Enter a plain number from -{value} to {value}. Unit suffixes and CSS expressions are not parsed.",
+      "list": "Enter one plain number per line, up to {items} values. Blank lines are preserved."
+    },
+    "example": "Load example",
+    "converted": "Converted {count, plural, one {# value} other {# values}}.",
+    "rule": "Results use up to 10 decimal places and omit unnecessary trailing zeroes.",
+    "errors": {
+      "root": "Root font size must be a plain number greater than 0 and no more than {root}px.",
+      "value": "Enter a plain number from -{value} to {value}, without a unit or CSS expression.",
+      "lineValue": "Line {line} must be a plain number from -{value} to {value}.",
+      "tooMany": "List mode accepts up to {items} nonblank values.",
+      "tooLarge": "Input is limited to {characters} characters."
+    }
   },
   "worldClockPage": {
     "description": "The current time in cities around the world, updating live. Times are computed locally in your browser.",

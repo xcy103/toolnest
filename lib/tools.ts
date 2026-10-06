@@ -245,6 +245,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "px-rem",
+    href: "/px-rem",
+    icon: "px",
+    categoryKey: "dev",
+    available: true,
+  },
+  {
     slug: "world-clock",
     href: "/world-clock",
     icon: "🌍",
