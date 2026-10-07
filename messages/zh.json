@@ -391,6 +391,10 @@
     "gradient": {
       "name": "渐变生成",
       "description": "可视化生成 CSS 渐变并复制代码。"
+    },
+    "box-shadow": {
+      "name": "CSS 盒阴影生成器",
+      "description": "通过实时预览设计多层 CSS 盒阴影。"
     }
   },
   "base64Page": {
@@ -872,6 +876,27 @@
     "addStop": "添加色标",
     "removeStop": "删除色标",
     "cssLabel": "CSS"
+  },
+  "boxShadowPage": {
+    "description": "设计最多三层 CSS box-shadow,可控制偏移、模糊、扩散、颜色、透明度和内阴影,并在本地实时预览与复制。",
+    "preview": "实时预览",
+    "layers": "阴影层",
+    "layer": "第 {number} 层",
+    "addLayer": "添加阴影层",
+    "removeLayer": "删除选中层",
+    "example": "载入示例",
+    "numberInput": "数值输入",
+    "controls": {
+      "x": "水平偏移",
+      "y": "垂直偏移",
+      "blur": "模糊半径",
+      "spread": "扩散半径",
+      "opacity": "透明度",
+      "color": "颜色",
+      "inset": "内阴影"
+    },
+    "css": "CSS",
+    "layerCount": "已使用 {count}/{max} 层。"
   },
   "contrastPage": {
     "description": "检查文字颜色与背景色之间的 WCAG 对比度,并给出 AA、AAA 是否达标。在浏览器本地计算。",

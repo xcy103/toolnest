@@ -371,6 +371,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "box-shadow",
+    href: "/box-shadow",
+    icon: "▣",
+    categoryKey: "color",
+    available: true,
+  },
+  {
     slug: "image-compressor",
     href: "/image-compressor",
     icon: "🖼️",

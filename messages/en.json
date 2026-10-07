@@ -391,6 +391,10 @@
     "gradient": {
       "name": "Gradient Generator",
       "description": "Build a CSS gradient visually and copy the code."
+    },
+    "box-shadow": {
+      "name": "CSS Box Shadow Generator",
+      "description": "Design layered CSS box shadows with a live preview."
     }
   },
   "base64Page": {
@@ -872,6 +876,27 @@
     "addStop": "Add stop",
     "removeStop": "Remove stop",
     "cssLabel": "CSS"
+  },
+  "boxShadowPage": {
+    "description": "Design up to three CSS box-shadow layers with controlled offsets, blur, spread, color, opacity and inset. Preview and copy the result locally.",
+    "preview": "Preview",
+    "layers": "Shadow layers",
+    "layer": "Layer {number}",
+    "addLayer": "Add shadow layer",
+    "removeLayer": "Remove selected layer",
+    "example": "Load example",
+    "numberInput": "numeric input",
+    "controls": {
+      "x": "Horizontal offset",
+      "y": "Vertical offset",
+      "blur": "Blur radius",
+      "spread": "Spread radius",
+      "opacity": "Opacity",
+      "color": "Color",
+      "inset": "Inset shadow"
+    },
+    "css": "CSS",
+    "layerCount": "{count, plural, one {# of {max} layer} other {# of {max} layers}} in use."
   },
   "contrastPage": {
     "description": "Check the WCAG contrast ratio between a text color and its background, with pass/fail for AA and AAA. Computed locally in your browser.",
