@@ -392,6 +392,10 @@
       "name": "渐变生成",
       "description": "可视化生成 CSS 渐变并复制代码。"
     },
+    "border-radius": {
+      "name": "CSS 圆角生成器",
+      "description": "调整四角半径并复制 CSS 简写。"
+    },
     "box-shadow": {
       "name": "CSS 盒阴影生成器",
       "description": "通过实时预览设计多层 CSS 盒阴影。"
@@ -876,6 +880,19 @@
     "addStop": "添加色标",
     "removeStop": "删除色标",
     "cssLabel": "CSS"
+  },
+  "borderRadiusPage": {
+    "description": "使用像素或百分比调整四角半径,实时预览效果。",
+    "preview": "实时预览",
+    "corners": "圆角半径",
+    "example": "载入示例",
+    "linked": "联动所有圆角",
+    "unit": "单位",
+    "number": "数值输入",
+    "topLeft": "左上角",
+    "topRight": "右上角",
+    "bottomRight": "右下角",
+    "bottomLeft": "左下角"
   },
   "boxShadowPage": {
     "description": "设计最多三层 CSS box-shadow,可控制偏移、模糊、扩散、颜色、透明度和内阴影,并在本地实时预览与复制。",

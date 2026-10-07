@@ -378,6 +378,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "border-radius",
+    href: "/border-radius",
+    icon: "◩",
+    categoryKey: "color",
+    available: true,
+  },
+  {
     slug: "image-compressor",
     href: "/image-compressor",
     icon: "🖼️",

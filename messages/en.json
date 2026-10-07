@@ -392,6 +392,10 @@
       "name": "Gradient Generator",
       "description": "Build a CSS gradient visually and copy the code."
     },
+    "border-radius": {
+      "name": "CSS Border Radius Generator",
+      "description": "Adjust four corner radii and copy CSS shorthand."
+    },
     "box-shadow": {
       "name": "CSS Box Shadow Generator",
       "description": "Design layered CSS box shadows with a live preview."
@@ -876,6 +880,19 @@
     "addStop": "Add stop",
     "removeStop": "Remove stop",
     "cssLabel": "CSS"
+  },
+  "borderRadiusPage": {
+    "description": "Adjust corner radii in pixels or percentages with a live preview.",
+    "preview": "Preview",
+    "corners": "Corner radii",
+    "example": "Load example",
+    "linked": "Link all corners",
+    "unit": "Unit",
+    "number": "numeric input",
+    "topLeft": "Top left",
+    "topRight": "Top right",
+    "bottomRight": "Bottom right",
+    "bottomLeft": "Bottom left"
   },
   "boxShadowPage": {
     "description": "Design up to three CSS box-shadow layers with controlled offsets, blur, spread, color, opacity and inset. Preview and copy the result locally.",
