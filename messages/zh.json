@@ -228,6 +228,10 @@
       "name": "单位换算",
       "description": "在长度、质量、温度等单位之间换算。"
     },
+    "aspect-ratio": {
+      "name": "宽高比计算器",
+      "description": "将宽高约分为比例,或计算缺失尺寸。"
+    },
     "percentage-calculator": {
       "name": "百分比计算器",
       "description": "计算百分数、占比与百分比变化。"
@@ -734,6 +738,26 @@
       "speed": "速度",
       "data": "数据"
     }
+  },
+  "aspectRatioPage": {
+    "description": "将整数尺寸约分为宽高比,或按指定取整方式计算缺失尺寸。",
+    "reduce": "约分比例",
+    "solve": "计算缺失尺寸",
+    "inputs": "尺寸",
+    "width": "宽度",
+    "height": "高度",
+    "ratio": "宽:高比例",
+    "ratioWidth": "比例宽度",
+    "ratioHeight": "比例高度",
+    "custom": "自定义",
+    "knownSide": "已知尺寸方向",
+    "known": "已知尺寸数值",
+    "rounding": "整数取整",
+    "roundings": { "nearest": "四舍五入", "floor": "向下取整", "ceil": "向上取整" },
+    "detail": "取整前:约 {value}(最多 6 位小数)。精确分数:{fraction}。",
+    "example": "载入示例",
+    "inputError": "请在每个必填项输入 1 至 1,000,000 之间的整数。",
+    "resultError": "计算后的尺寸超过 1,000,000,000。"
   },
   "percentageCalculatorPage": {
     "description": "解决常见百分比问题:求一个数的百分之几、计算占比或百分比变化。全部在浏览器本地完成。",

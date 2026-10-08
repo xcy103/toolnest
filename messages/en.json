@@ -228,6 +228,10 @@
       "name": "Unit Converter",
       "description": "Convert between length, mass, temperature and more."
     },
+    "aspect-ratio": {
+      "name": "Aspect Ratio Calculator",
+      "description": "Reduce width and height to a ratio or calculate a missing dimension."
+    },
     "percentage-calculator": {
       "name": "Percentage Calculator",
       "description": "Calculate percentages, ratios and percentage change."
@@ -734,6 +738,26 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "aspectRatioPage": {
+    "description": "Reduce integer dimensions to a width:height ratio, or find a missing dimension with explicit rounding.",
+    "reduce": "Reduce ratio",
+    "solve": "Missing dimension",
+    "inputs": "Dimensions",
+    "width": "Width",
+    "height": "Height",
+    "ratio": "Width:height ratio",
+    "ratioWidth": "Ratio width",
+    "ratioHeight": "Ratio height",
+    "custom": "Custom",
+    "knownSide": "Known dimension",
+    "known": "Known size",
+    "rounding": "Integer rounding",
+    "roundings": { "nearest": "Nearest (halves up)", "floor": "Round down", "ceil": "Round up" },
+    "detail": "Before rounding: ≈ {value} (up to 6 decimals). Exact fraction: {fraction}.",
+    "example": "Load example",
+    "inputError": "Enter whole numbers from 1 to 1,000,000 in every required field.",
+    "resultError": "The calculated dimension exceeds 1,000,000,000."
   },
   "percentageCalculatorPage": {
     "description": "Solve common percentage questions: find a percentage of a number, compare two values, or calculate percentage change. Everything runs locally.",

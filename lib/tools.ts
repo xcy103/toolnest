@@ -147,6 +147,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "aspect-ratio",
+    href: "/aspect-ratio",
+    icon: "W:H",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
     slug: "percentage-calculator",
     href: "/percentage-calculator",
     icon: "%",
