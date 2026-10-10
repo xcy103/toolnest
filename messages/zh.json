@@ -228,6 +228,10 @@
       "name": "单位换算",
       "description": "在长度、质量、温度等单位之间换算。"
     },
+    "duration": {
+      "name": "时长计算器",
+      "description": "时长相加或相减，并将总时长转换为秒、分钟和小时。"
+    },
     "aspect-ratio": {
       "name": "宽高比计算器",
       "description": "将宽高约分为比例,或计算缺失尺寸。"
@@ -738,6 +742,21 @@
       "speed": "速度",
       "data": "数据"
     }
+  },
+  "durationPage": {
+    "description": "计算 HH:MM:SS 时长的和或差，支持超过 24 小时的结果。",
+    "add": "相加",
+    "subtract": "相减",
+    "inputs": "时长",
+    "first": "时长 A",
+    "second": "时长 B",
+    "result": "总时长",
+    "seconds": "秒",
+    "minutes": "分钟",
+    "hours": "小时",
+    "example": "载入示例",
+    "precision": "小数转换最多保留 6 位小数，总秒数为精确值。",
+    "error": "请将两个时长输入为 HH:MM:SS。小时为 0 至 999999，分钟和秒为 00 至 59。输入不可为负数。"
   },
   "aspectRatioPage": {
     "description": "将整数尺寸约分为宽高比,或按指定取整方式计算缺失尺寸。",

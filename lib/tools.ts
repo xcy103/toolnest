@@ -147,6 +147,13 @@ export const tools: Tool[] = [
     available: true,
   },
   {
+    slug: "duration",
+    href: "/duration",
+    icon: "H:M:S",
+    categoryKey: "calc",
+    available: true,
+  },
+  {
     slug: "aspect-ratio",
     href: "/aspect-ratio",
     icon: "W:H",

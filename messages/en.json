@@ -228,6 +228,10 @@
       "name": "Unit Converter",
       "description": "Convert between length, mass, temperature and more."
     },
+    "duration": {
+      "name": "Duration Calculator",
+      "description": "Add or subtract durations and convert totals to seconds, minutes and hours."
+    },
     "aspect-ratio": {
       "name": "Aspect Ratio Calculator",
       "description": "Reduce width and height to a ratio or calculate a missing dimension."
@@ -738,6 +742,21 @@
       "speed": "Speed",
       "data": "Data"
     }
+  },
+  "durationPage": {
+    "description": "Add or subtract HH:MM:SS durations, including totals longer than 24 hours.",
+    "add": "Add",
+    "subtract": "Subtract",
+    "inputs": "Durations",
+    "first": "Duration A",
+    "second": "Duration B",
+    "result": "Total duration",
+    "seconds": "Seconds",
+    "minutes": "Minutes",
+    "hours": "Hours",
+    "example": "Load example",
+    "precision": "Decimal conversions are rounded to at most 6 places; total seconds are exact.",
+    "error": "Enter both durations as HH:MM:SS. Hours: 0–999999; minutes and seconds: 00–59. Inputs must be nonnegative."
   },
   "aspectRatioPage": {
     "description": "Reduce integer dimensions to a width:height ratio, or find a missing dimension with explicit rounding.",
