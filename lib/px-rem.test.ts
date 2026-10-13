@@ -9,6 +9,17 @@ import {
   PxRemError,
 } from "./px-rem.ts";
 
+test("rejects conversion overflow and keeps the output boundary copyable", () => {
+  for (const root of ["0.0000000000001", "0." + "0".repeat(309) + "1"]) {
+    assert.throws(() => convertPxRemInput("1", "pxToRem", root, false),
+      (error) => error instanceof PxRemError && error.key === "result");
+  }
+  assert.equal(convertPxRemInput("1000000000", "remToPx", "1000", false).output, "1000000000000px");
+  assert.equal(convertPxRemInput("-1", "pxToRem", "0.000000000001", false).output, "-1000000000000rem");
+  assert.throws(() => convertPxRemInput("0\n1", "pxToRem", "0.0000000000001", true),
+    (error) => error instanceof PxRemError && error.key === "result" && error.line === 2);
+});
+
 test("converts values in both directions with a configurable root", () => {
   assert.equal(convertPxRemValue(24, "pxToRem", 16), 1.5);
   assert.equal(convertPxRemValue(1.5, "remToPx", 20), 30);

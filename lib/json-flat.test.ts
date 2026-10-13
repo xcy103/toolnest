@@ -6,6 +6,14 @@ function fails(fn: () => unknown, key: string) {
   assert.throws(fn, (error: unknown) => error instanceof JsonFlatError && error.key === key);
 }
 
+test("rejects nonfinite numbers instead of silently serializing them as null", () => {
+  for (const text of ["1e400", '{"nested":[-1e400]}']) fails(() => flattenJsonText(text), "number");
+  for (const text of ['{"":1e400}', '{"":{},"/n":-1e400}']) fails(() => unflattenJsonText(text), "number");
+  fails(() => flattenJson({ n: NaN }), "number");
+  fails(() => unflattenJson({ "": Infinity }), "number");
+  assert.equal(JSON.parse(flattenJsonText("1e308"))[""], 1e308);
+});
+
 test("flattens with JSON Pointer escaping and explicit container markers", () => {
   const value = { "a/b": { "~key": [1, { "": true }] }, emptyObject: {}, emptyArray: [] };
   assert.deepEqual({ ...flattenJson(value) }, {

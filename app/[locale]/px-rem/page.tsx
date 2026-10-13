@@ -51,6 +51,9 @@ export default function PxRemPage() {
   const outputLabel = t(`pxRemPage.output.${inputMode}`, { unit: toUnit });
 
   function errorMessage(error: PxRemError) {
+    if (error.key === "result" && error.line) {
+      return t("pxRemPage.errors.lineResult", { line: error.line, result: PX_REM_LIMITS.result });
+    }
     if (error.key === "value" && error.line) {
       return t("pxRemPage.errors.lineValue", { line: error.line, value: PX_REM_LIMITS.value });
     }

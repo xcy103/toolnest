@@ -704,6 +704,8 @@
     "converted": "已转换 {count} 个数值。",
     "rule": "结果最多保留 10 位小数,并省略不必要的末尾零。",
     "errors": {
+      "result": "转换结果须在 -{result} 至 {result} 之间。请调整根字号或减小输入值。",
+      "lineResult": "第 {line} 行的转换结果超出 -{result} 至 {result} 的范围。",
       "root": "根字号必须是大于 0 且不超过 {root}px 的纯数字。",
       "value": "请输入 -{value} 到 {value} 之间的纯数字,不含单位或 CSS 表达式。",
       "lineValue": "第 {line} 行必须是 -{value} 到 {value} 之间的纯数字。",
@@ -1279,6 +1281,7 @@
     "value": "值",
     "types": { "object": "对象", "array": "数组", "string": "字符串", "number": "数字", "boolean": "布尔值", "null": "Null" },
     "errors": {
+      "number": "JSON 中的数字超出浏览器支持的有限数值范围。",
       "syntax": "请输入有效的 JSON。",
       "tooLarge": "输入不得超过 {characters} 个字符。",
       "tooDeep": "JSON 嵌套不得超过 {depth} 层。",
@@ -1314,6 +1317,7 @@
     "example": "载入示例",
     "rule": "空 Pointer 代表根节点。空对象和空数组值用作结构标记,因此数字对象键与数组不会混淆。",
     "errors": {
+      "number": "JSON 中的数字超出浏览器支持的有限数值范围。",
       "syntax": "请输入有效的 JSON。",
       "tooLarge": "输入不得超过 {characters} 个字符。",
       "tooDeep": "JSON 嵌套不得超过 {depth} 层。",

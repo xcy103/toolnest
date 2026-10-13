@@ -6,6 +6,11 @@ function fails(fn: () => unknown, key: string) {
   assert.throws(fn, (error: unknown) => error instanceof JsonPathError && error.key === key);
 }
 
+test("rejects root and nested overflowing numbers before building a misleading tree", () => {
+  for (const text of ["1e400", '{"nested":[-1e400]}']) fails(() => parseJsonTree(text), "number");
+  assert.equal(parseJsonTree("1e308").root.value, 1e308);
+});
+
 test("builds object and array nodes with escaped JSON Pointers", () => {
   const { root, count } = parseJsonTree('{"a/b":{"~key":[true,null]},"":0}');
   assert.equal(count, 6);

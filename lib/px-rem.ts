@@ -3,10 +3,11 @@ export const PX_REM_LIMITS = {
   items: 100,
   root: 1_000,
   value: 1_000_000_000,
+  result: 1_000_000_000_000,
 } as const;
 
 export type PxRemDirection = "pxToRem" | "remToPx";
-export type PxRemErrorKey = "root" | "value" | "tooMany" | "tooLarge";
+export type PxRemErrorKey = "root" | "value" | "result" | "tooMany" | "tooLarge";
 
 export class PxRemError extends Error {
   key: PxRemErrorKey;
@@ -62,7 +63,11 @@ export function convertPxRemInput(
   function convert(raw: string, line?: number): string {
     const value = parseNumber(raw, "value", line);
     if (Math.abs(value) > PX_REM_LIMITS.value) throw new PxRemError("value", line);
-    return `${formatPxRemNumber(convertPxRemValue(value, direction, rootSize))}${unit}`;
+    const converted = convertPxRemValue(value, direction, rootSize);
+    if (!Number.isFinite(converted) || Math.abs(converted) > PX_REM_LIMITS.result) {
+      throw new PxRemError("result", line);
+    }
+    return `${formatPxRemNumber(converted)}${unit}`;
   }
 
   if (!multiple) return { output: convert(input), count: 1 };

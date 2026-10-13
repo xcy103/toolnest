@@ -1,7 +1,7 @@
 export const JSON_FLAT_LIMITS = { characters: 2_000_000, depth: 100, entries: 5_000 };
 
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [key: string]: JsonValue };
-export type JsonFlatErrorKey = "syntax" | "tooLarge" | "tooDeep" | "tooMany" | "flatRoot" | "rootMissing" | "pointer" | "marker" | "parent" | "arrayIndex" | "arrayGap" | "conflict";
+export type JsonFlatErrorKey = "syntax" | "number" | "tooLarge" | "tooDeep" | "tooMany" | "flatRoot" | "rootMissing" | "pointer" | "marker" | "parent" | "arrayIndex" | "arrayGap" | "conflict";
 
 export class JsonFlatError extends Error {
   key: JsonFlatErrorKey;
@@ -43,6 +43,7 @@ function isObject(value: JsonValue): value is { [key: string]: JsonValue } {
 }
 
 function containerFor(value: JsonValue): JsonValue[] | { [key: string]: JsonValue } | null {
+  if (typeof value === "number" && !Number.isFinite(value)) throw new JsonFlatError("number");
   if (Array.isArray(value)) {
     if (value.length) throw new JsonFlatError("marker");
     return [];
@@ -58,6 +59,7 @@ export function flattenJson(value: JsonValue): Record<string, JsonValue> {
   const output: Record<string, JsonValue> = Object.create(null);
   let entries = 0;
   const visit = (current: JsonValue, tokens: string[], depth: number) => {
+    if (typeof current === "number" && !Number.isFinite(current)) throw new JsonFlatError("number");
     if (depth > JSON_FLAT_LIMITS.depth) throw new JsonFlatError("tooDeep");
     if (entries === JSON_FLAT_LIMITS.entries) throw new JsonFlatError("tooMany");
     entries += 1;

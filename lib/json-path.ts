@@ -2,7 +2,7 @@ import type { JsonValue } from "./json-flat.ts";
 
 export const JSON_PATH_LIMITS = { characters: 2_000_000, depth: 100, nodes: 5_000 };
 
-export type JsonPathErrorKey = "syntax" | "tooLarge" | "tooDeep" | "tooMany";
+export type JsonPathErrorKey = "syntax" | "number" | "tooLarge" | "tooDeep" | "tooMany";
 export type JsonNodeType = "object" | "array" | "string" | "number" | "boolean" | "null";
 
 export class JsonPathError extends Error {
@@ -45,6 +45,7 @@ export function parseJsonTree(text: string): { root: JsonTreeNode; count: number
 
   let count = 0;
   const build = (current: JsonValue, pointer: string, label: string, key: string | null, depth: number): JsonTreeNode => {
+    if (typeof current === "number" && !Number.isFinite(current)) throw new JsonPathError("number");
     if (depth > JSON_PATH_LIMITS.depth) throw new JsonPathError("tooDeep");
     if (count === JSON_PATH_LIMITS.nodes) throw new JsonPathError("tooMany");
     count += 1;

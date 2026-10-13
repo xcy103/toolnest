@@ -704,6 +704,8 @@
     "converted": "Converted {count, plural, one {# value} other {# values}}.",
     "rule": "Results use up to 10 decimal places and omit unnecessary trailing zeroes.",
     "errors": {
+      "result": "The converted result must be between -{result} and {result}. Adjust the root size or reduce the input.",
+      "lineResult": "Line {line} produces a result outside -{result} to {result}.",
       "root": "Root font size must be a plain number greater than 0 and no more than {root}px.",
       "value": "Enter a plain number from -{value} to {value}, without a unit or CSS expression.",
       "lineValue": "Line {line} must be a plain number from -{value} to {value}.",
@@ -1279,6 +1281,7 @@
     "value": "Value",
     "types": { "object": "Object", "array": "Array", "string": "String", "number": "Number", "boolean": "Boolean", "null": "Null" },
     "errors": {
+      "number": "A JSON number exceeds the finite numeric range supported by this browser.",
       "syntax": "Enter valid JSON.",
       "tooLarge": "Input is limited to {characters} characters.",
       "tooDeep": "JSON nesting cannot exceed {depth} levels.",
@@ -1314,6 +1317,7 @@
     "example": "Load example",
     "rule": "The empty pointer represents the root. Empty object and array values are structural markers, which keeps numeric object keys and arrays unambiguous.",
     "errors": {
+      "number": "A JSON number exceeds the finite numeric range supported by this browser.",
       "syntax": "Enter valid JSON.",
       "tooLarge": "Input is limited to {characters} characters.",
       "tooDeep": "JSON nesting cannot exceed {depth} levels.",
