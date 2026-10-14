@@ -4,6 +4,29 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("preserves prototype-named CSV columns as ordinary own properties", () => {
+  for (const inferTypes of [true, false]) {
+    const [row] = csvToJson("__proto__,constructor,toString\n42,local,text", { ...opts, inferTypes });
+    assert.equal(Object.getPrototypeOf(row), Object.prototype);
+    assert.ok(Object.hasOwn(row, "__proto__"));
+    assert.equal(row["__proto__"], inferTypes ? 42 : "42");
+    assert.equal(row.constructor, "local");
+    assert.equal(row.toString, "text");
+    assert.deepEqual(JSON.parse(JSON.stringify(row)), JSON.parse(`{"__proto__":${inferTypes ? "42" : '"42"'},"constructor":"local","toString":"text"}`));
+  }
+});
+
+test("leaves missing prototype-named fields blank rather than reading inherited values", () => {
+  const input = '[{"__proto__":"kept","constructor":"local","toString":"text"},{"name":"Ada"}]';
+  assert.equal(jsonToCsv(input, ","), "__proto__,constructor,toString,name\nkept,local,text,\n,,,Ada");
+});
+
+test("round trips special headers with quoted delimiters and multiline values", () => {
+  const input = '[{"__proto__":"a,b","constructor":"line\\nnext","toString":"quote\\\"here"}]';
+  const result = csvToJson(jsonToCsv(input, ";"), { ...opts, delimiter: ";", inferTypes: false });
+  assert.deepEqual(result, JSON.parse(input));
+});
+
 test("accepts a leading BOM without stripping BOMs inside cells", () => {
   assert.deepEqual(parseCsv('\uFEFF"name,tag",value\r\nAda,2', ","), [
     ["name,tag", "value"], ["Ada", "2"],

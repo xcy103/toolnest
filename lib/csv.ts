@@ -153,7 +153,13 @@ export function csvToJson(
     }
     const record: Record<string, CsvValue> = {};
     keys.forEach((key, i) => {
-      record[key] = inferTypes ? inferValue(cells[i]) : cells[i];
+      // CSV headers are data keys, including the legacy __proto__ setter name.
+      Object.defineProperty(record, key, {
+        value: inferTypes ? inferValue(cells[i]) : cells[i],
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
     });
     return record;
   });
@@ -207,7 +213,7 @@ export function jsonToCsv(text: string, delimiter: Delimiter): string {
   const lines = [
     columns.map((c) => escapeField(c, delimiter)).join(delimiter),
     ...rows.map((row) =>
-      columns.map((c) => escapeField(cellText(row[c]), delimiter)).join(delimiter),
+      columns.map((c) => escapeField(cellText(Object.hasOwn(row, c) ? row[c] : undefined), delimiter)).join(delimiter),
     ),
   ];
   return lines.join("\n");
