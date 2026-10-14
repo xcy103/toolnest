@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
 type Props = {
@@ -16,16 +16,31 @@ type Props = {
 /** A small button that copies `value` and shows a transient "copied" state. */
 export default function CopyButton({ value, label, className = "", allowEmpty = false }: Props) {
   const t = useTranslations("common");
-  const [copied, setCopied] = useState(false);
+  const [copiedValue, setCopiedValue] = useState<string | null>(null);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const request = useRef(0);
+  const copied = copiedValue !== null && copiedValue === value;
+
+  useEffect(() => () => {
+    request.current += 1;
+    if (resetTimer.current !== null) clearTimeout(resetTimer.current);
+  }, []);
 
   async function handleCopy() {
     if (!value && !allowEmpty) return;
+    const currentRequest = ++request.current;
+    if (resetTimer.current !== null) clearTimeout(resetTimer.current);
+    setCopiedValue(null);
     try {
       await navigator.clipboard.writeText(value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      if (currentRequest !== request.current) return;
+      setCopiedValue(value);
+      resetTimer.current = setTimeout(() => {
+        setCopiedValue(null);
+        resetTimer.current = null;
+      }, 1500);
     } catch {
-      setCopied(false);
+      if (currentRequest === request.current) setCopiedValue(null);
     }
   }
 
