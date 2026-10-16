@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
-import { ConvertError, csvToJson, jsonToCsv, type Delimiter } from "@/lib/csv";
+import { ConvertError, csvToJson, jsonToCsv, parseCsv, type Delimiter } from "@/lib/csv";
 
 type Mode = "jsonToCsv" | "csvToJson";
 
@@ -61,9 +61,9 @@ export default function JsonCsvPage() {
   const rowCount = useMemo(() => {
     if (!output || error) return 0;
     return mode === "jsonToCsv"
-      ? Math.max(0, output.split("\n").length - 1)
+      ? Math.max(0, parseCsv(output, delimiter).length - 1)
       : (JSON.parse(output) as unknown[]).length;
-  }, [output, error, mode]);
+  }, [output, error, mode, delimiter]);
 
   return (
     <ToolLayout

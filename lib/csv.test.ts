@@ -4,6 +4,28 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("preserves quoted empty records while still dropping bare blank lines", () => {
+  for (const ending of ["\n", "\r\n", "\r"]) {
+    assert.deepEqual(parseCsv(`name${ending}""${ending}${ending}""`, ","), [["name"], [""], [""]]);
+  }
+  assert.deepEqual(parseCsv('""', ","), [[""]]);
+  assert.deepEqual(csvToJson('name\n""', opts), [{ name: "" }]);
+});
+
+test("round trips single-column empty values without losing records", () => {
+  const input = '[{"name":""},{"name":"Ada"},{"name":""}]';
+  for (const delimiter of [",", ";", "\t"] as const) {
+    const csv = jsonToCsv(input, delimiter);
+    assert.equal(csv, 'name\n""\nAda\n""');
+    assert.deepEqual(csvToJson(csv, { ...opts, delimiter }), JSON.parse(input));
+  }
+});
+
+test("counts parsed records rather than embedded line breaks", () => {
+  const csv = jsonToCsv('[{"note":"first\\nsecond"},{"note":""}]', ",");
+  assert.equal(parseCsv(csv, ",").length - 1, 2);
+});
+
 test("preserves prototype-named CSV columns as ordinary own properties", () => {
   for (const inferTypes of [true, false]) {
     const [row] = csvToJson("__proto__,constructor,toString\n42,local,text", { ...opts, inferTypes });

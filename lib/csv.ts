@@ -41,6 +41,7 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
   let row: string[] = [];
   let field = "";
   let quoted = false;
+  let recordStarted = false;
   // Where the currently open quote started, for a useful error message.
   let quoteStartRow = 1;
   let line = 1;
@@ -51,9 +52,10 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
   };
   const endRow = () => {
     endField();
-    // A blank line parses as a single empty field — not a real record.
-    if (!(row.length === 1 && row[0] === "")) rows.push(row);
+    // An explicitly quoted empty field is a record; a bare blank line is not.
+    if (recordStarted) rows.push(row);
     row = [];
+    recordStarted = false;
   };
 
   for (let i = 0; i < text.length; i++) {
@@ -75,11 +77,13 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
     }
 
     if (char === '"' && field === "") {
+      recordStarted = true;
       quoted = true;
       quoteStartRow = line;
       continue;
     }
     if (char === delimiter) {
+      recordStarted = true;
       endField();
       continue;
     }
@@ -95,12 +99,13 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
       line++;
       continue;
     }
+    recordStarted = true;
     field += char;
   }
 
   if (quoted) throw new ConvertError("csvUnclosedQuote", { line: quoteStartRow });
   // Flush whatever is left; a trailing newline leaves nothing behind.
-  if (field !== "" || row.length > 0) endRow();
+  if (recordStarted) endRow();
 
   return rows;
 }
@@ -166,8 +171,9 @@ export function csvToJson(
 }
 
 /** Quote a single field if it contains anything that would break the row. */
-function escapeField(value: string, delimiter: Delimiter): string {
+function escapeField(value: string, delimiter: Delimiter, quoteEmpty = false): string {
   const needsQuotes =
+    (quoteEmpty && value === "") ||
     value.includes(delimiter) ||
     value.includes('"') ||
     value.includes("\n") ||
@@ -213,7 +219,7 @@ export function jsonToCsv(text: string, delimiter: Delimiter): string {
   const lines = [
     columns.map((c) => escapeField(c, delimiter)).join(delimiter),
     ...rows.map((row) =>
-      columns.map((c) => escapeField(cellText(Object.hasOwn(row, c) ? row[c] : undefined), delimiter)).join(delimiter),
+      columns.map((c) => escapeField(cellText(Object.hasOwn(row, c) ? row[c] : undefined), delimiter, columns.length === 1)).join(delimiter),
     ),
   ];
   return lines.join("\n");

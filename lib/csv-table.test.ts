@@ -8,6 +8,12 @@ import {
   sortCsvRows,
 } from "./csv-table.ts";
 
+test("keeps explicitly quoted empty data rows in a single-column table", () => {
+  assert.deepEqual(parseCsvTable('name\n""\nAda\n""', { delimiter: ",", header: true }), {
+    columns: ["name"], rows: [[""], ["Ada"], [""]],
+  });
+});
+
 test("builds a table with or without a header", () => {
   assert.deepEqual(parseCsvTable("name,age\nAda,36", { delimiter: ",", header: true }), {
     columns: ["name", "age"],
