@@ -478,6 +478,7 @@
       "jsonSyntax": "JSON 语法错误,请检查输入内容。",
       "jsonNotTabular": "CSV 需要表格结构:输入必须是对象数组(或单个对象)。",
       "jsonEmpty": "数组为空,没有可转换的内容。",
+      "csvDuplicateHeader": "第 {column} 列的表头 \"{name}\" 重复。请使用不同的表头，或关闭首行为表头选项。",
       "csvUnclosedQuote": "第 {line} 行的引号没有闭合——每个 \" 都需要成对出现。",
       "csvRagged": "第 {line} 行有 {got} 个字段,而表头有 {expected} 个,请检查分隔符或引号内的逗号。",
       "unknown": "无法转换该输入,请检查格式。"

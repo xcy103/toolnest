@@ -14,6 +14,7 @@ export type ConvertErrorKey =
   | "jsonNotTabular"
   | "jsonEmpty"
   | "csvUnclosedQuote"
+  | "csvDuplicateHeader"
   | "csvRagged";
 
 export class ConvertError extends Error {
@@ -146,6 +147,13 @@ export function csvToJson(
     ? rows[0].map((name, i) => name.trim() || `column${i + 1}`)
     : rows[0].map((_, i) => `column${i + 1}`);
   const body = header ? rows.slice(1) : rows;
+  const seenKeys = new Set<string>();
+  keys.forEach((key, index) => {
+    if (seenKeys.has(key)) {
+      throw new ConvertError("csvDuplicateHeader", { column: index + 1, name: key });
+    }
+    seenKeys.add(key);
+  });
 
   return body.map((cells, index) => {
     if (cells.length !== width) {

@@ -478,6 +478,7 @@
       "jsonSyntax": "JSON syntax error — please check your input.",
       "jsonNotTabular": "CSV needs a table: the input has to be an array of objects (or a single object).",
       "jsonEmpty": "The array is empty, so there is nothing to convert.",
+      "csvDuplicateHeader": "Column {column} repeats the header \"{name}\". Use unique headers or turn off header mode.",
       "csvUnclosedQuote": "Unclosed quote starting on line {line} — every opening \" needs a closing one.",
       "csvRagged": "Line {line} has {got} fields but the header has {expected} — please check the delimiter and any quoted commas.",
       "unknown": "Could not convert this input — please check the format."

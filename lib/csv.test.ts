@@ -4,6 +4,32 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("rejects duplicate CSV headers before they overwrite a column", () => {
+  assert.throws(() => csvToJson("name,name\nAda,Grace", opts),
+    (error) => error instanceof ConvertError && error.key === "csvDuplicateHeader" &&
+      error.values.column === 2 && error.values.name === "name");
+  failsWith(() => csvToJson("name,name", opts), "csvDuplicateHeader");
+});
+
+test("detects collisions after trimming or generating empty-header names", () => {
+  for (const csv of ["name, name \nAda,Grace", "column2,\nAda,Grace", ",column1\nAda,Grace"]) {
+    failsWith(() => csvToJson(csv, opts), "csvDuplicateHeader");
+  }
+});
+
+test("does not conflate case-distinct headers or change headerless data", () => {
+  assert.deepEqual(csvToJson("Name,name\nAda,Grace", opts), [{ Name: "Ada", name: "Grace" }]);
+  assert.deepEqual(csvToJson("name,name\nAda,Grace", { ...opts, header: false }), [
+    { column1: "name", column2: "name" }, { column1: "Ada", column2: "Grace" },
+  ]);
+});
+
+test("detects special-name duplicates with every supported delimiter", () => {
+  for (const delimiter of [",", ";", "\t"] as const) {
+    failsWith(() => csvToJson(`__proto__${delimiter}__proto__\n1${delimiter}2`, { ...opts, delimiter }), "csvDuplicateHeader");
+  }
+});
+
 test("preserves quoted empty records while still dropping bare blank lines", () => {
   for (const ending of ["\n", "\r\n", "\r"]) {
     assert.deepEqual(parseCsv(`name${ending}""${ending}${ending}""`, ","), [["name"], [""], [""]]);
