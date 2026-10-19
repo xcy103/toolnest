@@ -121,7 +121,8 @@ function inferValue(raw: string): CsvValue {
   // Only plain JSON-style numbers; "007" and "1,5" stay strings on purpose.
   if (/^-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?$/.test(trimmed)) {
     const n = Number(trimmed);
-    if (Number.isFinite(n)) return n;
+    // Large integer IDs must not be rounded during automatic type detection.
+    if (Number.isFinite(n) && (!Number.isInteger(n) || Number.isSafeInteger(n))) return n;
   }
   return raw;
 }

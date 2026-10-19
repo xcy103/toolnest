@@ -4,6 +4,21 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("keeps unsafe integer identifiers as strings instead of rounding them", () => {
+  for (const value of ["9007199254740993", "-9007199254740993", "12345678901234567890", "1e20", "9.007199254740993e15"]) {
+    assert.deepEqual(csvToJson(`id\n${value}`, opts), [{ id: value }]);
+  }
+  assert.deepEqual(csvToJson('id\n" 9007199254740993 "', opts), [{ id: " 9007199254740993 " }]);
+});
+
+test("retains safe integer boundaries and ordinary inferred values", () => {
+  assert.deepEqual(csvToJson("max,min,decimal,negative,zero,flag,nil\n9007199254740991,-9007199254740991,1.25,-2,0,true,null", opts), [{
+    max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER, decimal: 1.25,
+    negative: -2, zero: 0, flag: true, nil: null,
+  }]);
+  assert.deepEqual(csvToJson("id\n9007199254740991", { ...opts, inferTypes: false }), [{ id: "9007199254740991" }]);
+});
+
 test("rejects duplicate CSV headers before they overwrite a column", () => {
   assert.throws(() => csvToJson("name,name\nAda,Grace", opts),
     (error) => error instanceof ConvertError && error.key === "csvDuplicateHeader" &&
