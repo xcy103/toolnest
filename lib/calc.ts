@@ -115,14 +115,14 @@ function tokenize(input: string): Token[] {
         const prev = tokens[tokens.length - 1];
         const isUnary =
           !prev ||
-          prev.type === "op" ||
+          (prev.type === "op" && prev.value !== "!") ||
           prev.type === "lparen" ||
           prev.type === "func";
         tokens.push({ type: "op", value: isUnary ? "u-" : "-" });
       } else if (c === "+") {
         const prev = tokens[tokens.length - 1];
         // Drop a leading/unary plus entirely.
-        if (prev && (prev.type === "num" || prev.type === "const" || prev.type === "rparen")) {
+        if (prev && (prev.type === "num" || prev.type === "const" || prev.type === "rparen" || (prev.type === "op" && prev.value === "!"))) {
           tokens.push({ type: "op", value: "+" });
         }
       } else {
@@ -144,7 +144,7 @@ function injectImplicitMultiply(tokens: Token[]): Token[] {
     const prev = out[out.length - 1];
     const cur = tokens[i];
     const prevIsValue =
-      prev && (prev.type === "num" || prev.type === "const" || prev.type === "rparen");
+      prev && (prev.type === "num" || prev.type === "const" || prev.type === "rparen" || (prev.type === "op" && prev.value === "!"));
     const curStartsValue =
       cur.type === "num" ||
       cur.type === "const" ||
@@ -234,6 +234,8 @@ function toRPN(tokens: Token[]): Token[] {
 
 function factorial(n: number): number {
   if (n < 0 || !Number.isInteger(n)) throw new CalcError("factorial");
+  // 171! already exceeds Number's finite range; never loop over larger inputs.
+  if (n > 170) throw new CalcError("notFinite");
   let result = 1;
   for (let k = 2; k <= n; k++) result *= k;
   return result;

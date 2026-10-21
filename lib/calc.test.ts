@@ -2,6 +2,33 @@ import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { CalcError, evaluate } from "./calc.ts";
 
+test("factorial retains finite boundary and basic values", () => {
+  assert.equal(evaluate("0!"), 1);
+  assert.equal(evaluate("1!"), 1);
+  assert.equal(evaluate("170!"), 7.257415615307994e306);
+});
+
+test("oversized factorials reject without work proportional to the input", () => {
+  for (const expression of ["171!", "1000000000000!", "170!!", "(10^100)!"]) {
+    failsWith(expression, "notFinite");
+  }
+});
+
+test("factorial domain errors remain distinct from overflow", () => {
+  failsWith("(-1)!", "factorial");
+  failsWith("1.5!", "factorial");
+  assert.equal(evaluate("5!+2"), 122);
+});
+
+test("postfix factorial acts as a value for following operators and implicit multiplication", () => {
+  assert.equal(evaluate("5!+2"), 122);
+  assert.equal(evaluate("5!-2"), 118);
+  assert.equal(evaluate("3!(2+1)"), 18);
+  assert.equal(evaluate("3!pi"), 6 * Math.PI);
+  assert.equal(evaluate("3!^2"), 36);
+  assert.equal(evaluate("3!!"), 720);
+});
+
 /** Assert that evaluating `input` fails with a specific error key. */
 function failsWith(input: string, key: string, degrees = false) {
   assert.throws(
