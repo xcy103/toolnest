@@ -8,6 +8,20 @@ import {
   sortCsvRows,
 } from "./csv-table.ts";
 
+test("sorts whitespace-only cells last in both directions without modifying source data", () => {
+  const rows = [["spaces", "   "], ["ten", "10"], ["empty", ""], ["tab", "\t"], ["two", "2"], ["unicode", "\u00a0"]];
+  const original = rows.map((row) => [...row]);
+  assert.deepEqual(sortCsvRows(rows, 1, "asc"), [rows[4], rows[1], rows[0], rows[2], rows[3], rows[5]]);
+  assert.deepEqual(sortCsvRows(rows, 1, "desc"), [rows[1], rows[4], rows[0], rows[2], rows[3], rows[5]]);
+  assert.deepEqual(rows, original);
+});
+
+test("keeps zero and padded numeric values distinct from blank cells", () => {
+  const rows = [["blank", " "], ["zero", "0"], ["negative", " -2 "], ["padded zero", " 0 "]];
+  assert.deepEqual(sortCsvRows(rows, 1, "asc"), [rows[2], rows[1], rows[3], rows[0]]);
+  assert.deepEqual(sortCsvRows(rows, 1, "desc"), [rows[1], rows[3], rows[2], rows[0]]);
+});
+
 test("keeps explicitly quoted empty data rows in a single-column table", () => {
   assert.deepEqual(parseCsvTable('name\n""\nAda\n""', { delimiter: ",", header: true }), {
     columns: ["name"], rows: [[""], ["Ada"], [""]],

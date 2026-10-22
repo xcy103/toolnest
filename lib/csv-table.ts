@@ -88,12 +88,12 @@ export function sortCsvRows(
     .sort((left, right) => {
       const a = left.row[column] ?? "";
       const b = right.row[column] ?? "";
-      if (!a && b) return 1;
-      if (a && !b) return -1;
-      if (!a && !b) return left.index - right.index;
-
       const aTrimmed = a.trim();
       const bTrimmed = b.trim();
+      if (!aTrimmed && bTrimmed) return 1;
+      if (aTrimmed && !bTrimmed) return -1;
+      if (!aTrimmed && !bTrimmed) return left.index - right.index;
+
       const comparison = numberPattern.test(aTrimmed) && numberPattern.test(bTrimmed)
         ? Number(aTrimmed) - Number(bTrimmed)
         : collator.compare(a, b);
