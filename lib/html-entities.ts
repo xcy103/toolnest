@@ -23,7 +23,7 @@ export function encodeHtmlEntities(text: string): string {
 function decodeNumericEntity(body: string): string | null {
   const isHex = body[1]?.toLowerCase() === "x";
   const digits = isHex ? body.slice(2) : body.slice(1);
-  if (!digits || !/^[0-9a-f]+$/i.test(digits)) return null;
+  if (!(isHex ? /^[0-9a-f]+$/i : /^[0-9]+$/).test(digits)) return null;
   const codePoint = Number.parseInt(digits, isHex ? 16 : 10);
   if (!Number.isInteger(codePoint)) return null;
   try {
@@ -37,6 +37,7 @@ function decodeNumericEntity(body: string): string | null {
 export function decodeHtmlEntities(text: string): string {
   return text.replace(/&(#x?[0-9a-f]+|[a-z][a-z0-9]+);/gi, (match, body: string) => {
     if (body.startsWith("#")) return decodeNumericEntity(body) ?? match;
-    return namedEntities[body.toLowerCase()] ?? match;
+    const name = body.toLowerCase();
+    return Object.hasOwn(namedEntities, name) ? namedEntities[name] : match;
   });
 }
