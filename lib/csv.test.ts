@@ -4,6 +4,29 @@ import { ConvertError, csvToJson, jsonToCsv, parseCsv } from "./csv.ts";
 
 const opts = { delimiter: "," as const, header: true, inferTypes: true };
 
+test("rejects text after a closing quote and quotes inside unquoted fields", () => {
+  for (const text of ['name\n"Ada"x', 'name\nAd"a', 'name\n"Ada" ', 'name\n""x']) {
+    assert.throws(() => parseCsv(text, ","),
+      (error) => error instanceof ConvertError && error.key === "csvInvalidQuote" && error.values.line === 2);
+  }
+});
+
+test("quote errors report physical lines across multiline cells and every line ending", () => {
+  for (const ending of ["\n", "\r", "\r\n"]) {
+    assert.throws(() => parseCsv(`name${ending}"first${ending}second"x`, ","),
+      (error) => error instanceof ConvertError && error.key === "csvInvalidQuote" && error.values.line === 3);
+    assert.throws(() => parseCsv(`name${ending}"first${ending}second"${ending}"unclosed`, ","),
+      (error) => error instanceof ConvertError && error.key === "csvUnclosedQuote" && error.values.line === 4);
+  }
+});
+
+test("valid quoted endings, escaped quotes and multiline cells remain intact", () => {
+  for (const delimiter of [",", ";", "\t"] as const) {
+    assert.deepEqual(parseCsv(`"a""b"${delimiter}"line\r\nnext"\r\n""${delimiter}plain`, delimiter),
+      [['a"b', "line\r\nnext"], ["", "plain"]]);
+  }
+});
+
 test("keeps unsafe integer identifiers as strings instead of rounding them", () => {
   for (const value of ["9007199254740993", "-9007199254740993", "12345678901234567890", "1e20", "9.007199254740993e15"]) {
     assert.deepEqual(csvToJson(`id\n${value}`, opts), [{ id: value }]);

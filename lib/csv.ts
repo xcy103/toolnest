@@ -14,6 +14,7 @@ export type ConvertErrorKey =
   | "jsonNotTabular"
   | "jsonEmpty"
   | "csvUnclosedQuote"
+  | "csvInvalidQuote"
   | "csvDuplicateHeader"
   | "csvRagged";
 
@@ -42,6 +43,7 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
   let row: string[] = [];
   let field = "";
   let quoted = false;
+  let closedQuote = false;
   let recordStarted = false;
   // Where the currently open quote started, for a useful error message.
   let quoteStartRow = 1;
@@ -50,6 +52,7 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
   const endField = () => {
     row.push(field);
     field = "";
+    closedQuote = false;
   };
   const endRow = () => {
     endField();
@@ -69,14 +72,19 @@ export function parseCsv(text: string, delimiter: Delimiter): string[][] {
           i++;
         } else {
           quoted = false;
+          closedQuote = true;
         }
       } else {
-        if (char === "\n") line++;
+        if (char === "\r" || (char === "\n" && text[i - 1] !== "\r")) line++;
         field += char;
       }
       continue;
     }
 
+    if (closedQuote && char !== delimiter && char !== "\r" && char !== "\n") {
+      throw new ConvertError("csvInvalidQuote", { line });
+    }
+    if (char === '"' && field !== "") throw new ConvertError("csvInvalidQuote", { line });
     if (char === '"' && field === "") {
       recordStarted = true;
       quoted = true;

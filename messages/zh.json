@@ -475,6 +475,7 @@
     "placeholderCsv": "在这里粘贴 CSV…",
     "rowCount": "{n} 行数据",
     "errors": {
+      "csvInvalidQuote": "第 {line} 行的引号位置不合法。带引号的字段结束后只能接分隔符或换行，字段内的引号须写成两个引号。",
       "jsonSyntax": "JSON 语法错误,请检查输入内容。",
       "jsonNotTabular": "CSV 需要表格结构:输入必须是对象数组(或单个对象)。",
       "jsonEmpty": "数组为空,没有可转换的内容。",
@@ -510,6 +511,7 @@
     "next": "下一页",
     "page": "第 {page}/{pages} 页",
     "errors": {
+      "csvInvalidQuote": "第 {line} 行的引号位置不合法。带引号的字段结束后只能接分隔符或换行，字段内的引号须写成两个引号。",
       "csvUnclosedQuote": "第 {line} 行开始的引号没有闭合。",
       "csvRagged": "第 {line} 行有 {got} 个字段,应为 {expected} 个。",
       "csvTooLarge": "该 CSV 超过 {max} MB 限制。",

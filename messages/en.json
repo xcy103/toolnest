@@ -475,6 +475,7 @@
     "placeholderCsv": "Paste CSV here…",
     "rowCount": "{n, plural, one {# row} other {# rows}}",
     "errors": {
+      "csvInvalidQuote": "A quote is misplaced on line {line}. Quoted fields must end at a delimiter or line break; embedded quotes must be doubled.",
       "jsonSyntax": "JSON syntax error — please check your input.",
       "jsonNotTabular": "CSV needs a table: the input has to be an array of objects (or a single object).",
       "jsonEmpty": "The array is empty, so there is nothing to convert.",
@@ -510,6 +511,7 @@
     "next": "Next",
     "page": "Page {page} of {pages}",
     "errors": {
+      "csvInvalidQuote": "A quote is misplaced on line {line}. Quoted fields must end at a delimiter or line break; embedded quotes must be doubled.",
       "csvUnclosedQuote": "Unclosed quote starting on line {line}.",
       "csvRagged": "Line {line} has {got} fields; expected {expected}.",
       "csvTooLarge": "This CSV is larger than the {max} MB limit.",

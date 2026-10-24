@@ -8,6 +8,11 @@ import {
   sortCsvRows,
 } from "./csv-table.ts";
 
+test("table viewer rejects malformed quote placement from the shared parser", () => {
+  assert.throws(() => parseCsvTable('name\n"Ada"x', { delimiter: ",", header: true }),
+    (error) => error instanceof ConvertError && error.key === "csvInvalidQuote");
+});
+
 test("sorts whitespace-only cells last in both directions without modifying source data", () => {
   const rows = [["spaces", "   "], ["ten", "10"], ["empty", ""], ["tab", "\t"], ["two", "2"], ["unicode", "\u00a0"]];
   const original = rows.map((row) => [...row]);
