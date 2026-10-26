@@ -2,6 +2,27 @@ import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { jsonToYaml, JsonYamlError, yamlToJson } from "./json-yaml.ts";
 
+test("empty and comment-only YAML documents produce JSON null", () => {
+  for (const input of ["", "   \n", "# only a comment\n", "---\n# empty document\n"]) {
+    assert.equal(yamlToJson(input), "null");
+  }
+});
+
+test("nonfinite YAML numbers are rejected rather than silently converted to null", () => {
+  for (const input of [".inf", "-.inf", ".nan", "a: [.inf, 1]", "outer:\n  value: .nan"]) {
+    assert.throws(() => yamlToJson(input),
+      (error) => error instanceof JsonYamlError && error.key === "nonFinite");
+  }
+});
+
+test("quoted nonfinite-looking strings, finite numbers and explicit null stay valid", () => {
+  assert.deepEqual(JSON.parse(yamlToJson('label: ".inf"\nnumber: 1.25\nempty: null\nitems: [2, 3]')), {
+    label: ".inf", number: 1.25, empty: null, items: [2, 3],
+  });
+  assert.throws(() => yamlToJson("---\n# first\n---\n# second"),
+    (error) => error instanceof JsonYamlError && error.key === "multipleDocs");
+});
+
 test("converts JSON objects to readable YAML", () => {
   assert.equal(
     jsonToYaml('{"name":"ToolNest","tags":["json","yaml"],"free":true}', 2),

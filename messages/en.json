@@ -535,6 +535,7 @@
     "placeholderYaml": "Paste YAML to convert to JSON…",
     "loadExample": "Load example",
     "errors": {
+      "nonFinite": "YAML contains a non-finite number that JSON cannot represent. Quote it to keep it as text.",
       "invalidJson": "Invalid JSON: {message}",
       "invalidYaml": "Invalid YAML: {message}",
       "multipleDocs": "This tool converts one YAML document at a time.",

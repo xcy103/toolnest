@@ -4,6 +4,7 @@ export type JsonYamlErrorKey =
   | "invalidJson"
   | "invalidYaml"
   | "multipleDocs"
+  | "nonFinite"
   | "unsupported";
 
 export class JsonYamlError extends Error {
@@ -48,6 +49,7 @@ export function yamlToJson(input: string, indent: 2 | 4 = 2): string {
   }
 
   const doc = docs[0];
+  if (!doc) return "null";
   if (doc.errors.length > 0) {
     throw new JsonYamlError("invalidYaml", {
       message: firstLine(doc.errors[0].message),
@@ -55,8 +57,14 @@ export function yamlToJson(input: string, indent: 2 | 4 = 2): string {
   }
 
   try {
-    return JSON.stringify(doc.toJSON(), null, indent);
+    return JSON.stringify(doc.toJSON(), (_key, value) => {
+      if (typeof value === "number" && !Number.isFinite(value)) {
+        throw new JsonYamlError("nonFinite");
+      }
+      return value;
+    }, indent);
   } catch (err) {
+    if (err instanceof JsonYamlError) throw err;
     throw new JsonYamlError("unsupported", {
       message: err instanceof Error ? err.message : String(err),
     });

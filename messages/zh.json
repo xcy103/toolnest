@@ -535,6 +535,7 @@
     "placeholderYaml": "粘贴要转换成 JSON 的 YAML…",
     "loadExample": "载入示例",
     "errors": {
+      "nonFinite": "YAML 含有 JSON 无法表示的非有限数值。若要保留为文本，请用引号包裹。",
       "invalidJson": "JSON 无效:{message}",
       "invalidYaml": "YAML 无效:{message}",
       "multipleDocs": "该工具一次只转换一个 YAML 文档。",
