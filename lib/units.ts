@@ -91,13 +91,16 @@ const fromCelsius = (c: number, u: string) =>
 /** Convert `value` from unit `from` to unit `to` within a category. */
 export function convert(cat: Category, value: number, from: string, to: string): number {
   if (cat.temperature) {
+    if (!cat.tempUnits?.includes(from) || !cat.tempUnits.includes(to)) return NaN;
+    if (from === to) return value;
     return fromCelsius(toCelsius(value, from), to);
   }
   const map = new Map(cat.units!);
   const fromF = map.get(from);
   const toF = map.get(to);
   if (fromF === undefined || toF === undefined) return NaN;
-  return (value * fromF) / toF;
+  if (from === to) return value;
+  return value * (fromF / toF);
 }
 
 /** The list of unit symbols for a category. */

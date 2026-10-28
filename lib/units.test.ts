@@ -5,6 +5,30 @@ import { CATEGORIES, convert, formatResult, unitSymbols } from "./units.ts";
 const length = CATEGORIES.find((c) => c.key === "length")!;
 const temperature = CATEGORIES.find((c) => c.temperature)!;
 
+test("same-unit conversion preserves finite values exactly in every category", () => {
+  for (const category of CATEGORIES) {
+    for (const symbol of unitSymbols(category)) {
+      for (const value of [0, -0, 0.123456789, 1e308]) {
+        assert.ok(Object.is(convert(category, value, symbol, symbol), value));
+      }
+    }
+  }
+});
+
+test("linear conversion avoids overflowing a cancellable intermediate base value", () => {
+  const result = convert(length, 1e308, "km", "mi");
+  assert.ok(Number.isFinite(result));
+  assert.equal(result, 1e308 * (1000 / 1609.344));
+  assert.equal(convert(length, -1e308, "km", "mi"), -result);
+  assert.equal(convert(length, 1e308, "km", "m"), Infinity);
+});
+
+test("unknown temperature units cannot silently fall back to Celsius", () => {
+  assert.ok(Number.isNaN(convert(temperature, 20, "??", "°C")));
+  assert.ok(Number.isNaN(convert(temperature, 20, "°C", "??")));
+  assert.ok(Number.isNaN(convert(temperature, 20, "??", "??")));
+});
+
 test("converts linear units through their base unit", () => {
   assert.equal(convert(length, 1, "km", "m"), 1000);
   assert.equal(convert(length, 1, "mi", "km"), 1.609344);
