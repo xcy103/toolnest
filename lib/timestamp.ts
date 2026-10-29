@@ -36,9 +36,11 @@ export function unixMilliseconds(ms: number): number {
 
 export function toLocalDatetimeInputValue(ms: number): string {
   const d = new Date(ms);
+  if (!Number.isFinite(d.getTime()) || d.getFullYear() < 1) return "";
   const pad = (n: number) => String(n).padStart(2, "0");
+  const fraction = d.getMilliseconds() ? `.${String(d.getMilliseconds()).padStart(3, "0")}` : "";
   return (
-    `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` +
-    `T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`
+    `${String(d.getFullYear()).padStart(4, "0")}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` +
+    `T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}${fraction}`
   );
 }

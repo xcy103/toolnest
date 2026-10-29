@@ -210,7 +210,7 @@ export default function UnixTimestampPage() {
         <ToolPanel label={t("unixTimestampPage.dateLabel", { tz: localTz || "…" })}>
           <input
             type="datetime-local"
-            step="1"
+            step="0.001"
             value={dateValue}
             onChange={(e) => setDateValue(e.target.value)}
             className="w-full rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500"
