@@ -39,9 +39,11 @@ export function escapeLiteral(text: string): string {
 /** Build the search expression. Throws `invalidPattern` on a bad regex. */
 export function buildPattern(search: string, options: ReplaceOptions): RegExp {
   const source = options.regex ? search : escapeLiteral(search);
-  // A non-capturing group keeps alternation from swallowing the word boundaries.
-  const body = options.wholeWord ? `\\b(?:${source})\\b` : source;
-  const flags = options.caseSensitive ? "g" : "gi";
+  const wordCharacter = "[\\p{L}\\p{N}\\p{M}_]";
+  const body = options.wholeWord
+    ? `(?<!${wordCharacter})(?:${source})(?!${wordCharacter})`
+    : source;
+  const flags = (options.caseSensitive ? "g" : "gi") + (options.wholeWord ? "u" : "");
   try {
     return new RegExp(body, flags);
   } catch (err) {
@@ -52,18 +54,12 @@ export function buildPattern(search: string, options: ReplaceOptions): RegExp {
 }
 
 /**
- * Every match of `re` in `text`. Zero-length matches (`a*`, `^`) advance
- * `lastIndex` by hand, otherwise the loop never ends.
+ * Every match of `re` in `text`. Native iteration advances empty matches by
+ * code point in Unicode mode while retaining UTF-16 offsets for highlighting.
  */
 export function findMatches(text: string, re: RegExp): Match[] {
-  const matches: Match[] = [];
   const search = new RegExp(re.source, re.flags.includes("g") ? re.flags : `${re.flags}g`);
-  let m: RegExpExecArray | null;
-  while ((m = search.exec(text)) !== null) {
-    matches.push({ index: m.index, length: m[0].length });
-    if (m[0] === "") search.lastIndex++;
-  }
-  return matches;
+  return Array.from(text.matchAll(search), (match) => ({ index: match.index, length: match[0].length }));
 }
 
 export type ReplaceResult = {

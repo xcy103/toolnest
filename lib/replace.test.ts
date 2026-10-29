@@ -14,6 +14,33 @@ const insensitive: ReplaceOptions = { ...literal, caseSensitive: false };
 const wholeWord: ReplaceOptions = { ...literal, wholeWord: true };
 const regex: ReplaceOptions = { ...literal, regex: true };
 
+test("whole-word matching recognizes standalone Chinese text", () => {
+  assert.deepEqual(replaceAll("你好 你好世界 (你好)", "你好", "您好", wholeWord), {
+    output: "您好 你好世界 (您好)", count: 2,
+  });
+});
+
+test("whole-word matching handles accents and attached combining marks", () => {
+  assert.deepEqual(replaceAll("café décafé café", "café", "tea", wholeWord), {
+    output: "tea décafé tea", count: 2,
+  });
+  assert.equal(replaceAll("cafe\u0301 cafe", "cafe", "tea", wholeWord).output, "cafe\u0301 tea");
+});
+
+test("word boundaries preserve underscores and digits while allowing punctuation tokens", () => {
+  assert.equal(replaceAll("cat cat_ cat2 猫cat", "cat", "dog", wholeWord).output, "dog cat_ cat2 猫cat");
+  assert.deepEqual(replaceAll("C++ C++17 (C++)", "C++", "Rust", wholeWord), {
+    output: "Rust C++17 (Rust)", count: 2,
+  });
+});
+
+test("Unicode zero-length matching advances safely and preserves highlighting offsets", () => {
+  assert.deepEqual(findMatches("\u{1F600}a", /(?:)/gu), [
+    { index: 0, length: 0 }, { index: 2, length: 0 }, { index: 3, length: 0 },
+  ]);
+  assert.deepEqual(findMatches("\u{1F600}a", /a/gu), [{ index: 2, length: 1 }]);
+});
+
 test("literal mode treats the search text literally", () => {
   assert.deepEqual(replaceAll("a b a", "a", "x", literal), { output: "x b x", count: 2 });
   assert.deepEqual(replaceAll("abc", "z", "x", literal), { output: "abc", count: 0 });
