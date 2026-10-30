@@ -83,9 +83,15 @@ export function addBusinessDays(
   const direction = amount > 0 ? 1 : -1;
   const target = Math.abs(amount);
   const cursor = calendarDateToUtc(start);
-  let moved = 0;
-  let skippedDays = 0;
-  let calendarDaysMoved = 0;
+  const workingDaysPerWeek = 7 - weekends.size;
+  // Leave at least one working day to find the earliest destination, even when
+  // starting on a weekend or moving by an exact multiple of a working week.
+  const fullWeeks = Math.floor((target - 1) / workingDaysPerWeek);
+  let moved = fullWeeks * workingDaysPerWeek;
+  let skippedDays = fullWeeks * weekends.size;
+  let calendarDaysMoved = fullWeeks * 7;
+  cursor.setUTCDate(cursor.getUTCDate() + direction * calendarDaysMoved);
+  if (!calendarDateFromUtc(cursor)) return null;
 
   while (moved < target) {
     cursor.setUTCDate(cursor.getUTCDate() + direction);
