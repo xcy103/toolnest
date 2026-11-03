@@ -23,11 +23,19 @@ function firstLine(message: string): string {
   return message.split("\n")[0] || message;
 }
 
+function requireFiniteNumber(_key: string, value: unknown): unknown {
+  if (typeof value === "number" && !Number.isFinite(value)) {
+    throw new JsonYamlError("nonFinite");
+  }
+  return value;
+}
+
 export function jsonToYaml(input: string, indent: 2 | 4 = 2): string {
   let value: unknown;
   try {
-    value = JSON.parse(input);
+    value = JSON.parse(input, requireFiniteNumber);
   } catch (err) {
+    if (err instanceof JsonYamlError) throw err;
     throw new JsonYamlError("invalidJson", {
       message: err instanceof Error ? err.message : String(err),
     });
@@ -57,12 +65,7 @@ export function yamlToJson(input: string, indent: 2 | 4 = 2): string {
   }
 
   try {
-    return JSON.stringify(doc.toJSON(), (_key, value) => {
-      if (typeof value === "number" && !Number.isFinite(value)) {
-        throw new JsonYamlError("nonFinite");
-      }
-      return value;
-    }, indent);
+    return JSON.stringify(doc.toJSON(), requireFiniteNumber, indent);
   } catch (err) {
     if (err instanceof JsonYamlError) throw err;
     throw new JsonYamlError("unsupported", {

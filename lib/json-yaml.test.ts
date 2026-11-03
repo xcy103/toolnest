@@ -2,6 +2,25 @@ import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { jsonToYaml, JsonYamlError, yamlToJson } from "./json-yaml.ts";
 
+test("JSON numeric overflow is rejected at the root and in nested containers", () => {
+  for (const input of ["1e400", "-1e400", "[0, 1e400]", '{"outer":{"value":-1e400}}']) {
+    assert.throws(() => jsonToYaml(input),
+      (error) => error instanceof JsonYamlError && error.key === "nonFinite");
+  }
+});
+
+test("finite JSON numeric boundaries survive YAML round trips", () => {
+  const input = '{"large":1.7976931348623157e308,"small":5e-324,"zero":0,"negative":-1.25}';
+  assert.deepEqual(JSON.parse(yamlToJson(jsonToYaml(input))), JSON.parse(input));
+});
+
+test("quoted oversized JSON numbers stay text in either conversion direction", () => {
+  const input = '{"value":"1e400","negative":"-1e400","special":[".inf",".nan"]}';
+  for (const indent of [2, 4] as const) {
+    assert.deepEqual(JSON.parse(yamlToJson(jsonToYaml(input, indent), indent)), JSON.parse(input));
+  }
+});
+
 test("empty and comment-only YAML documents produce JSON null", () => {
   for (const input of ["", "   \n", "# only a comment\n", "---\n# empty document\n"]) {
     assert.equal(yamlToJson(input), "null");
