@@ -128,7 +128,7 @@ export function sortLines(
       }).output.split("\n")
     : splitLines(text);
 
-  const sorted = [...lines].sort((a, b) => compareLines(a, b, options));
-  if (options.direction === "desc") sorted.reverse();
+  const direction = options.direction === "desc" ? -1 : 1;
+  const sorted = [...lines].sort((a, b) => direction * compareLines(a, b, options));
   return { output: joinLines(sorted, ending), count: sorted.length };
 }

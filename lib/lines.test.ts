@@ -110,6 +110,29 @@ test("numeric sort compares numbers as numbers", () => {
   );
 });
 
+test("descending text sort keeps original spelling order for case-insensitive ties", () => {
+  assert.deepEqual(sortLines("apple\nApple\nbanana\nAPPLE", {
+    direction: "desc", caseSensitive: false, numeric: false,
+    trimWhitespace: false, removeDuplicates: false,
+  }), { output: "banana\napple\nApple\nAPPLE", count: 4 });
+});
+
+test("both sort directions preserve whitespace variants when trimmed keys tie", () => {
+  const options = {
+    caseSensitive: true, numeric: false, trimWhitespace: true, removeDuplicates: false,
+  };
+  const input = " a \nb\na\n  a";
+  assert.equal(sortLines(input, { ...options, direction: "asc" }).output, " a \na\n  a\nb");
+  assert.equal(sortLines(input, { ...options, direction: "desc" }).output, "b\n a \na\n  a");
+});
+
+test("descending sort with deduplication retains first spelling and requested line ending", () => {
+  assert.deepEqual(sortLines(" apple \r\nAPPLE\rbanana\nBanana", {
+    direction: "desc", caseSensitive: false, numeric: false,
+    trimWhitespace: true, removeDuplicates: true,
+  }, "crlf"), { output: "banana\r\n apple ", count: 2 });
+});
+
 test("sortLines can remove duplicates before sorting", () => {
   assert.equal(
     sortLines("b\na\nB", {
