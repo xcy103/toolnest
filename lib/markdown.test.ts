@@ -17,6 +17,23 @@ test("renders inline elements", () => {
   assert.equal(renderMarkdown("*em*"), "<p><em>em</em></p>");
 });
 
+test("inline code keeps emphasis and link syntax literal", () => {
+  assert.equal(renderMarkdown("`**bold** *italic* [link](https://example.com)`"),
+    "<p><code>**bold** *italic* [link](https://example.com)</code></p>");
+});
+
+test("protected code spans coexist with surrounding emphasis and real links", () => {
+  assert.equal(renderMarkdown("**`*literal*`** and `**second**` and [real](https://example.com)"),
+    '<p><strong><code>*literal*</code></strong> and <code>**second**</code> and <a href="https://example.com" target="_blank" rel="noopener noreferrer">real</a></p>');
+});
+
+test("inline code retains escaped HTML and cannot collide with source delimiters", () => {
+  assert.equal(renderMarkdown('`<img src="x" onerror="bad()"> & **text**`'),
+    "<p><code>&lt;img src=&quot;x&quot; onerror=&quot;bad()&quot;&gt; &amp; **text**</code></p>");
+  assert.equal(renderMarkdown("\u00000\u0000 `*literal*`"),
+    "<p>\u00000\u0000 <code>*literal*</code></p>");
+});
+
 // The renderer escapes HTML before parsing, so raw markup can never reach the DOM.
 test("neutralises embedded HTML", () => {
   assert.equal(

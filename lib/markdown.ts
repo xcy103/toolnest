@@ -19,7 +19,15 @@ function escapeHtml(s: string): string {
 }
 
 function inline(text: string): string {
-  let out = text.replace(/`([^`]+)`/g, "<code>$1</code>");
+  // Protect already-escaped code content until other inline syntax is rendered.
+  // Choose a delimiter absent from the source so literal input cannot impersonate it.
+  let marker = "\u0000";
+  while (text.includes(marker)) marker += "\u0000";
+  const code: string[] = [];
+  let out = text.replace(/`([^`]+)`/g, (_match, content: string) => {
+    const index = code.push(`<code>${content}</code>`) - 1;
+    return `${marker}${index}${marker}`;
+  });
   out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
@@ -28,7 +36,8 @@ function inline(text: string): string {
       ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`
       : m;
   });
-  return out;
+  return out.replace(new RegExp(`${marker}(\\d+)${marker}`, "g"),
+    (_match, index: string) => code[Number(index)]);
 }
 
 export function renderMarkdown(md: string): string {
