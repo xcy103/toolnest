@@ -26,6 +26,25 @@ test("calculates percentage change in both directions", () => {
   assert.ok(Number.isNaN(percentageChange(0, 20)));
 });
 
+test("percentage change avoids intermediate overflow for large opposite signs", () => {
+  for (const value of [1e308, Number.MAX_VALUE]) {
+    assert.equal(percentageChange(-value, value), 200);
+    assert.equal(percentageChange(value, -value), -200);
+  }
+  assert.equal(percentageChange(-1e308, 1.5e308), 250);
+  assert.equal(percentageChange(1e308, -1.5e308), -250);
+});
+
+test("percentage change retains small deltas, negative baselines and invalid results", () => {
+  assert.equal(percentageChange(1e16, 1e16 + 2), 2e-14);
+  assert.equal(percentageChange(-80, -100), -25);
+  assert.equal(percentageChange(-100, -80), 20);
+  assert.ok(Number.isNaN(percentageChange(0, 1e308)));
+  assert.equal(formatCalculatorResult(percentageChange(1e-308, 1e308)), "");
+  assert.equal(formatCalculatorResult(percentageChange(Number.NaN, 100)), "");
+  assert.equal(formatCalculatorResult(percentageChange(-1e308, 1e308)), "200");
+});
+
 test("calculates metric and imperial BMI", () => {
   assert.ok(Math.abs(bmiMetric(70, 175) - 22.8571) < 0.0001);
   // The customary imperial formula uses the rounded conversion factor 703.

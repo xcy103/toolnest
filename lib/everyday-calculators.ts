@@ -9,7 +9,14 @@ export function percentageRatio(part: number, whole: number): number {
 }
 
 export function percentageChange(from: number, to: number): number {
-  return from === 0 ? Number.NaN : ((to - from) / Math.abs(from)) * 100;
+  if (from === 0) return Number.NaN;
+  const difference = to - from;
+  // Divide first only when subtraction overflows. Keeping the direct difference
+  // for ordinary values avoids losing small changes between nearby numbers.
+  if (!Number.isFinite(difference) && Number.isFinite(from) && Number.isFinite(to)) {
+    return (to / Math.abs(from) - Math.sign(from)) * 100;
+  }
+  return (difference / Math.abs(from)) * 100;
 }
 
 export function bmiMetric(weightKg: number, heightCm: number): number {
