@@ -4,25 +4,9 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
+import { decodeBase64, encodeBase64 } from "@/lib/base64";
 
 type Mode = "encode" | "decode";
-
-/** UTF-8 safe text → Base64. */
-function encodeBase64(text: string): string {
-  const bytes = new TextEncoder().encode(text);
-  let binary = "";
-  bytes.forEach((b) => (binary += String.fromCharCode(b)));
-  return btoa(binary);
-}
-
-/** UTF-8 safe Base64 → text. Throws on invalid input. */
-function decodeBase64(input: string): string {
-  // Tolerate whitespace / line breaks that often appear in pasted Base64.
-  const cleaned = input.replace(/\s+/g, "");
-  const binary = atob(cleaned);
-  const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
-  return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
-}
 
 export default function Base64Page() {
   const t = useTranslations();
@@ -30,7 +14,7 @@ export default function Base64Page() {
   const [input, setInput] = useState("");
 
   const { output, error } = useMemo(() => {
-    if (!input.trim()) return { output: "", error: "" };
+    if (input === "" || (mode === "decode" && !input.trim())) return { output: "", error: "" };
     try {
       const result =
         mode === "encode" ? encodeBase64(input) : decodeBase64(input);
