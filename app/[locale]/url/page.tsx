@@ -4,36 +4,21 @@ import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
+import { decodeUrl, encodeUrl, type UrlCodecScope } from "@/lib/url-codec";
 
 type Mode = "encode" | "decode";
-type Scope = "component" | "uri";
-
-/** Encode text for use in a URL. */
-function encode(text: string, scope: Scope): string {
-  // `component` escapes URL delimiters (/ ? & = # …) too — safe for query values.
-  // `uri` preserves the overall URL structure — for encoding a whole address.
-  return scope === "component" ? encodeURIComponent(text) : encodeURI(text);
-}
-
-/** Decode a percent-encoded URL string. Throws on malformed input. */
-function decode(text: string, scope: Scope): string {
-  const cleaned = text.trim();
-  return scope === "component"
-    ? decodeURIComponent(cleaned)
-    : decodeURI(cleaned);
-}
 
 export default function UrlPage() {
   const t = useTranslations();
   const [mode, setMode] = useState<Mode>("encode");
-  const [scope, setScope] = useState<Scope>("component");
+  const [scope, setScope] = useState<UrlCodecScope>("component");
   const [input, setInput] = useState("");
 
   const { output, error } = useMemo(() => {
-    if (!input.trim()) return { output: "", error: "" };
+    if (input === "") return { output: "", error: "" };
     try {
       const result =
-        mode === "encode" ? encode(input, scope) : decode(input, scope);
+        mode === "encode" ? encodeUrl(input, scope) : decodeUrl(input, scope);
       return { output: result, error: "" };
     } catch {
       return {
