@@ -17,6 +17,19 @@ test("renders inline elements", () => {
   assert.equal(renderMarkdown("*em*"), "<p><em>em</em></p>");
 });
 
+test("ordered lists retain their first number and continue sequentially", () => {
+  assert.equal(renderMarkdown("5. first\n9. next"), '<ol start="5"><li>first</li><li>next</li></ol>');
+  assert.equal(renderMarkdown("0. zero\n1. one"), '<ol start="0"><li>zero</li><li>one</li></ol>');
+  assert.equal(renderMarkdown("007. seven"), '<ol start="7"><li>seven</li></ol>');
+});
+
+test("ordered-list starts reset across blocks and stay within HTML integer bounds", () => {
+  assert.equal(renderMarkdown("5. **first**\n\n1. reset\n- bullet\n3. third"),
+    '<ol start="5"><li><strong>first</strong></li></ol>\n<ol><li>reset</li></ol>\n<ul><li>bullet</li></ul>\n<ol start="3"><li>third</li></ol>');
+  assert.equal(renderMarkdown("2147483647. last"), '<ol start="2147483647"><li>last</li></ol>');
+  assert.equal(renderMarkdown("2147483648. fallback"), '<ol><li>fallback</li></ol>');
+});
+
 test("inline code keeps emphasis and link syntax literal", () => {
   assert.equal(renderMarkdown("`**bold** *italic* [link](https://example.com)`"),
     "<p><code>**bold** *italic* [link](https://example.com)</code></p>");

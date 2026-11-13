@@ -44,14 +44,17 @@ export function renderMarkdown(md: string): string {
   const lines = escapeHtml(md).split("\n");
   const html: string[] = [];
   let listType: "ul" | "ol" | null = null;
+  let listStart = 1;
   let listBuf: string[] = [];
   let inCode = false;
   let codeBuf: string[] = [];
 
   const flushList = () => {
     if (listType) {
-      html.push(`<${listType}>${listBuf.join("")}</${listType}>`);
+      const start = listType === "ol" && listStart !== 1 ? ` start="${listStart}"` : "";
+      html.push(`<${listType}${start}>${listBuf.join("")}</${listType}>`);
       listType = null;
+      listStart = 1;
       listBuf = [];
     }
   };
@@ -104,11 +107,16 @@ export function renderMarkdown(md: string): string {
       continue;
     }
 
-    const ol = /^\s*\d+\.\s+(.*)$/.exec(line);
+    const ol = /^\s*(\d+)\.\s+(.*)$/.exec(line);
     if (ol) {
       if (listType && listType !== "ol") flushList();
+      if (listType !== "ol") {
+        const start = Number(ol[1]);
+        // HTML's ordered-list start is a signed 32-bit integer.
+        listStart = Number.isInteger(start) && start <= 2_147_483_647 ? start : 1;
+      }
       listType = "ol";
-      listBuf.push(`<li>${inline(ol[1])}</li>`);
+      listBuf.push(`<li>${inline(ol[2])}</li>`);
       continue;
     }
 
