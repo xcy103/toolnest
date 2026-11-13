@@ -68,3 +68,11 @@ test("enforces field, URL and resulting parameter limits", () => {
   assert.ok(buildUtmUrl(`https://example.com/?${query}`, fields));
   fails(`https://example.com/?${query}&extra=1`, fields, "parameters");
 });
+
+test("limits the final encoded link and accepts the exact length boundary", () => {
+  const base = "https://example.com/";
+  const boundary = base + "a".repeat(UTM_LIMITS.urlCharacters - buildUtmUrl(base, fields).length);
+  assert.equal(buildUtmUrl(boundary, fields).length, UTM_LIMITS.urlCharacters);
+  fails(`${boundary}a`, fields, "generatedTooLong");
+  fails(base + "中".repeat(2_300), fields, "generatedTooLong");
+});

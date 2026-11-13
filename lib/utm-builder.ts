@@ -8,7 +8,7 @@ export type UtmFields = {
   content: string;
 };
 
-export type UtmErrorKey = "urlRequired" | "urlTooLong" | "invalidUrl" | "protocol" | "required" | "fieldTooLong" | "parameters";
+export type UtmErrorKey = "urlRequired" | "urlTooLong" | "generatedTooLong" | "invalidUrl" | "protocol" | "required" | "fieldTooLong" | "parameters";
 
 export class UtmError extends Error {
   key: UtmErrorKey;
@@ -61,5 +61,7 @@ export function buildUtmUrl(input: string, fields: UtmFields): string {
   }
   if (retained.filter(Boolean).length + added.size > UTM_LIMITS.parameters) throw new UtmError("parameters");
   url.search = [...retained, added.toString()].join("&");
-  return url.href;
+  const output = url.href;
+  if (output.length > UTM_LIMITS.urlCharacters) throw new UtmError("generatedTooLong");
+  return output;
 }

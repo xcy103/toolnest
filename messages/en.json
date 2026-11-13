@@ -1361,6 +1361,7 @@
     "errors": {
       "urlRequired": "Enter a destination URL.",
       "urlTooLong": "The destination URL cannot exceed {urlCharacters} characters.",
+      "generatedTooLong": "The generated URL exceeds {urlCharacters} characters. Shorten the destination or campaign fields.",
       "invalidUrl": "Enter a complete, valid destination URL including http:// or https://.",
       "protocol": "The destination must use HTTP or HTTPS.",
       "required": "Complete the source, medium and campaign fields.",

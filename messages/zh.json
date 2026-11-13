@@ -1361,6 +1361,7 @@
     "errors": {
       "urlRequired": "请输入目标 URL。",
       "urlTooLong": "目标 URL 不得超过 {urlCharacters} 个字符。",
+      "generatedTooLong": "生成的 URL 超过 {urlCharacters} 个字符。请缩短目标链接或活动参数。",
       "invalidUrl": "请输入包含 http:// 或 https:// 的完整有效 URL。",
       "protocol": "目标 URL 必须使用 HTTP 或 HTTPS。",
       "required": "请填写来源、媒介和活动名称。",
