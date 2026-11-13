@@ -42,6 +42,11 @@ test("trims field edges but preserves internal whitespace and Unicode", () => {
   assert.equal(params.get("utm_content"), "按钮 A");
 });
 
+test("replaces encoded UTM names while preserving unrelated query spelling", () => {
+  const output = buildUtmUrl("https://example.com/?q=two%20words&flag&x=%7e&x=~&empty=&utm%5Fsource=old#top", fields);
+  assert.equal(output, "https://example.com/?q=two%20words&flag&x=%7e&x=~&empty=&utm_source=newsletter&utm_medium=email&utm_campaign=fall+launch&utm_content=hero+button#top");
+});
+
 test("accepts HTTP and HTTPS while rejecting other schemes and relative input", () => {
   assert.ok(buildUtmUrl("http://example.com", fields).startsWith("http://"));
   fails("mailto:person@example.com", fields, "protocol");

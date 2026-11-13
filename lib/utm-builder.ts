@@ -26,6 +26,7 @@ const keys: [keyof UtmFields, string][] = [
   ["term", "utm_term"],
   ["content", "utm_content"],
 ];
+const trackingKeys = new Set(keys.map(([, key]) => key));
 
 export function buildUtmUrl(input: string, fields: UtmFields): string {
   if (input.length > UTM_LIMITS.urlCharacters) throw new UtmError("urlTooLong");
@@ -48,13 +49,17 @@ export function buildUtmUrl(input: string, fields: UtmFields): string {
   }
   if (url.protocol !== "http:" && url.protocol !== "https:") throw new UtmError("protocol");
 
-  const unrelatedCount = Array.from(url.searchParams).filter(([key]) => !keys.some(([, utmKey]) => key === utmKey)).length;
-  const addedCount = keys.filter(([key]) => normalized[key]).length;
-  if (unrelatedCount + addedCount > UTM_LIMITS.parameters) throw new UtmError("parameters");
-
+  // Decode keys for matching only, so unrelated parameters retain their URL encoding.
+  const retained = url.search ? url.search.slice(1).split("&").filter((entry) => {
+    if (!entry) return true;
+    const key = new URLSearchParams(`?${entry}`).keys().next().value;
+    return key === undefined || !trackingKeys.has(key);
+  }) : [];
+  const added = new URLSearchParams();
   for (const [key, utmKey] of keys) {
-    url.searchParams.delete(utmKey);
-    if (normalized[key]) url.searchParams.append(utmKey, normalized[key]);
+    if (normalized[key]) added.append(utmKey, normalized[key]);
   }
+  if (retained.filter(Boolean).length + added.size > UTM_LIMITS.parameters) throw new UtmError("parameters");
+  url.search = [...retained, added.toString()].join("&");
   return url.href;
 }
