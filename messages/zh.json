@@ -548,6 +548,8 @@
     "placeholder": "在此输入要计算哈希的文本…",
     "outputLabel": "哈希结果",
     "outputPlaceholder": "哈希值会显示在这里…",
+    "computing": "正在计算哈希值…",
+    "computeError": "无法计算哈希值。请确认浏览器支持 Web Crypto 后重试。",
     "note": "提示:MD5 与 SHA-1 已不适合用于安全场景(如密码存储),仅建议用于校验和、文件指纹等用途。"
   },
   "timezonePage": {

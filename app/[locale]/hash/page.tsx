@@ -15,28 +15,32 @@ function toHex(buffer: ArrayBuffer): string {
   ).join("");
 }
 
-type Digests = { label: string; value: string }[];
+type Digest = { label: string; value: string };
+type HashResult = { input: string; digests: Digest[] | null };
 
 export default function HashPage() {
   const t = useTranslations();
   const [input, setInput] = useState("");
-  const [digests, setDigests] = useState<Digests>([]);
+  const [result, setResult] = useState<HashResult | null>(null);
+  const current = input && result?.input === input ? result : null;
 
   useEffect(() => {
+    if (!input) return;
     let cancelled = false;
 
     async function compute() {
-      if (!input) {
-        if (!cancelled) setDigests([]);
-        return;
+      try {
+        const bytes = new TextEncoder().encode(input);
+        const shaDigests = await Promise.all(SHA_ALGOS.map(async (label) => {
+          const buffer = await crypto.subtle.digest(label, bytes);
+          return { label, value: toHex(buffer) };
+        }));
+        if (!cancelled) {
+          setResult({ input, digests: [{ label: "MD5", value: md5(bytes) }, ...shaDigests] });
+        }
+      } catch {
+        if (!cancelled) setResult({ input, digests: null });
       }
-      const bytes = new TextEncoder().encode(input);
-      const results: Digests = [{ label: "MD5", value: md5(bytes) }];
-      for (const algo of SHA_ALGOS) {
-        const buf = await crypto.subtle.digest(algo, bytes);
-        results.push({ label: algo, value: toHex(buf) });
-      }
-      if (!cancelled) setDigests(results);
     }
 
     compute();
@@ -44,6 +48,11 @@ export default function HashPage() {
       cancelled = true;
     };
   }, [input]);
+
+  function updateInput(value: string) {
+    setInput(value);
+    setResult(null);
+  }
 
   return (
     <ToolLayout
@@ -58,7 +67,7 @@ export default function HashPage() {
           input ? (
             <button
               type="button"
-              onClick={() => setInput("")}
+              onClick={() => updateInput("")}
               className="text-sm text-muted transition hover:text-foreground"
             >
               {t("common.clear")}
@@ -68,7 +77,7 @@ export default function HashPage() {
       >
         <textarea
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => updateInput(e.target.value)}
           rows={5}
           placeholder={t("hashPage.placeholder")}
           spellCheck={false}
@@ -78,11 +87,13 @@ export default function HashPage() {
 
       {/* Output — one row per algorithm */}
       <ToolPanel label={t("hashPage.outputLabel")}>
-        {digests.length === 0 ? (
-          <p className="text-sm text-muted">{t("hashPage.outputPlaceholder")}</p>
+        {!current?.digests ? (
+          <p role="status" className="text-sm text-muted">
+            {t(!input ? "hashPage.outputPlaceholder" : current ? "hashPage.computeError" : "hashPage.computing")}
+          </p>
         ) : (
           <ul className="space-y-3">
-            {digests.map(({ label, value }) => (
+            {current.digests.map(({ label, value }) => (
               <li
                 key={label}
                 className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3"

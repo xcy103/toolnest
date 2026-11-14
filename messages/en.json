@@ -548,6 +548,8 @@
     "placeholder": "Type the text to hash…",
     "outputLabel": "Digests",
     "outputPlaceholder": "The digests will appear here…",
+    "computing": "Calculating digests…",
+    "computeError": "Could not calculate digests. Check that your browser supports Web Crypto and try again.",
     "note": "Note: MD5 and SHA-1 are no longer suitable for security purposes (such as password storage) — use them only for checksums and fingerprints."
   },
   "timezonePage": {
