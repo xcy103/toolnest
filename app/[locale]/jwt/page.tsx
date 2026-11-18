@@ -4,32 +4,7 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
-
-/** base64url → UTF-8 string. Throws on malformed input. */
-function b64urlDecode(seg: string): string {
-  const b64 = seg.replace(/-/g, "+").replace(/_/g, "/");
-  const pad = b64.length % 4 ? "=".repeat(4 - (b64.length % 4)) : "";
-  const binary = atob(b64 + pad);
-  const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
-  return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
-}
-
-type Decoded = {
-  header: Record<string, unknown>;
-  payload: Record<string, unknown>;
-};
-
-/** Split and decode a JWT's header and payload. Throws if it isn't a JWT. */
-function decodeJwt(token: string): Decoded {
-  const parts = token.trim().split(".");
-  if (parts.length < 2 || !parts[0] || !parts[1]) {
-    throw new Error("not a jwt");
-  }
-  return {
-    header: JSON.parse(b64urlDecode(parts[0])),
-    payload: JSON.parse(b64urlDecode(parts[1])),
-  };
-}
+import { decodeJwt } from "@/lib/jwt";
 
 const TIMESTAMP_CLAIMS = ["iat", "exp", "nbf"] as const;
 
