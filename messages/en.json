@@ -1129,6 +1129,7 @@
     "notVerified": "Decode only — the signature is not verified.",
     "error": "That doesn't look like a valid JWT. Check the token and try again.",
     "claimsLabel": "Timestamps",
+    "dateOutOfRange": "Outside the supported date range",
     "iat": "Issued at",
     "exp": "Expires at",
     "nbf": "Not valid before"

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
-import { decodeJwt } from "@/lib/jwt";
+import { decodeJwt, jwtClaimDate } from "@/lib/jwt";
 
 const TIMESTAMP_CLAIMS = ["iat", "exp", "nbf"] as const;
 
@@ -29,13 +29,16 @@ export default function JwtPage() {
   const claims = decoded
     ? TIMESTAMP_CLAIMS.filter(
         (c) => typeof decoded.payload[c] === "number",
-      ).map((c) => ({
-        key: c,
-        date: new Intl.DateTimeFormat(locale, {
-          dateStyle: "medium",
-          timeStyle: "medium",
-        }).format((decoded.payload[c] as number) * 1000),
-      }))
+      ).map((c) => {
+        const date = jwtClaimDate(decoded.payload[c] as number);
+        return {
+          key: c,
+          date: date ? new Intl.DateTimeFormat(locale, {
+            dateStyle: "medium",
+            timeStyle: "medium",
+          }).format(date) : t("jwtPage.dateOutOfRange"),
+        };
+      })
     : [];
 
   return (

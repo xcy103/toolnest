@@ -20,3 +20,8 @@ export function decodeJwt(token: string): DecodedJwt {
   if (parts.length < 2 || !parts[0] || !parts[1]) throw new Error("Invalid JWT");
   return { header: decodeObject(parts[0]), payload: decodeObject(parts[1]) };
 }
+
+export function jwtClaimDate(seconds: number): Date | null {
+  const date = new Date(seconds * 1000);
+  return Number.isFinite(date.getTime()) ? date : null;
+}

@@ -1129,6 +1129,7 @@
     "notVerified": "仅解码——不校验签名。",
     "error": "这看起来不是有效的 JWT。请检查后重试。",
     "claimsLabel": "时间声明",
+    "dateOutOfRange": "超出支持的日期范围",
     "iat": "签发时间",
     "exp": "过期时间",
     "nbf": "生效时间"
