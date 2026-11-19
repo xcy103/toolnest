@@ -764,7 +764,7 @@
     "hours": "Hours",
     "example": "Load example",
     "precision": "Decimal conversions are rounded to at most 6 places; total seconds are exact.",
-    "error": "Enter both durations as HH:MM:SS. Hours: 0–999999; minutes and seconds: 00–59. Inputs must be nonnegative."
+    "error": "Use HH:MM:SS with hours from 0 to 999999 and minutes and seconds from 00 to 59."
   },
   "aspectRatioPage": {
     "description": "Reduce integer dimensions to a width:height ratio, or find a missing dimension with explicit rounding.",

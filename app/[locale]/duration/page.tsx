@@ -6,20 +6,25 @@ import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 import { parseDuration, calculateDuration, formatDuration, formatDurationUnit } from "@/lib/duration";
 
+function readDuration(value: string): number | "invalid" | null {
+  if (!value.trim()) return null;
+  try {
+    return parseDuration(value);
+  } catch {
+    return "invalid";
+  }
+}
+
 export default function DurationPage() {
   const t = useTranslations();
   const [a, setA] = useState("");
   const [b, setB] = useState("");
   const [operation, setOperation] = useState<"add" | "subtract">("add");
-  let result: number | null = null;
-  let error = "";
-  if (a !== "" || b !== "") {
-    try {
-      result = calculateDuration(parseDuration(a), parseDuration(b), operation);
-    } catch {
-      error = t("durationPage.error");
-    }
-  }
+  const first = readDuration(a);
+  const second = readDuration(b);
+  const result = typeof first === "number" && typeof second === "number"
+    ? calculateDuration(first, second, operation)
+    : null;
   const formatted = result === null ? "" : formatDuration(result);
   const units = result === null ? [] : [
     { label: t("durationPage.seconds"), value: String(result) },
@@ -44,15 +49,18 @@ export default function DurationPage() {
         </div>
       }>
         <div className="grid gap-4 sm:grid-cols-2">
-          {[{ label: t("durationPage.first"), value: a, set: setA }, { label: t("durationPage.second"), value: b, set: setB }].map(({ label, value, set }) => (
-            <label key={label} className="block min-w-0">
-              <span className="mb-2 block text-sm font-medium">{label}</span>
-              <input aria-label={label} aria-invalid={Boolean(error)} value={value} onChange={(e) => set(e.target.value)} placeholder="HH:MM:SS" className="w-full min-w-0 rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500" />
-            </label>
+          {[
+            { id: "duration-a", label: t("durationPage.first"), value: a, set: setA, invalid: first === "invalid" },
+            { id: "duration-b", label: t("durationPage.second"), value: b, set: setB, invalid: second === "invalid" },
+          ].map(({ id, label, value, set, invalid }) => (
+            <div key={id} className="min-w-0">
+              <label htmlFor={id} className="mb-2 block text-sm font-medium">{label}</label>
+              <input id={id} aria-invalid={invalid} aria-describedby={invalid ? `${id}-error` : undefined} value={value} onChange={(e) => set(e.target.value)} placeholder="HH:MM:SS" className="w-full min-w-0 rounded-lg border border-border bg-background p-3 font-mono text-sm outline-none focus:border-emerald-500" />
+              {invalid && <p id={`${id}-error`} className="mt-2 text-sm text-red-600 dark:text-red-400">{t("durationPage.error")}</p>}
+            </div>
           ))}
         </div>
       </ToolPanel>
-      {error && <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>}
       <ToolPanel label={t("durationPage.result")} action={<CopyButton value={copy} />}>
         <output aria-live="polite" className="block break-words font-mono text-2xl">{formatted || "—"}</output>
         {result !== null && <>
