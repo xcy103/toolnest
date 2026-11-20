@@ -10,49 +10,44 @@ type Level = "L" | "M" | "Q" | "H";
 const LEVELS: Level[] = ["L", "M", "Q", "H"];
 
 const SIZES = [256, 320, 512] as const;
+type Size = (typeof SIZES)[number];
+type QrResult = { input: string; level: Level; size: Size; dataUrl: string | null };
 
 export default function QrcodePage() {
   const t = useTranslations();
   const [input, setInput] = useState("");
   const [level, setLevel] = useState<Level>("M");
-  const [size, setSize] = useState<(typeof SIZES)[number]>(320);
-  const [dataUrl, setDataUrl] = useState("");
-  const [error, setError] = useState("");
+  const [size, setSize] = useState<Size>(320);
+  const [result, setResult] = useState<QrResult | null>(null);
+  const hasInput = input.trim() !== "";
+  const current = hasInput && result?.input === input && result.level === level && result.size === size
+    ? result
+    : null;
+  const dataUrl = current?.dataUrl;
 
   useEffect(() => {
+    if (!hasInput) return;
     let cancelled = false;
 
     async function render() {
-      if (!input.trim()) {
-        if (!cancelled) {
-          setDataUrl("");
-          setError("");
-        }
-        return;
-      }
+      let dataUrl: string | null = null;
       try {
-        const url = await QRCode.toDataURL(input, {
+        dataUrl = await QRCode.toDataURL(input, {
           errorCorrectionLevel: level,
           width: size,
           margin: 2,
         });
-        if (!cancelled) {
-          setDataUrl(url);
-          setError("");
-        }
       } catch {
-        if (!cancelled) {
-          setDataUrl("");
-          setError(t("qrcodePage.error"));
-        }
+        // A failed generation has no preview or download.
       }
+      if (!cancelled) setResult({ input, level, size, dataUrl });
     }
 
     render();
     return () => {
       cancelled = true;
     };
-  }, [input, level, size, t]);
+  }, [hasInput, input, level, size]);
 
   return (
     <ToolLayout
@@ -97,6 +92,7 @@ export default function QrcodePage() {
                 <button
                   key={value}
                   type="button"
+                  aria-pressed={level === value}
                   onClick={() => setLevel(value)}
                   className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
                     level === value
@@ -118,6 +114,7 @@ export default function QrcodePage() {
                 <button
                   key={value}
                   type="button"
+                  aria-pressed={size === value}
                   onClick={() => setSize(value)}
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
                     size === value
@@ -135,9 +132,9 @@ export default function QrcodePage() {
 
       {/* Output */}
       <ToolPanel label={t("qrcodePage.outputLabel")}>
-        {error ? (
-          <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
-            ⚠️ {error}
+        {dataUrl === null ? (
+          <p role="alert" className="rounded-lg bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
+            ⚠️ {t("qrcodePage.error")}
           </p>
         ) : dataUrl ? (
           <div className="flex flex-col items-center gap-4">
@@ -158,7 +155,9 @@ export default function QrcodePage() {
             </a>
           </div>
         ) : (
-          <p className="text-sm text-muted">{t("qrcodePage.outputPlaceholder")}</p>
+          <p role="status" className="text-sm text-muted">
+            {t(hasInput ? "qrcodePage.generating" : "qrcodePage.outputPlaceholder")}
+          </p>
         )}
       </ToolPanel>
     </ToolLayout>

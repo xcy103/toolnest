@@ -626,6 +626,7 @@
     "sizeLabel": "Size",
     "outputLabel": "QR code",
     "outputPlaceholder": "The QR code will appear here…",
+    "generating": "Generating QR code…",
     "error": "The content is too long to fit in a QR code — please shorten it and try again.",
     "download": "⬇️ Download PNG",
     "alt": "Generated QR code"
