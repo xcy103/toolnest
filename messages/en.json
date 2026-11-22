@@ -1312,6 +1312,7 @@
     "errors": {
       "syntax": "Enter a valid, double-quoted JSON string literal.",
       "notString": "The JSON value must be a string, not an object, array, number, boolean or null.",
+      "outputTooLarge": "The escaped result exceeds {characters} characters. Shorten the text or convert it in smaller pieces.",
       "tooLarge": "Input is limited to {characters} characters."
     }
   },

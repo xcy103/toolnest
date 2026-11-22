@@ -1312,6 +1312,7 @@
     "errors": {
       "syntax": "请输入有效且带双引号的 JSON 字符串字面量。",
       "notString": "JSON 值必须是字符串,不能是对象、数组、数字、布尔值或 null。",
+      "outputTooLarge": "转义结果超过 {characters} 个字符。请缩短文本或分段转换。",
       "tooLarge": "输入不得超过 {characters} 个字符。"
     }
   },

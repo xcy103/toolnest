@@ -55,3 +55,14 @@ test("enforces the character limit in both directions", () => {
     });
   }
 });
+
+test("escaped output fits the decoder's input limit, including quotes and escaped tabs", () => {
+  const text = "\t".repeat((JSON_STRING_LIMIT - 2) / 2);
+  const literal = escapeJsonString(text);
+  assert.equal(literal.length, JSON_STRING_LIMIT);
+  assert.equal(unescapeJsonString(literal), text);
+  assert.throws(
+    () => escapeJsonString(text + "a"),
+    (error) => error instanceof JsonStringError && error.key === "outputTooLarge",
+  );
+});

@@ -1,6 +1,6 @@
 export const JSON_STRING_LIMIT = 2_000_000;
 
-export type JsonStringErrorKey = "syntax" | "notString" | "tooLarge";
+export type JsonStringErrorKey = "syntax" | "notString" | "tooLarge" | "outputTooLarge";
 
 export class JsonStringError extends Error {
   key: JsonStringErrorKey;
@@ -19,7 +19,9 @@ function assertLength(text: string) {
 /** Serialize plain text as one complete JSON string literal. */
 export function escapeJsonString(text: string): string {
   assertLength(text);
-  return JSON.stringify(text);
+  const literal = JSON.stringify(text);
+  if (literal.length > JSON_STRING_LIMIT) throw new JsonStringError("outputTooLarge");
+  return literal;
 }
 
 /** Parse one complete JSON string literal and reject every other JSON value type. */
