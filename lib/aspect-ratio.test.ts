@@ -19,6 +19,12 @@ test("rounds fractional results explicitly, including half values and zero", () 
   assert.equal(solveAspectDimension(1, 16, 1, "width", "floor").rounded, 0);
   assert.equal(formatAspectValue(100 / 3), "33.333333");
 });
+test("equivalent ratios produce the same simplified exact dimension", () => {
+  const expected = { value: 56.25, rounded: 57, fraction: "225/4" };
+  assert.deepEqual(solveAspectDimension(100, 16, 9, "width", "ceil"), expected);
+  assert.deepEqual(solveAspectDimension(100, 1920, 1080, "width", "ceil"), expected);
+  assert.equal(solveAspectDimension(1080, 16, 9, "height", "nearest").fraction, "1920/1");
+});
 test("rejects malformed, zero, decimal, nonfinite and oversized inputs/results", () => {
   for (const raw of ["", "0", "-1", "1.5", "1e3", "1000001", "Infinity"]) assert.throws(() => parseAspectInteger(raw));
   assert.equal(parseAspectInteger(" 1000000 "), 1000000);
