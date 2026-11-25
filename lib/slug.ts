@@ -7,7 +7,9 @@ export type SlugOptions = {
 export function generateSlug(input: string, options: SlugOptions): string {
   const normalized = input
     .normalize("NFKD")
-    .replace(/(\p{Script=Latin})\p{M}+/gu, "$1");
+    .replace(/(\p{Script=Latin})\p{M}+/gu, "$1")
+    // Keep marks attached to a letter or number, including non-Latin vowel signs.
+    .replace(/(?<![\p{L}\p{N}\p{M}])\p{M}+/gu, "");
   const text = options.lowercase ? normalized.toLowerCase() : normalized;
   const boundary = options.collapseSeparators
     ? /[^\p{L}\p{N}\p{M}]+/gu

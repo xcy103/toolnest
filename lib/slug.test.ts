@@ -28,3 +28,10 @@ test("returns an empty slug when input has no letters or digits", () => {
   assert.equal(generateSlug("  !?  ", defaults), "");
   assert.equal(generateSlug("", defaults), "");
 });
+
+test("drops unattached marks while retaining marks in non-Latin words", () => {
+  assert.equal(generateSlug("\u0301\u0308", defaults), "");
+  assert.equal(generateSlug("♥️", defaults), "");
+  assert.equal(generateSlug("\u0301猫 ♥️ \u0308犬", defaults), "猫-犬");
+  assert.equal(generateSlug("が हिन्दी", defaults), "が-हिन्दी".normalize("NFKD"));
+});
