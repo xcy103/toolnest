@@ -20,6 +20,15 @@ test("calculates what percentage one value is of another", () => {
   assert.ok(Number.isNaN(percentageRatio(1, 0)));
 });
 
+test("avoids premature underflow in percentage multiplication and ratios", () => {
+  assert.ok(Math.abs(percentageOf(Number.MIN_VALUE, 1e308) / 4.940656458412465e-18 - 1) < 1e-15);
+  assert.equal(percentageOf(-Number.MIN_VALUE, 100), -Number.MIN_VALUE);
+  assert.equal(percentageRatio(Number.MIN_VALUE, 100), Number.MIN_VALUE);
+  assert.equal(percentageRatio(Number.MIN_VALUE, -100), -Number.MIN_VALUE);
+  assert.equal(percentageOf(Number.MAX_VALUE, 100), Number.MAX_VALUE);
+  assert.equal(percentageRatio(Number.MAX_VALUE, Number.MAX_VALUE), 100);
+});
+
 test("calculates percentage change in both directions", () => {
   assert.equal(percentageChange(80, 100), 25);
   assert.equal(percentageChange(100, 80), -20);

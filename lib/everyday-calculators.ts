@@ -1,11 +1,23 @@
 export type BmiCategory = "underweight" | "healthy" | "overweight" | "obesity";
 
+const MIN_NORMAL_NUMBER = 2 ** -1022;
+
 export function percentageOf(percent: number, value: number): number {
-  return (percent / 100) * value;
+  const factor = percent / 100;
+  // Avoid losing precision in a subnormal intermediate before multiplying.
+  if (percent !== 0 && Math.abs(factor) < MIN_NORMAL_NUMBER && Number.isFinite(value)) {
+    return (percent * value) / 100;
+  }
+  return factor * value;
 }
 
 export function percentageRatio(part: number, whole: number): number {
-  return whole === 0 ? Number.NaN : (part / whole) * 100;
+  if (whole === 0) return Number.NaN;
+  const ratio = part / whole;
+  if (part !== 0 && Math.abs(ratio) < MIN_NORMAL_NUMBER && Number.isFinite(whole)) {
+    return (part * 100) / whole;
+  }
+  return ratio * 100;
 }
 
 export function percentageChange(from: number, to: number): number {
