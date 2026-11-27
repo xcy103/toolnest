@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import ToolLayout, { ToolPanel } from "@/components/ToolLayout";
 import CopyButton from "@/components/CopyButton";
 import {
-  formatCalculatorResult,
+  formatPercentageResult,
   percentageChange,
   percentageOf,
   percentageRatio,
@@ -26,7 +26,7 @@ export default function PercentageCalculatorPage() {
       return "";
     }
     const value = mode === "of" ? percentageOf(a, b) : mode === "ratio" ? percentageRatio(a, b) : percentageChange(a, b);
-    return formatCalculatorResult(value);
+    return formatPercentageResult(value);
   }, [first, second, mode]);
 
   const suffix = mode === "of" ? "" : "%";

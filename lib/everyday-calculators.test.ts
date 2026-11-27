@@ -5,6 +5,7 @@ import {
   bmiImperial,
   bmiMetric,
   formatCalculatorResult,
+  formatPercentageResult,
   percentageChange,
   percentageOf,
   percentageRatio,
@@ -73,4 +74,13 @@ test("formats finite results without floating-point noise", () => {
   assert.equal(formatCalculatorResult(0.1 + 0.2), "0.3");
   assert.equal(formatCalculatorResult(22.85714, 1), "22.9");
   assert.equal(formatCalculatorResult(Number.NaN), "");
+});
+
+test("shows scientific notation when a nonzero percentage result would display as zero", () => {
+  assert.equal(formatPercentageResult(0.0001234), "1.23E-4");
+  assert.equal(formatPercentageResult(-0.0001234), "-1.23E-4");
+  assert.equal(formatPercentageResult(Number.MIN_VALUE), "5E-324");
+  assert.equal(formatPercentageResult(0), "0");
+  assert.equal(formatPercentageResult(0.005), "0.01");
+  assert.equal(formatPercentageResult(Infinity), "");
 });

@@ -57,3 +57,14 @@ export function formatCalculatorResult(value: number, digits = 2): string {
     useGrouping: false,
   }).format(value);
 }
+
+export function formatPercentageResult(value: number): string {
+  const formatted = formatCalculatorResult(value);
+  if (value !== 0 && (formatted === "0" || formatted === "-0")) {
+    return new Intl.NumberFormat("en-US", {
+      notation: "scientific",
+      maximumFractionDigits: 2,
+    }).format(value);
+  }
+  return formatted;
+}
